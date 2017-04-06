@@ -1,38 +1,61 @@
 import pygame
+from pygame import display, draw, Surface, Color
+import pymunk
+from pygame.time import Clock
+
+from util.geometry import Vector
 
 pygame.init()
 
-def main():
-    display_width = 800
-    display_height = 600
-    game_display = pygame.display.set_mode((display_width, display_height))
-    pygame.display.set_caption('Natural 20: Challenge Pixel 2017')
-    clock = pygame.time.Clock()
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
 
-    black = (0, 0, 0)
-    white = (255, 255, 255)
+class Game():
 
-    carImg = pygame.image.load('racecar.png')
+    def __init__(self):
+        self.font = pygame.font.SysFont('Arial', 25)
+        self.last_frame_ticks = pygame.time.get_ticks()
+        self.delta_t = 0
 
-    def car(x, y):
-        game_display.blit(carImg, (x, y))
+    def compute_delta_t(self):
+        ticks = pygame.time.get_ticks()
+        self.delta_t = ticks - self.last_frame_ticks
+        self.last_frame_ticks = ticks
 
-    x = (display_width * 0.45)
-    y = (display_height * 0.8)
+    def add_text(self, surface: Surface, text: str, pos: Vector):
+        font = self.font.render(text, True, RED)
+        surface.blit(font, pos.to_pos())
 
-    crashed = False
-    while not crashed:
+    def main(self):
+        display_width = 800
+        display_height = 600
+        game_display: Surface = display.set_mode((display_width, display_height))
+        display.set_caption('Natural 20: Challenge Pixel 2017')
+        clock: Clock = pygame.time.Clock()
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                crashed = True
-            print(event)
+        circle_pos = Vector(300, 300)
 
-            game_display.fill(white)
-        car(x, y)
+        crashed = False
+        while not crashed:
+            self.compute_delta_t()
+            self.add_text(game_display, str(self.delta_t), Vector())
 
-        pygame.display.update()
-        clock.tick(60)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    crashed = True
+                print(event)
+
+                game_display.fill(WHITE)
+
+            circle_pos += 10
+            draw.circle(game_display, Color(255, 0, 0), circle_pos.to_pos(), 50, 0)
+
+            pygame.display.update()
+            clock.tick(30)
 
 if __name__ == "__main__":
-    main()
+    game = Game()
+    game.main()
