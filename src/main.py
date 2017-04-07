@@ -13,6 +13,8 @@ class Game:
         self.delta_t = 0
         self.display_width = 800
         self.display_height = 600
+        self.persistent_display = {}
+        self.temporary_display = []
 
     def compute_delta_t(self):
         ticks = pygame.time.get_ticks()
@@ -27,16 +29,22 @@ class Game:
         crashed = False
         while not crashed:
             game_display.fill(color.BLACK)
+
+            for displayable in self.persistent_display.values():
+                displayable()
+            for displayable in self.temporary_display:
+                displayable()
+            self.temporary_display.clear()
+
             self.compute_delta_t()
-            drawer.add_text(game_display, str(self.delta_t), Vector())
-            drawer.display_dialog(game_display, "Hello, world!")
+            self.temporary_display.append(drawer.add_text(game_display, str(self.delta_t), Vector()))
+            self.temporary_display.append(drawer.display_dialog(game_display, "Hello, world!"))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     crashed = True
                 else:
-                    handler.handle(game_display, event)
-                print(event)
+                    handler.handle(game_display, event, self.persistent_display)
 
             pygame.display.update()
             clock.tick(30)
