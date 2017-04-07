@@ -21,10 +21,10 @@ def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tup
     return functools.partial(draw.rect, surface, rect_color, rect, 0)
 
 
-def add_background(surface: Surface, image_path):
+def add_background(surface: Surface, image_path, pos: Vector, scale: Vector):
     img = pygame.image.load(image_path)
-    rescaled_img = pygame.transform.scale(img, Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT).to_pos())
-    return functools.partial(surface.blit, rescaled_img, Vector().to_pos())
+    rescaled_img = pygame.transform.scale(img, scale.to_pos())
+    return functools.partial(surface.blit, rescaled_img, pos.to_pos())
 
 
 def display_dialog(surface: Surface, dialog: str):

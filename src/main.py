@@ -13,6 +13,7 @@ from util.geometry import Vector
 
 FPS = 60
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
+DEFAULT_FLOOR_DISPLAY_IMAGE_PATH = 'resource/background/ascenseur.png'
 
 
 class Game:
@@ -31,6 +32,18 @@ class Game:
         self.delta_t = ticks - self.last_frame_ticks
         self.last_frame_ticks = ticks
 
+    def construct_background(self, game_display):
+        self.persistent_display['background'] = \
+            drawer.add_background(game_display,
+                                  DEFAULT_BACKGROUND_IMAGE_PATH,
+                                  Vector(),
+                                  Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT))
+        self.persistent_display['floor-display'] = \
+            drawer.add_background(game_display,
+                                  DEFAULT_FLOOR_DISPLAY_IMAGE_PATH,
+                                  Vector(29, 26),
+                                  Vector(208, 77))
+
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
             for j in range(NUMBER_OF_BUTTONS_ROWS):
@@ -41,7 +54,7 @@ class Game:
         display.set_caption('Natural 20: Challenge Pixel 2017')
         clock: Clock = pygame.time.Clock()
 
-        self.persistent_display['background'] = drawer.add_background(game_display, DEFAULT_BACKGROUND_IMAGE_PATH)
+        self.construct_background(game_display)
         self.init_keypad(game_display)
         crashed = False
         while not crashed:
