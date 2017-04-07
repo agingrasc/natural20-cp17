@@ -5,6 +5,7 @@ from pygame.time import Clock
 from display import color, drawer, dimensions
 from display.action.dialog import Dialog
 from display.button import ButtonBuilder
+from domain.state.stateexecutor import StateExecutor
 from event import handler
 from util.geometry import Vector
 
@@ -19,6 +20,8 @@ class Game:
         self.display_height = dimensions.WINDOW_HEIGHT
         self.persistent_display = {}
         self.temporary_display = []
+        self.actions = []
+        self.state_executor = StateExecutor()
 
     def compute_delta_t(self):
         ticks = pygame.time.get_ticks()
@@ -47,6 +50,9 @@ class Game:
             for displayable in self.persistent_display.values():
                 displayable()
 
+            action = self.state_executor.exec(self.delta_t, self.actions)
+            self.temporary_display.append(action.display(game_display, self.delta_t))
+
             self.compute_delta_t()
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
             self.temporary_display.append(dialog.display(game_display, self.delta_t))
@@ -55,7 +61,9 @@ class Game:
                 if event.type == pygame.QUIT:
                     crashed = True
                 else:
-                    handler.handle(game_display, event, self.persistent_display)
+                    self.actions.append(handler.handle(game_display, event, self.persistent_display))
+
+            self.actions = [action for action in self.actions if action]
 
             pygame.display.update()
             clock.tick(FPS)

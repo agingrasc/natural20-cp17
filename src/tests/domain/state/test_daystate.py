@@ -6,7 +6,7 @@ from domain.days import *
 class DayStateTest(unittest.TestCase):
     A_DAY = 1
     def setUp(self):
-        self.A_CLIENT = ClientBuilder().withDays([self.A_DAY]).build()
+        self.A_CLIENT = ClientBuilder().with_days([self.A_DAY]).build()
 
     def tearDown(self):
         pass

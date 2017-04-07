@@ -6,8 +6,8 @@ class ClientsTest(unittest.TestCase):
     DAY1 = 1
     DAY2 = 2
     def setUp(self):
-        self.A_CLIENT_DAY1 =  ClientBuilder().withDays([self.DAY1]).build()
-        self.A_CLIENT_DAY2 =  ClientBuilder().withDays([self.DAY2]).build()
+        self.A_CLIENT_DAY1 =  ClientBuilder().with_days([self.DAY1]).build()
+        self.A_CLIENT_DAY2 =  ClientBuilder().with_days([self.DAY2]).build()
         self.TWO_CLIENTS = [self.A_CLIENT_DAY1, self.A_CLIENT_DAY1]
 
     def tearDown(self):

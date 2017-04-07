@@ -1,12 +1,14 @@
 from domain.state.state import State
 from display.action.dialog import Dialog
+from event.action import DialogOver
+
 
 class DayState(State):
     def __init__(self, day):
         super().__init__(self.introduce_next_client)
         self.day = day
 
-    def introduce_next_client(self, dt, action):
+    def introduce_next_client(self, dt, actions):
         self.current_client = self.day.pop_clients()
         return self.change_substate_and_exec(self.move_client_to_elevator)
 
@@ -20,8 +22,9 @@ class DayState(State):
         return self.current_dialog
 
     def wait_for_end_dialog(self, dt, actions):
-        if isinstance(actions, DialogOver):
-            self.next_substate = self.init_player_input
+        for action in actions:
+            if isinstance(action, DialogOver):
+                self.next_substate = self.init_player_input
         else:
             return self.current_dialog
 

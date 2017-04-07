@@ -21,15 +21,16 @@ class Client:
     def greet(self):
         return sample(self.raw_json["greeting"],1)
 
-    def sayFarewell(self):
+    def say_farewell(self):
         return sample(self.raw_json["farewell"], 1)
 
-    def getTip(self):
+    def get_tip(self):
         return randrange(self["tip_min"], self["tip_max"])
 
     @property
     def name(self):
         return self["name"]
+
 
 class Clients:
     def __init__(self, clients_raw=None):
@@ -41,10 +42,9 @@ class Clients:
             self.clients = [Client(client_raw) for client_raw in clients_raw]
         else:
             print("WRONG")
-            with open('ressource/json/clients.json') as json_file:
+            with open('resource/json/clients.json') as json_file:
                 clients_json = json.load(json_file)
                 self.clients = [Client(client_raw) for client_raw in clients_json["clients"]]
-
 
     def pick_client(self, day_id, nb_client):
         client_for_day = [client for client in self.clients if day_id in client["days"]]
@@ -55,6 +55,7 @@ class Clients:
         if len(client_for_day) == 1:
             return client_for_day
         return sample(client_for_day, nb_client)
+
 
 class ClientBuilder:
     def __init__(self):
@@ -67,7 +68,7 @@ class ClientBuilder:
             "tips_max": 3
         }
 
-    def withDays(self, days):
+    def with_days(self, days):
         self.raw_json["days"] = days
         return self
 
