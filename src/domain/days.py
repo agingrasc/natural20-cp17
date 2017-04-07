@@ -13,7 +13,7 @@ class Day:
                 day_json = json.load(json_file)
                 nb_encounter = day_json["nb_random_encounter"]
 
-        self.clients = clients.pick_clients(day_id, nb_encounter)
+        self.clients = clients.pick_client(day_id, nb_encounter)
 
 
     def pop_clients(self):

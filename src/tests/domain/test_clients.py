@@ -18,7 +18,7 @@ class ClientsTest(unittest.TestCase):
 
         self.assertEqual([self.A_CLIENT_DAY1], clients.pick_client(self.DAY1, 1))
 
-    def test_given_one_client_day1_one_client_day2_when_pick_one_client_for_day2_return_one_client(self):
+    def test_given_one_client_day1_another_client_day2_when_pick_one_client_for_day2_return_the_day2_client(self):
         clients = Clients([self.A_CLIENT_DAY1, self.A_CLIENT_DAY2])
 
         self.assertEqual([self.A_CLIENT_DAY2], clients.pick_client(self.DAY2, 1))

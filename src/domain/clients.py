@@ -36,12 +36,14 @@ class Clients:
         """
         Load from config files
         """
-        if clients_raw:
+
+        if clients_raw is not None:
+            self.clients = [Client(client_raw) for client_raw in clients_raw]
+        else:
+            print("WRONG")
             with open('ressource/json/clients.json') as json_file:
                 clients_json = json.load(json_file)
                 self.clients = [Client(client_raw) for client_raw in clients_json["clients"]]
-        else:
-             self.clients = [Client(client_raw) for client_raw in clients_raw]
 
 
     def pick_client(self, day_id, nb_client):
