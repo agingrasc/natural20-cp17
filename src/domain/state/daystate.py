@@ -44,11 +44,11 @@ class DayState(State):
     def encounter_enter_elevator(self, dt, actions):
         self.anime = AnimationSubState("client walking in elevator", self, self.greet_encounter)
     def greet_encounter(self, dt, actions):
-        self.dialog = DialogSubState(self.current_encounter.say_greeting(), self, self.close_door)
+        self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_greeting(), self, self.close_door)
     def close_door(self, dt, actions):
         self.anime = AnimationSubState("close door", self, self.dialog_with_encounter)
     def dialog_with_encounter(self, dt, actions):
-        self.dialog = DialogSubState(self.current_encounter.dialogs, self, self.wait_for_player_input_with_encounter)
+        self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.dialogs, self, self.wait_for_player_input_with_encounter)
 
     def wait_for_player_input_with_encounter(self, dt, actions):
         for action in actions:
@@ -64,17 +64,17 @@ class DayState(State):
     def reach_dest(self, dt, actions):
         Blackbox().flags += self.current_encounter.happy_ending_flag
         Blackbox().tips += self.current_encounter.tips
-        self.dialog = DialogSubState(self.current_encounter.say_farewell(), self, self.introduce_next_client)
+        self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_farewell(), self, self.introduce_next_client)
 
     def ignore_dest(self, dt, actions):
         Blackbox().flags += self.current_encounter.ignore_dest_flag
-        self.dialog = DialogSubState(self.current_encounter.say_insult(), self, self.introduce_next_client)
+        self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_insult(), self, self.introduce_next_client)
 
     def ignore_client(self, dt, actions):
         Blackbox().stage = self.current_encounter.stage_src
         Blackbox().flags += self.current_encounter.ignore_client_flag
         # TODO add remove pourboire
-        self.dialog = DialogSubState("Le boss chiale todo \ncreer un dict pour sa", self, self.introduce_next_client)
+        self.dialog = DialogSubState("BOSS", "Le boss chiale todo \ncreer un dict pour sa", self, self.introduce_next_client)
 
     def end_day(self, dt, actions):
         self.finish = True
