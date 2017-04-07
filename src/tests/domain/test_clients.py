@@ -6,22 +6,8 @@ class ClientsTest(unittest.TestCase):
     DAY1 = 1
     DAY2 = 2
     def setUp(self):
-        self.A_CLIENT_DAY1 =  Client({
-            "name": "Steve",
-            "days": [1],
-            "greeting": "hello",
-            "farewell": "bye",
-            "tips_min": 1,
-            "tips_max": 3
-        })
-        self.A_CLIENT_DAY2 =  Client({
-            "name": "Steve",
-            "days": [2],
-            "greeting": "hello",
-            "farewell": "bye",
-            "tips_min": 1,
-            "tips_max": 3
-        })
+        self.A_CLIENT_DAY1 =  ClientBuilder().withDays([self.DAY1]).build()
+        self.A_CLIENT_DAY2 =  ClientBuilder().withDays([self.DAY2]).build()
         self.TWO_CLIENTS = [self.A_CLIENT_DAY1, self.A_CLIENT_DAY1]
 
     def tearDown(self):
@@ -32,7 +18,7 @@ class ClientsTest(unittest.TestCase):
 
         self.assertEqual([self.A_CLIENT_DAY1], clients.pick_client(self.DAY1, 1))
 
-    def test_given_two_clients_when_pick_one_client_for_day2_return_one_client(self):
+    def test_given_one_client_day1_one_client_day2_when_pick_one_client_for_day2_return_one_client(self):
         clients = Clients([self.A_CLIENT_DAY1, self.A_CLIENT_DAY2])
 
         self.assertEqual([self.A_CLIENT_DAY2], clients.pick_client(self.DAY2, 1))

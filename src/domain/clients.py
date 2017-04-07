@@ -1,5 +1,6 @@
-
+import json
 from random import sample, randrange
+
 
 class Client:
     def __init__(self, client_raw):
@@ -31,19 +32,17 @@ class Client:
         return self["name"]
 
 class Clients:
-    def __init__(self):
+    def __init__(self, clients_raw=None):
         """
         Load from config files
         """
-        with open('ressource/json/clients.json') as json_file:
-            clients_json = json.load(json_file)
-            self.clients = [Client(client_raw) for client_raw in clients_json["clients"]]
+        if clients_raw:
+            with open('ressource/json/clients.json') as json_file:
+                clients_json = json.load(json_file)
+                self.clients = [Client(client_raw) for client_raw in clients_json["clients"]]
+        else:
+             self.clients = [Client(client_raw) for client_raw in clients_raw]
 
-    def __init__(self, clients_raw):
-        """
-        For UT
-        """
-        self.clients = [Client(client_raw) for client_raw in clients_raw]
 
     def pick_client(self, day_id, nb_client):
         client_for_day = [client for client in self.clients if day_id in client["days"]]
@@ -54,3 +53,21 @@ class Clients:
         if len(client_for_day) == 1:
             return client_for_day
         return sample(client_for_day, nb_client)
+
+class ClientBuilder:
+    def __init__(self):
+        self.raw_json = {
+            "name": "Steve",
+            "days": [1],
+            "greeting": "hello",
+            "farewell": "bye",
+            "tips_min": 1,
+            "tips_max": 3
+        }
+
+    def withDays(self, days):
+        self.raw_json["days"] = days
+        return self
+
+    def build(self):
+        return Client(self.raw_json)
