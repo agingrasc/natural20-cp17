@@ -1,16 +1,20 @@
+import collections
+
 import pygame
 from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions
 from display.action.dialog import Dialog
-from display.button import ButtonBuilder
+from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from domain.state.stateexecutor import StateExecutor
 from event import handler
 from event.action import DialogOver
 from util.geometry import Vector
 
 FPS = 60
+DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
+DEFAULT_FLOOR_INDICATOR_IMAGE_PATH = 'resource/img/level_counter.png'
 
 
 class Game:
@@ -19,7 +23,7 @@ class Game:
         self.delta_t = 0
         self.display_width = dimensions.WINDOW_WIDTH
         self.display_height = dimensions.WINDOW_HEIGHT
-        self.persistent_display = {}
+        self.persistent_display = collections.OrderedDict()
         self.temporary_display = []
         self.actions = []
         self.state_executor = StateExecutor()
@@ -29,9 +33,21 @@ class Game:
         self.delta_t = ticks - self.last_frame_ticks
         self.last_frame_ticks = ticks
 
+    def construct_background(self, game_display):
+        self.persistent_display['background'] = \
+            drawer.add_image(game_display,
+                             DEFAULT_BACKGROUND_IMAGE_PATH,
+                             Vector(),
+                             Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT))
+        self.persistent_display['floor-indicator'] = \
+            drawer.add_image(game_display,
+                             DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
+                             Vector(30, 30),
+                             Vector(100, 100))
+
     def init_keypad(self, game_display):
-        for i in range(3):
-            for j in range(3):
+        for i in range(NUMBER_OF_BUTTONS_COLS):
+            for j in range(NUMBER_OF_BUTTONS_ROWS):
                 self.persistent_display["button-{}-{}".format(i, j)] = ButtonBuilder().add_button(game_display, i, j)
 
     def main(self):
@@ -39,16 +55,18 @@ class Game:
         display.set_caption('Natural 20: Challenge Pixel 2017')
         clock: Clock = pygame.time.Clock()
 
+        self.construct_background(game_display)
         self.init_keypad(game_display)
         crashed = False
+        dialog = Dialog("Hello!alkjdsflakjfklasjflkasdklfj alskdfjkdsaz\nalskjdaslkdjlksad\nalskdj\nlaksjd\nalskdj\nasdlkj\nasldkj\nasdlkj\nasdlkj")
         while not crashed:
             game_display.fill(color.BLACK)
 
+            for displayable in self.persistent_display.values():
+                displayable()
             for displayable in self.temporary_display:
                 displayable()
             self.temporary_display.clear()
-            for displayable in self.persistent_display.values():
-                displayable()
 
             action = self.state_executor.exec(self.delta_t, self.actions)
             self.actions.clear()
@@ -58,6 +76,7 @@ class Game:
 
             self.compute_delta_t()
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
+            self.temporary_display.append(dialog.display(game_display, self.delta_t))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

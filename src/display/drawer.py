@@ -6,6 +6,7 @@ from pygame import draw
 from pygame.surface import Surface
 
 from display import color, dimensions
+from display import dimensions
 from util.geometry import Vector
 
 
@@ -18,6 +19,22 @@ def add_text(surface: Surface, text: str, pos: Vector, text_color=color.TEXT_FOR
 def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tuple[int, int, int]):
     rect = pygame.Rect(coord.to_pos(), size.to_pos())
     return functools.partial(draw.rect, surface, rect_color, rect, 0)
+
+
+def add_image(surface: Surface, image_path, pos: Vector, scale: Vector):
+    img = pygame.image.load(image_path)
+    rescaled_img = pygame.transform.scale(img, scale.to_pos())
+    return functools.partial(surface.blit, rescaled_img, pos.to_pos())
+
+
+def add_image_from_sprite_sheet(surface: Surface, sprite_sheet_path: str, pos: Vector, scale: Vector,
+                                sprite_sheet_size: Vector, sprite_sheet_offset: Vector):
+    sprite_sheet = pygame.image.load(sprite_sheet_path)
+    area = sprite_sheet_offset.x, sprite_sheet_offset.y, sprite_sheet_size.x, sprite_sheet_size.y
+    img = Surface(sprite_sheet_size.to_pos())
+    img.blit(sprite_sheet, Vector(0, 0).to_pos(), area)
+    rescaled_img = pygame.transform.scale(img, scale.to_pos())
+    return functools.partial(surface.blit, rescaled_img, pos.to_pos())
 
 
 def display_dialog(surface: Surface, dialog: str):
