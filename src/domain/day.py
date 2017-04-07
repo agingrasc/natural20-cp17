@@ -20,7 +20,7 @@ class Day:
 
     def pop_triggable_encounter(self, active_flags):
         while len(self.encounters) > 0:
-            encounter = self.encounters.pop()
+            encounter = self.encounters.pop(0)
             if encounter.is_encounter_triggable(active_flags):
                 return encounter
         return None

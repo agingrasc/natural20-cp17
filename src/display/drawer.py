@@ -1,13 +1,15 @@
 import functools
-from typing import Tuple
 
 import pygame
 from pygame import draw
 from pygame.surface import Surface
+from typing import Tuple
 
-from display import color, dimensions
+from display import color
 from display import dimensions
+from util.dialog import break_dialog_lines
 from util.geometry import Vector
+
 
 
 def add_text(surface: Surface, text: str, pos: Vector, text_color=color.TEXT_FOREGROUND_COLOR):
@@ -48,8 +50,10 @@ def display_dialog(surface: Surface, dialog: str):
     font = pygame.font.SysFont("Arial", 25)
 
     height = 10
-    for line in dialog.split('\n'):
+    for line in break_dialog_lines(dialog):
         font_text = font.render(line, True, color.TEXT_FOREGROUND_COLOR)
         canevas.blit(font_text, Vector(10, height).to_pos())
         height += 15
     return functools.partial(surface.blit, canevas, pos.to_pos())
+
+

@@ -42,8 +42,8 @@ class Game:
         self.persistent_display['floor-indicator'] = \
             drawer.add_image(game_display,
                              DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
-                             Vector(30, 30),
-                             Vector(100, 100))
+                             Vector(135-110, 105-116),
+                             Vector(210, 210))
 
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
