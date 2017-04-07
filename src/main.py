@@ -1,56 +1,57 @@
 import pygame
-from pygame import display, draw, Surface, Color
+from pygame import display, Surface
 from pygame.time import Clock
 
+from display import color, drawer, dimensions
+from display.dialog import Dialog
+from event import handler
 from util.geometry import Vector
 
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
+FPS = 60
 
 
 class Game:
     def __init__(self):
-        self.font = pygame.font.SysFont('Arial', 25)
         self.last_frame_ticks = pygame.time.get_ticks()
         self.delta_t = 0
+        self.display_width = dimensions.WINDOW_WIDTH
+        self.display_height = dimensions.WINDOW_HEIGHT
+        self.persistent_display = {}
+        self.temporary_display = []
 
     def compute_delta_t(self):
         ticks = pygame.time.get_ticks()
         self.delta_t = ticks - self.last_frame_ticks
         self.last_frame_ticks = ticks
 
-    def add_text(self, surface: Surface, text: str, pos: Vector):
-        font = self.font.render(text, True, RED)
-        surface.blit(font, pos.to_pos())
-
     def main(self):
-        display_width = 800
-        display_height = 600
-        game_display: Surface = display.set_mode((display_width, display_height))
+        game_display: Surface = display.set_mode((self.display_width, self.display_height))
         display.set_caption('Natural 20: Challenge Pixel 2017')
         clock: Clock = pygame.time.Clock()
 
-        circle_pos = Vector(300, 300)
-
+        dialog = Dialog(game_display, "Hello, world! Foo bar baz\nGood bye!lakjadslkdjaslkjdaslkdj")
         crashed = False
         while not crashed:
-            game_display.fill(WHITE)
+            game_display.fill(color.BLACK)
+
+            for displayable in self.temporary_display:
+                displayable()
+            self.temporary_display.clear()
+            for displayable in self.persistent_display.values():
+                displayable()
+
             self.compute_delta_t()
-            self.add_text(game_display, str(self.delta_t), Vector())
+            self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
+            self.temporary_display.append(dialog.display(self.delta_t))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     crashed = True
-                print(event)
-
-            circle_pos += 10
-            draw.circle(game_display, Color(255, 0, 0), circle_pos.to_pos(), 50, 0)
+                else:
+                    handler.handle(game_display, event, self.persistent_display)
 
             pygame.display.update()
-            clock.tick(30)
+            clock.tick(FPS)
 
 if __name__ == "__main__":
     pygame.init()
