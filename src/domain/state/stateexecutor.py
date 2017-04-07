@@ -1,4 +1,4 @@
-from domain.days import Day
+from domain.day import Day
 from domain.state.daystate import DayState
 
 

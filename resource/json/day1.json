@@ -1,14 +1,22 @@
 {
-    "mandatoryEncounter": [
+    "title_text": "Samedi 8:20",
+    "starting_stage": 1,
+    "encounters": [
         {
-            "client": "id",
-            "greeting": "hello",
-            "dialog": ["", ""],
-            "farewell": "bye",
-            "condition": "flag",
-            "flags": ["flag", "flag"]
+            "include":[],
+            "exclude":[],
+            "client_name": "Steve",
+            "stage_src": 1,
+            "stage_dest": 2,
+            "greeting": ["hello"],
+            "dialog": ["To be or not to be"],
+            "insult": ["You sucks at your job!"],
+            "farewell": ["byebye"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":30
         }
 
-    ],
-    "nb_random_encounter": 1
+    ]
 }
