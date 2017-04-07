@@ -3,16 +3,16 @@
         {
             "name": "Steve",
             "days": [1, 2, 3],
-            "greeting": "hello",
-            "farewell": "bye",
+            "greeting": ["hello"],
+            "farewell": ["bye"],
             "tips_min": 1,
             "tips_max": 3
         },
         {
             "name": "Jon",
             "days": [2, 3],
-            "greeting": "hiiii",
-            "farewell": "byyyyyye",
+            "greeting": ["hiiii"],
+            "farewell": ["byyyyyye"],
             "tips_min": 11,
             "tips_max": 33
         }

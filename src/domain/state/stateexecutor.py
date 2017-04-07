@@ -8,7 +8,7 @@ class StateExecutor:
         self.current_state = DayState(Day(self.day_nb))
 
     def exec(self, dt, actions):
-        if not self.current_state.is_finish():
+        if self.current_state.is_finish():
             self.day_nb += 1
             self.current_state = DayState(Day(self.day_nb))
         return self.current_state.exec(dt, actions)
