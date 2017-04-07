@@ -1,5 +1,5 @@
 from display.action.dialog import Dialog
-from event.action import DialogOver
+from event.action import UserKeyAction
 
 # TODO create interface
 
@@ -17,13 +17,14 @@ class AnimationSubState:
 
     def wait_for_end_animation(self, dt, actions):
         for action in actions:
-            if isinstance(action, DialogOver):
+            if isinstance(action, UserKeyAction):
                 self.return_to_parent_state()
         else:
             return self.current_dialog
 
     def return_to_parent_state(self):
         self.parentState.next_substate =  self.returnSubstateCallback
+
 
 class DialogSubState:
     """
@@ -36,10 +37,9 @@ class DialogSubState:
         self.current_dialog = Dialog(text)
         self.parentState.change_substate(self.wait_for_end_dialog)
 
-
     def wait_for_end_dialog(self, dt, actions):
         for action in actions:
-            if isinstance(action, DialogOver):
+            if isinstance(action, UserKeyAction):
                 self.return_to_parent_state()
         else:
             return self.current_dialog

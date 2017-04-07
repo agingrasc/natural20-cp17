@@ -5,11 +5,9 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions
-from display.action.dialog import Dialog
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from domain.state.stateexecutor import StateExecutor
 from event import handler
-from event.action import DialogOver
 from util.geometry import Vector
 
 FPS = 60
@@ -58,7 +56,6 @@ class Game:
         self.construct_background(game_display)
         self.init_keypad(game_display)
         crashed = False
-        #dialog = Dialog("Hello!alkjdsflakjfklasjflkasdklfj alskdfjkdsaz\nalskjdaslkdjlksad\nalskdj\nlaksjd\nalskdj\nasdlkj\nasldkj\nasdlkj\nasdlkj")
         while not crashed:
             game_display.fill(color.BLACK)
 
@@ -68,15 +65,12 @@ class Game:
                 displayable()
             self.temporary_display.clear()
 
-            action = self.state_executor.exec(self.delta_t, self.actions)
+            domain_action = self.state_executor.exec(self.delta_t, self.actions)
             self.actions.clear()
-            self.temporary_display.append(action.display(game_display, self.delta_t))
-            if action.finished:
-                self.actions.append(DialogOver())
+            self.temporary_display.append(domain_action.display(game_display, self.delta_t))
 
             self.compute_delta_t()
-            #self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
-            #self.temporary_display.append(dialog.display(game_display, self.delta_t))
+            self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
