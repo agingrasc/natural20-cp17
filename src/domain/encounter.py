@@ -48,6 +48,25 @@ class Encounter:
     def dialogs(self):
         return self["dialog"]
 
+    @property
+    def stage_src(self):
+        return self["stage_src"]
+
+    @property
+    def stage_dest(self):
+        return self["stage_dest"]
+
+
+    @property
+    def ignore_client_flag(self):
+        return self["ignore_client_flag"]
+    @property
+    def ignore_dest_flag(self):
+        return self["ignore_dest_flag"]
+    @property
+    def happy_ending_flag(self):
+        return self["happy_ending_flag"]
+
 
 
 class EncounterBuilder:
@@ -55,6 +74,8 @@ class EncounterBuilder:
         self.raw_json = {
             "include":[],
             "exclude":[],
+            "stage_src": 1,
+            "stage_dest": 2,
             "client_name": "Steve",
             "greeting": ["hello"],
             "dialog": ["To be or not to be"],
@@ -89,6 +110,15 @@ class EncounterBuilder:
     def with_exclude(self, exclude):
         self.raw_json["exclude"] = exclude
         return self
+
+    def with_stage_src(self, src):
+        self.raw_json["stage_src"] = src
+        return self
+
+    def with_stage_dest(self, dest):
+        self.raw_json["stage_dest"] = dest
+        return self
+
 
     def build(self):
         return Encounter(self.raw_json)

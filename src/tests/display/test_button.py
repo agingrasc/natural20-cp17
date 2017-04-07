@@ -12,6 +12,6 @@ class TestButton(unittest.TestCase):
         pass
 
     def test_given_button_when_pos_is_inside_return_true(self):
-        button = Button(Vector(100, 100), Vector(25, 25))
+        button = Button(Vector(100, 100), Vector(25, 25), 0)
         pos = Vector(105, 105)
         self.assertTrue(button.is_inside(pos))
