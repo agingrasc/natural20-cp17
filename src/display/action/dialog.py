@@ -1,6 +1,6 @@
 from display import drawer
 
-DISPLAY_ANIMATION_TIME = 100
+DISPLAY_ANIMATION_TIME = 5
 
 
 class Dialog:

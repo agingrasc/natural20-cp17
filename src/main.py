@@ -5,6 +5,7 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions
+from display.action.dialog import Dialog
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from domain.state.stateexecutor import StateExecutor
 from event import handler
@@ -57,6 +58,7 @@ class Game:
         self.construct_background(game_display)
         self.init_keypad(game_display)
         crashed = False
+        dialog = Dialog("Hello!alkjdsflakjfklasjflkasdklfj alskdfjkdsaz\nalskjdaslkdjlksad\nalskdj\nlaksjd\nalskdj\nasdlkj\nasldkj\nasdlkj\nasdlkj")
         while not crashed:
             game_display.fill(color.BLACK)
 
@@ -73,6 +75,7 @@ class Game:
 
             self.compute_delta_t()
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
+            self.temporary_display.append(dialog.display(game_display, self.delta_t))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
