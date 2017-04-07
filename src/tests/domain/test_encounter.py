@@ -31,18 +31,18 @@ class EncounterTest(unittest.TestCase):
         FLAG_A = "steve_dead"
         encounter = EncounterBuilder().with_include([FLAG_A]).build()
 
-        self.assertTrue(encounter.is_encounter_trigger([FLAG_A]))
+        self.assertTrue(encounter.is_encounter_triggable([FLAG_A]))
 
 
     def test_given_a_encounter_that_include_flag_A_when_check_trigger_without_flag_A_then_encounter_not_triggered(self):
         FLAG_A = "steve_dead"
         encounter = EncounterBuilder().with_include([FLAG_A]).build()
 
-        self.assertFalse(encounter.is_encounter_trigger([]))
+        self.assertFalse(encounter.is_encounter_triggable([]))
 
 
     def test_given_a_encounter_that_exlude_flag_A_when_check_trigger_with_flag_A_then_encounter_not_triggered(self):
         FLAG_A = "steve_dead"
         encounter = EncounterBuilder().with_exclude([FLAG_A]).build()
 
-        self.assertFalse(encounter.is_encounter_trigger([FLAG_A]))
+        self.assertFalse(encounter.is_encounter_triggable([FLAG_A]))

@@ -27,7 +27,7 @@ class Encounter:
     def say_insult(self):
         return sample(self.raw_json["insult"], 1)[0]
 
-    def is_encounter_trigger(self, active_flags):
+    def is_encounter_triggable(self, active_flags):
         for cond in self["include"]:
             if not cond in active_flags:
                 return False
