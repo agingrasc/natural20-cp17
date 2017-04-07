@@ -40,21 +40,22 @@ def add_image_from_sprite_sheet(surface: Surface, sprite_sheet_path: str, pos: V
     return functools.partial(surface.blit, rescaled_img, pos.to_pos())
 
 
-def display_dialog(surface: Surface, dialog: str):
-    canevas = Surface(Vector(355, 205).to_pos())
+def display_dialog(surface: Surface, name: str, dialog: str):
+    canevas = Surface((355, 205))
     canevas.fill(color.TEXT_BACKGROUND_COLOR)
     pos = Vector(dimensions.WINDOW_WIDTH-(50+350), dimensions.WINDOW_HEIGHT-(50+200))
     sizes = Vector(350, 200)
     rect = pygame.Rect(Vector().to_pos(), sizes.to_pos())
     draw.rect(canevas, color.WHITE, rect, 5)
-
-    font = pygame.font.SysFont("Arial", 25)
-
-    height = 10
+    font = pygame.font.Font("resource/font/OldNewspaperTypes.ttf", 25)
+    #font = pygame.font.SysFont("Arial", 25)
+    font_name = font.render("{}: ".format(name), True, color.TEXT_NAME_COLOR)
+    canevas.blit(font_name, (5, 4))
+    height = 30
     for line in break_dialog_lines(dialog):
         font_text = font.render(line, True, color.TEXT_FOREGROUND_COLOR)
-        canevas.blit(font_text, Vector(10, height).to_pos())
-        height += 15
+        canevas.blit(font_text, (10, height))
+        height += 20
     return functools.partial(surface.blit, canevas, pos.to_pos())
 
 

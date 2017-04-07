@@ -38,7 +38,7 @@ class Encounter:
 
     @property
     def name(self):
-        return self["name"]
+        return self["client_name"]
 
     @property
     def tips(self):

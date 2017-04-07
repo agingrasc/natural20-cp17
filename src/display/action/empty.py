@@ -1,6 +1,9 @@
-class EmptyAction():
+from display.action.interface import IDomainAction
+
+
+class EmptyAction(IDomainAction):
     def __init__(self):
-        self.finished = False
+        super().__init__()
 
     def display(self, *args):
         def nop():

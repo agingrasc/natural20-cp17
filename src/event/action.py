@@ -3,10 +3,10 @@ class Action:
         self.data = {}
 
 
-class DialogOver(Action):
+class UserKeyAction(Action):
     def __init__(self):
         super().__init__()
-        self.data = {'dialog-over': True}
+        self.data = {'spacebar': True }
 
 
 class FloorSelected(Action):
