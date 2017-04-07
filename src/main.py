@@ -1,11 +1,8 @@
 import pygame
 from pygame import display, draw, Surface, Color
-import pymunk
 from pygame.time import Clock
 
 from util.geometry import Vector
-
-pygame.init()
 
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
@@ -13,8 +10,8 @@ BLUE = (0, 0, 255)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 
-class Game():
 
+class Game:
     def __init__(self):
         self.font = pygame.font.SysFont('Arial', 25)
         self.last_frame_ticks = pygame.time.get_ticks()
@@ -40,6 +37,7 @@ class Game():
 
         crashed = False
         while not crashed:
+            game_display.fill(WHITE)
             self.compute_delta_t()
             self.add_text(game_display, str(self.delta_t), Vector())
 
@@ -48,8 +46,6 @@ class Game():
                     crashed = True
                 print(event)
 
-                game_display.fill(WHITE)
-
             circle_pos += 10
             draw.circle(game_display, Color(255, 0, 0), circle_pos.to_pos(), 50, 0)
 
@@ -57,5 +53,6 @@ class Game():
             clock.tick(30)
 
 if __name__ == "__main__":
+    pygame.init()
     game = Game()
     game.main()
