@@ -12,12 +12,15 @@ BUTTON_SIZE = 35
 DEFAULT_MIN_WIDTH = 95
 DEFAULT_MIN_HEIGHT = 155
 DEFAULT_MARGIN = 2
+NUMBER_OF_BUTTONS_ROWS = 5
+NUMBER_OF_BUTTONS_COLS = 2
 
 
 class Button:
-    def __init__(self, coordinates: Vector, size: Vector):
+    def __init__(self, coordinates: Vector, size: Vector, floor: int):
         self.coordinates = coordinates
         self.size = size
+        self.floor = floor
 
     def display(self, surface: Surface):
         return drawer.add_rectangle(surface, self.coordinates, self.size, color.PURPLE)
@@ -37,7 +40,7 @@ class ButtonBuilder(metaclass=Singleton):
     def add_button(self, surface: Surface, row, col):
         coord = Vector(self.min_width + row * (BUTTON_SIZE + DEFAULT_MARGIN), self.min_height + col * (BUTTON_SIZE + DEFAULT_MARGIN))
         size = Vector(BUTTON_SIZE, BUTTON_SIZE)
-        button = Button(coord, size)
+        floor = (NUMBER_OF_BUTTONS_ROWS - col) * NUMBER_OF_BUTTONS_COLS + row - NUMBER_OF_BUTTONS_COLS
+        button = Button(coord, size, floor)
         self.buttons.append(button)
         return button.display(surface)
-

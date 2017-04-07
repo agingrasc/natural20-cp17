@@ -30,9 +30,9 @@ def mouse_motion(game_display: Surface, event: EventType, displayables):
 def on_click(game_display: Surface, event: EventType, displayables):
     click_coordinate = event.dict['pos']
     pos = Vector(*click_coordinate)
-    for idx,button in enumerate(ButtonBuilder().buttons):
+    for button in ButtonBuilder().buttons:
         if button.is_inside(pos):
-            return FloorSelected(idx)
+            return FloorSelected(button.floor)
     return None
 
 

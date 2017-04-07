@@ -1,10 +1,11 @@
 import collections
+
 import pygame
 from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions
-from display.button import ButtonBuilder
+from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from domain.state.stateexecutor import StateExecutor
 from event import handler
 from event.action import DialogOver
@@ -12,8 +13,6 @@ from util.geometry import Vector
 
 FPS = 60
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
-NUMBER_OF_BUTTONS_ROWS = 5
-NUMBER_OF_BUTTONS_COLS = 2
 
 
 class Game:
