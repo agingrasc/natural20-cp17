@@ -1,7 +1,7 @@
 {
     "clients": [
         {
-            "id": "Steve",
+            "name": "Steve",
             "days": [1, 2, 3],
             "greeting": "hello",
             "farewell": "bye",
@@ -9,7 +9,7 @@
             "tips_max": 3
         },
         {
-            "id": "Jon",
+            "name": "Jon",
             "days": [2, 3],
             "greeting": "hiiii",
             "farewell": "byyyyyye",

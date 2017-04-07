@@ -1,13 +1,13 @@
 import unittest
 
-from domain.days import *
+from domain.clients import *
 
 class ClientsTest(unittest.TestCase):
     DAY1 = 1
     DAY2 = 2
     def setUp(self):
         self.A_CLIENT_DAY1 =  Client({
-            "id": "Steve",
+            "name": "Steve",
             "days": [1],
             "greeting": "hello",
             "farewell": "bye",
@@ -15,7 +15,7 @@ class ClientsTest(unittest.TestCase):
             "tips_max": 3
         })
         self.A_CLIENT_DAY2 =  Client({
-            "id": "Steve",
+            "name": "Steve",
             "days": [2],
             "greeting": "hello",
             "farewell": "bye",
