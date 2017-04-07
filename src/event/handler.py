@@ -6,7 +6,7 @@ from pygame.surface import Surface
 
 from display import drawer
 from display.button import ButtonBuilder
-from event.action import FloorSelected
+from event.action import FloorSelected, UserKeyAction
 from util.geometry import Vector
 from display import color
 
@@ -36,5 +36,12 @@ def on_click(game_display: Surface, event: EventType, displayables):
     return None
 
 
+def on_keydown(game_display: Surface, event: EventType, displaybles):
+    if event.dict['key'] == pygame.K_SPACE:
+        print("Keyboard spacebar pressed: {}".format(event))
+        return UserKeyAction()
+
+
 dispatcher = {pygame.MOUSEMOTION: mouse_motion,
-              pygame.MOUSEBUTTONDOWN: on_click}
+              pygame.MOUSEBUTTONDOWN: on_click,
+              pygame.KEYDOWN: on_keydown}

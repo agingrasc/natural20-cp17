@@ -3,7 +3,7 @@ import unittest
 from domain.encounter import EncounterBuilder
 from domain.state.daystate import DayState
 from domain.day import *
-from event.action import DialogOver, FloorSelected
+from event.action import FloorSelected, UserKeyAction
 
 
 class DayStateTest(unittest.TestCase):
@@ -16,15 +16,14 @@ class DayStateTest(unittest.TestCase):
     def wait_for_animation_assert_state(self, expected_state):
         self.A_DAY_STATE.exec()
         self.assertEqual(self.A_DAY_STATE.anime.wait_for_end_animation, self.A_DAY_STATE.next_substate)
-        self.A_DAY_STATE.exec(None, [DialogOver()])
+        self.A_DAY_STATE.exec(None, [UserKeyAction()])
         self.assertEqual(expected_state, self.A_DAY_STATE.next_substate)
 
     def wait_for_dialog_assert_state(self, expected_state):
         self.A_DAY_STATE.exec()
         self.assertEqual(self.A_DAY_STATE.dialog.wait_for_end_dialog, self.A_DAY_STATE.next_substate)
-        self.A_DAY_STATE.exec(None, [DialogOver()])
+        self.A_DAY_STATE.exec(None, [UserKeyAction()])
         self.assertEqual(expected_state, self.A_DAY_STATE.next_substate)
-
 
     def test_ignore_encounter_path(self):
         A_DAY = 1
@@ -49,14 +48,13 @@ class DayStateTest(unittest.TestCase):
         # Move elevator
         self.A_DAY_STATE.exec(None, [FloorSelected(A_STAGE_DEST)])
         self.assertEqual(self.A_DAY_STATE.anime.wait_for_end_animation, self.A_DAY_STATE.next_substate)
-        self.A_DAY_STATE.exec(None, [DialogOver()])
+        self.A_DAY_STATE.exec(None, [UserKeyAction()])
         self.assertEqual(self.A_DAY_STATE.ignore_client, self.A_DAY_STATE.next_substate)
 
         # Get yield by boss and loose money
         self.A_DAY_STATE.exec()
         self.assertEqual(self.A_DAY_STATE.dialog.wait_for_end_dialog, self.A_DAY_STATE.next_substate)
         self.wait_for_dialog_assert_state(self.A_DAY_STATE.introduce_next_client)
-
 
     def test_happy_path(self):
         A_DAY = 1
@@ -65,7 +63,6 @@ class DayStateTest(unittest.TestCase):
         encounter = EncounterBuilder().with_stage_src(A_STAGE_SRC)\
                                     .with_stage_dest(A_STAGE_DEST).build()
         self.A_DAY_STATE = DayState(Day(A_DAY, load_from_json=False, encounters=[encounter]))
-
 
         self.wait_for_animation_assert_state(self.A_DAY_STATE.finish_highlight_stage_number)
 
@@ -87,8 +84,3 @@ class DayStateTest(unittest.TestCase):
         self.A_DAY_STATE.exec(None, [FloorSelected(A_STAGE_DEST)])
         self.wait_for_animation_assert_state(self.A_DAY_STATE.reach_dest)
         self.wait_for_dialog_assert_state(self.A_DAY_STATE.introduce_next_client)
-
-
-
-
-

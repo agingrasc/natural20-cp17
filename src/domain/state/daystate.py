@@ -2,7 +2,7 @@ from domain.blackbox import Blackbox
 from domain.state.state import State
 from display.action.dialog import Dialog
 from domain.state.substate import DialogSubState, AnimationSubState
-from event.action import DialogOver, FloorSelected
+from event.action import UserKeyAction, FloorSelected
 
 
 class DayState(State):
@@ -12,7 +12,6 @@ class DayState(State):
         self.finish = False
         Blackbox.stage = self.day.start_stage
 
-
     def introduce_next_client(self, dt, actions):
         self.current_encounter = self.day.pop_triggable_encounter(Blackbox().flags)
 
@@ -21,7 +20,6 @@ class DayState(State):
         else:
             print(self.current_encounter.raw_json)
             self.anime = AnimationSubState("elevator_light", self, self.finish_highlight_stage_number)
-
 
     def finish_highlight_stage_number(self, dt, actions):
         if Blackbox().stage == self.current_encounter.stage_src:
@@ -39,8 +37,6 @@ class DayState(State):
                     self.anime = AnimationSubState("move the elevator to client", self, self.open_door)
                 else:
                     self.anime = AnimationSubState("move the elevator to knownwhere", self, self.ignore_client)
-
-
 
     # TODO find a juicer way of doing that:
     def open_door(self, dt, actions):
@@ -79,7 +75,6 @@ class DayState(State):
         Blackbox().flags += self.current_encounter.ignore_client_flag
         # TODO add remove pourboire
         self.dialog = DialogSubState("Le boss chiale todo \ncreer un dict pour sa", self, self.introduce_next_client)
-
 
     def end_day(self, dt, actions):
         self.finish = True

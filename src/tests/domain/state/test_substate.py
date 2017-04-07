@@ -4,7 +4,7 @@ from display.action.dialog import Dialog
 from domain.day import Day
 from domain.state.daystate import DayState
 from domain.state.substate import DialogSubState
-from event.action import DialogOver
+from event.action import UserKeyAction
 
 
 def RETURN_CALLBACK():
@@ -31,6 +31,6 @@ class DialogSubStateTest(unittest.TestCase):
     def test_given_dialog_over_action_when_parent_executed_then_parent_next_state_is_return_callback(self):
         dialogSubState = DialogSubState(self.A_TEXT, self.A_PARENT_STATE, RETURN_CALLBACK)
 
-        self.A_PARENT_STATE.exec(None, [DialogOver()])
+        self.A_PARENT_STATE.exec(None, [UserKeyAction()])
 
         self.assertEqual(RETURN_CALLBACK, self.A_PARENT_STATE.next_substate)
