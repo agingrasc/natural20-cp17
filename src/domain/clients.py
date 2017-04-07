@@ -19,10 +19,10 @@ class Client:
         return False
 
     def greet(self):
-        return sample(self.raw_json["greeting"],1)
+        return sample(self.raw_json["greeting"],1)[0]
 
     def say_farewell(self):
-        return sample(self.raw_json["farewell"], 1)
+        return sample(self.raw_json["farewell"], 1)[0]
 
     def get_tip(self):
         return randrange(self["tip_min"], self["tip_max"])

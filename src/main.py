@@ -7,6 +7,7 @@ from display.action.dialog import Dialog
 from display.button import ButtonBuilder
 from domain.state.stateexecutor import StateExecutor
 from event import handler
+from event.action import DialogOver
 from util.geometry import Vector
 
 FPS = 60
@@ -38,7 +39,6 @@ class Game:
         display.set_caption('Natural 20: Challenge Pixel 2017')
         clock: Clock = pygame.time.Clock()
 
-        dialog = Dialog("Hello, world! Foo bar baz\nGood bye!lakjadslkdjaslkjdaslkdj")
         self.init_keypad(game_display)
         crashed = False
         while not crashed:
@@ -52,10 +52,11 @@ class Game:
 
             action = self.state_executor.exec(self.delta_t, self.actions)
             self.temporary_display.append(action.display(game_display, self.delta_t))
+            if action.finished:
+                self.actions.append(DialogOver())
 
             self.compute_delta_t()
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
-            self.temporary_display.append(dialog.display(game_display, self.delta_t))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

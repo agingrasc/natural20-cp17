@@ -8,6 +8,7 @@ class Dialog:
         self.idx = 0
         self.text = text
         self.time_elapsed = 0
+        self.finished = False
 
     def display(self, game_display, delta_t):
         self.time_elapsed += delta_t
@@ -18,5 +19,6 @@ class Dialog:
             self.idx += 1
             return drawer.display_dialog(game_display, self.text[:self.idx])
         else:
+            self.finished = True
             return drawer.display_dialog(game_display, self.text[:self.idx])
 
