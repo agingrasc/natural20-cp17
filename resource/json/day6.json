@@ -68,14 +68,14 @@
             "client_name": "Sylvie",
             "stage_src": 2,
             "stage_dest": 1,
-            "greeting": "",
-            "dialog": "",
-            "insult": "",
-            "farewell": "",
+            "greeting": "Oh mon Dieu ! MON JAMES !",
+            "dialog": "Vous ne l'auriez pas vu par hazard ? Je sais qu'il aime votre ascenseur... Je vous paierai !",
+            "insult": "Je vais descendre ici pour continuez mes recherches... merci quand même !",
+            "farewell": "James ! Te voilà ! Arrête de manger ces bonbons...",
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips":0
+            "tips": 12
         }
 
     ]

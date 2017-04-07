@@ -23,14 +23,14 @@
             "client_name": "Boss Daniel",
             "stage_src": 1,
             "stage_dest": 4,
-            "greeting": "",
-            "dialog": "",
-            "insult": "",
-            "farewell": "",
+            "greeting": "Hey toi !",
+            "dialog": "Des clients se pleignent de toi et d'autres te complimentent. J'en déduit que tu es capables de me déposer à l'étage que je t'ai indiqué à notre première rencontre ?",
+            "insult": "HaHa ! Je le savais... Après ton service tu dégages ! Tu es VIRÉ !",
+            "farewell": "La chance ça arrive à tout le monde ! Je t'aurai à un autre moment... J'ai du boulot !",
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips":0
+            "tips":12
         },
         {
             "include":[],

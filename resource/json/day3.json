@@ -9,7 +9,7 @@
             "stage_src": 8,
             "stage_dest": 4,
             "greeting": "",
-            "dialog": [" >>> Steve doit de l'argent / Restaurant"],
+            "dialog": " >>> Steve doit de l'argent / Restaurant",
             "insult": "",
             "farewell": "",
             "ignore_client_flag": [],
