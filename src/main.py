@@ -24,12 +24,18 @@ class Game:
         self.delta_t = ticks - self.last_frame_ticks
         self.last_frame_ticks = ticks
 
+    def init_keypad(self, game_display):
+        for i in range(3):
+            for j in range(3):
+                self.persistent_display["button-{}-{}".format(i, j)] = drawer.add_button(game_display, i, j)
+
     def main(self):
         game_display: Surface = display.set_mode((self.display_width, self.display_height))
         display.set_caption('Natural 20: Challenge Pixel 2017')
         clock: Clock = pygame.time.Clock()
 
         dialog = Dialog(game_display, "Hello, world! Foo bar baz\nGood bye!lakjadslkdjaslkjdaslkdj")
+        self.init_keypad(game_display)
         crashed = False
         while not crashed:
             game_display.fill(color.BLACK)
