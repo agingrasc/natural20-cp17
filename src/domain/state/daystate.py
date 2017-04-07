@@ -15,9 +15,11 @@ class DayState(State):
 
     def introduce_next_client(self, dt, actions):
         self.current_encounter = self.day.pop_triggable_encounter(Blackbox().flags)
+
         if self.current_encounter is None:
             self.next_substate = self.end_day
         else:
+            print(self.current_encounter.raw_json)
             self.anime = AnimationSubState("elevator_light", self, self.finish_highlight_stage_number)
 
 
@@ -56,6 +58,7 @@ class DayState(State):
         for action in actions:
             if isinstance(action, FloorSelected):
                 # TODO have an action if the dest is wrong
+                Blackbox().stage = action.data['floor']
                 if action.data['floor'] == self.current_encounter.stage_dest:
                     self.anime = AnimationSubState("move client to dest", self, self.reach_dest)
                 else:
@@ -63,9 +66,13 @@ class DayState(State):
 
     # Endings
     def reach_dest(self, dt, actions):
-        Blackbox().stage = self.current_encounter.stage_dest
         Blackbox().flags += self.current_encounter.happy_ending_flag
+        Blackbox().tips += self.current_encounter.tips
         self.dialog = DialogSubState(self.current_encounter.say_farewell(), self, self.introduce_next_client)
+
+    def ignore_dest(self, dt, actions):
+        Blackbox().flags += self.current_encounter.ignore_dest_flag
+        self.dialog = DialogSubState(self.current_encounter.say_insult(), self, self.introduce_next_client)
 
     def ignore_client(self, dt, actions):
         Blackbox().stage = self.current_encounter.stage_src
