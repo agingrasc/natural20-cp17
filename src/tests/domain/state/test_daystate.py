@@ -23,6 +23,7 @@ class DayStateTest(unittest.TestCase):
         self.A_DAY_STATE.exec()
         self.assertEqual(self.A_DAY_STATE.dialog.wait_for_end_dialog, self.A_DAY_STATE.next_substate)
         self.A_DAY_STATE.exec(None, [UserKeyAction()])
+        self.A_DAY_STATE.exec(None, [UserKeyAction()])
         self.assertEqual(expected_state, self.A_DAY_STATE.next_substate)
 
     def test_ignore_encounter_path(self):
