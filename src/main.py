@@ -51,6 +51,7 @@ class Game:
                 displayable()
 
             action = self.state_executor.exec(self.delta_t, self.actions)
+            self.actions.clear()
             self.temporary_display.append(action.display(game_display, self.delta_t))
             if action.finished:
                 self.actions.append(DialogOver())
