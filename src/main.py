@@ -6,6 +6,8 @@ from display import color, drawer
 from event import handler
 from util.geometry import Vector
 
+FPS = 60
+
 
 class Game:
     def __init__(self):
@@ -37,7 +39,7 @@ class Game:
             self.temporary_display.clear()
 
             self.compute_delta_t()
-            self.temporary_display.append(drawer.add_text(game_display, str(self.delta_t), Vector()))
+            self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector()))
             self.temporary_display.append(drawer.display_dialog(game_display, "Hello, world!"))
 
             for event in pygame.event.get():
@@ -47,7 +49,7 @@ class Game:
                     handler.handle(game_display, event, self.persistent_display)
 
             pygame.display.update()
-            clock.tick(30)
+            clock.tick(FPS)
 
 if __name__ == "__main__":
     pygame.init()

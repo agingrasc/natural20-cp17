@@ -17,7 +17,7 @@ def add_text(surface: Surface, text: str, pos: Vector):
 
 
 def display_dialog(surface: Surface, dialog: str):
-    pos = Vector(300, 300)
-    dimensions = Vector(50, 50)
+    pos = Vector(800-(50+350), 600-(50+200))
+    dimensions = Vector(350, 200)
     rect = pygame.Rect(pos.to_pos(), dimensions.to_pos())
-    return functools.partial(draw.rect, surface, color.WHITE, rect, 10)
+    return functools.partial(draw.rect, surface, color.WHITE, rect, 5)
