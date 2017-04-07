@@ -14,6 +14,7 @@ DEFAULT_MIN_HEIGHT = 155
 DEFAULT_MARGIN = 2
 NUMBER_OF_BUTTONS_ROWS = 5
 NUMBER_OF_BUTTONS_COLS = 2
+DEFAULT_BUTTON_IMAGE_PATH_PATTERN = "resource/sprite_sheets/button_{}_sprite_sheet.png"
 
 
 class Button:
@@ -23,7 +24,9 @@ class Button:
         self.floor = floor
 
     def display(self, surface: Surface):
-        return drawer.add_rectangle(surface, self.coordinates, self.size, color.PURPLE)
+        sprite_sheet_size = Vector(108, 109)
+        sprite_sheet_offset = Vector(0, 0)
+        return drawer.add_image_from_sprite_sheet(surface, DEFAULT_BUTTON_IMAGE_PATH_PATTERN.format(1), self.coordinates, self.size, sprite_sheet_size, sprite_sheet_offset)
 
     def is_inside(self, pos: Vector):
         down_right_corner = self.coordinates + self.size

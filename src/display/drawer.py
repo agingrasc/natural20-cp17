@@ -21,8 +21,18 @@ def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tup
     return functools.partial(draw.rect, surface, rect_color, rect, 0)
 
 
-def add_background(surface: Surface, image_path, pos: Vector, scale: Vector):
+def add_image(surface: Surface, image_path, pos: Vector, scale: Vector):
     img = pygame.image.load(image_path)
+    rescaled_img = pygame.transform.scale(img, scale.to_pos())
+    return functools.partial(surface.blit, rescaled_img, pos.to_pos())
+
+
+def add_image_from_sprite_sheet(surface: Surface, sprite_sheet_path: str, pos: Vector, scale: Vector,
+                                sprite_sheet_size: Vector, sprite_sheet_offset: Vector):
+    sprite_sheet = pygame.image.load(sprite_sheet_path)
+    area = sprite_sheet_offset.x, sprite_sheet_offset.y, sprite_sheet_size.x, sprite_sheet_size.y
+    img = Surface(sprite_sheet_size.to_pos())
+    img.blit(sprite_sheet, Vector(0, 0).to_pos(), area)
     rescaled_img = pygame.transform.scale(img, scale.to_pos())
     return functools.partial(surface.blit, rescaled_img, pos.to_pos())
 

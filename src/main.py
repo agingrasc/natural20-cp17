@@ -35,15 +35,15 @@ class Game:
 
     def construct_background(self, game_display):
         self.persistent_display['background'] = \
-            drawer.add_background(game_display,
-                                  DEFAULT_BACKGROUND_IMAGE_PATH,
-                                  Vector(),
-                                  Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT))
+            drawer.add_image(game_display,
+                             DEFAULT_BACKGROUND_IMAGE_PATH,
+                             Vector(),
+                             Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT))
         self.persistent_display['floor-indicator'] = \
-            drawer.add_background(game_display,
-                                  DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
-                                  Vector(30, 30),
-                                  Vector(100, 100))
+            drawer.add_image(game_display,
+                             DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
+                             Vector(30, 30),
+                             Vector(100, 100))
 
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
