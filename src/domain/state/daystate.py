@@ -7,7 +7,7 @@ class DayState(State):
 
     def introduce_next_client(self, dt, action):
         self.current_client = self.day.pop_clients()
-        self.change_substate_and_exec(self, self.move_client_to_elevator)
+        self.change_substate_and_exec(self.move_client_to_elevator)
 
     def move_client_to_elevator(self, dt, actions):
         pass
