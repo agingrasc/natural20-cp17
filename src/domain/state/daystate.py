@@ -34,7 +34,7 @@ class DayState(State):
         self.current_encounter = self.day.pop_triggable_encounter([])
         if self.current_encounter is None:
             self.next_substate = self.end_day
-        else
+        else:
             return self.change_substate_and_exec(self.move_client_to_elevator)
 
     def move_client_to_elevator(self, dt, actions):
