@@ -1,9 +1,9 @@
+import collections
 import pygame
 from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions
-from display.action.dialog import Dialog
 from display.button import ButtonBuilder
 from domain.state.stateexecutor import StateExecutor
 from event import handler
@@ -11,6 +11,9 @@ from event.action import DialogOver
 from util.geometry import Vector
 
 FPS = 60
+DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
+NUMBER_OF_BUTTONS_ROWS = 5
+NUMBER_OF_BUTTONS_COLS = 2
 
 
 class Game:
@@ -19,7 +22,7 @@ class Game:
         self.delta_t = 0
         self.display_width = dimensions.WINDOW_WIDTH
         self.display_height = dimensions.WINDOW_HEIGHT
-        self.persistent_display = {}
+        self.persistent_display = collections.OrderedDict()
         self.temporary_display = []
         self.actions = []
         self.state_executor = StateExecutor()
@@ -30,8 +33,8 @@ class Game:
         self.last_frame_ticks = ticks
 
     def init_keypad(self, game_display):
-        for i in range(3):
-            for j in range(3):
+        for i in range(NUMBER_OF_BUTTONS_COLS):
+            for j in range(NUMBER_OF_BUTTONS_ROWS):
                 self.persistent_display["button-{}-{}".format(i, j)] = ButtonBuilder().add_button(game_display, i, j)
 
     def main(self):
@@ -39,16 +42,17 @@ class Game:
         display.set_caption('Natural 20: Challenge Pixel 2017')
         clock: Clock = pygame.time.Clock()
 
+        self.persistent_display['background'] = drawer.add_background(game_display, DEFAULT_BACKGROUND_IMAGE_PATH)
         self.init_keypad(game_display)
         crashed = False
         while not crashed:
             game_display.fill(color.BLACK)
 
+            for displayable in self.persistent_display.values():
+                displayable()
             for displayable in self.temporary_display:
                 displayable()
             self.temporary_display.clear()
-            for displayable in self.persistent_display.values():
-                displayable()
 
             action = self.state_executor.exec(self.delta_t, self.actions)
             self.temporary_display.append(action.display(game_display, self.delta_t))

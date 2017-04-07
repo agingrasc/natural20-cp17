@@ -8,10 +8,10 @@ from display import color, drawer
 from util.geometry import Vector
 from util.singleton import Singleton
 
-BUTTON_SIZE = 65
-DEFAULT_MIN_WIDTH = 75
-DEFAULT_MIN_HEIGHT = 350
-DEFAULT_MARGIN = 5
+BUTTON_SIZE = 35
+DEFAULT_MIN_WIDTH = 95
+DEFAULT_MIN_HEIGHT = 155
+DEFAULT_MARGIN = 2
 
 
 class Button:
@@ -35,7 +35,7 @@ class ButtonBuilder(metaclass=Singleton):
         self.buttons = []
 
     def add_button(self, surface: Surface, row, col):
-        coord = Vector(self.min_width + row * (BUTTON_SIZE + 5), self.min_height + col * (BUTTON_SIZE + 5))
+        coord = Vector(self.min_width + row * (BUTTON_SIZE + DEFAULT_MARGIN), self.min_height + col * (BUTTON_SIZE + DEFAULT_MARGIN))
         size = Vector(BUTTON_SIZE, BUTTON_SIZE)
         button = Button(coord, size)
         self.buttons.append(button)

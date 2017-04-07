@@ -6,6 +6,7 @@ from pygame import draw
 from pygame.surface import Surface
 
 from display import color, dimensions
+from display import dimensions
 from util.geometry import Vector
 
 
@@ -18,6 +19,12 @@ def add_text(surface: Surface, text: str, pos: Vector, text_color=color.TEXT_FOR
 def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tuple[int, int, int]):
     rect = pygame.Rect(coord.to_pos(), size.to_pos())
     return functools.partial(draw.rect, surface, rect_color, rect, 0)
+
+
+def add_background(surface: Surface, image_path):
+    img = pygame.image.load(image_path)
+    rescaled_img = pygame.transform.scale(img, Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT).to_pos())
+    return functools.partial(surface.blit, rescaled_img, Vector().to_pos())
 
 
 def display_dialog(surface: Surface, dialog: str):
