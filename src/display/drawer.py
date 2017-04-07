@@ -1,4 +1,5 @@
 import functools
+from typing import Tuple
 
 import pygame
 from pygame import draw
@@ -12,6 +13,11 @@ def add_text(surface: Surface, text: str, pos: Vector, text_color=color.TEXT_FOR
     font = pygame.font.SysFont('Arial', 25)
     font_text = font.render(text, True, text_color)
     return functools.partial(surface.blit, font_text, pos.to_pos())
+
+
+def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tuple[int, int, int]):
+    rect = pygame.Rect(coord.to_pos(), size.to_pos())
+    return functools.partial(draw.rect, surface, rect_color, rect, 0)
 
 
 def display_dialog(surface: Surface, dialog: str):

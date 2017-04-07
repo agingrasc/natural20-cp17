@@ -3,6 +3,7 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions, button
+from display.button import ButtonBuilder
 from display.dialog import Dialog
 from event import handler
 from util.geometry import Vector
@@ -27,7 +28,7 @@ class Game:
     def init_keypad(self, game_display):
         for i in range(3):
             for j in range(3):
-                self.persistent_display["button-{}-{}".format(i, j)] = button.add_button(game_display, i, j)
+                self.persistent_display["button-{}-{}".format(i, j)] = ButtonBuilder().add_button(game_display, i, j)
 
     def main(self):
         game_display: Surface = display.set_mode((self.display_width, self.display_height))
