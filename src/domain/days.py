@@ -1,5 +1,5 @@
 import json
-from domain.clients import Clients
+from domain.encounters import Clients
 
 
 class Day:

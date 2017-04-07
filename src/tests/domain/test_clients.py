@@ -1,6 +1,6 @@
 import unittest
 
-from domain.clients import *
+from domain.encounters import *
 
 class ClientsTest(unittest.TestCase):
     DAY1 = 1

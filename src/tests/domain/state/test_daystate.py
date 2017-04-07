@@ -1,6 +1,6 @@
 import unittest
 from domain.state.daystate import DayState
-from domain.clients import ClientBuilder, Clients
+from domain.encounters import ClientBuilder, Clients
 from domain.days import *
 
 class DayStateTest(unittest.TestCase):
