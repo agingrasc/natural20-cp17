@@ -1,5 +1,5 @@
 from display.action.dialog import Dialog
-from event.action import DialogOver
+from event.action import UserKeyAction
 
 # TODO create interface
 
@@ -11,13 +11,14 @@ class AnimationSubState:
         self.parentState = parentState
         self.returnSubstateCallback = returnSubstateCallback
 
-        self.current_dialog = Dialog(animation_id)# TODO should use a animation action
+        self.current_dialog = Dialog("ANIMATION", animation_id)# TODO should use a animation action
         self.parentState.change_substate(self.wait_for_end_animation)
 
 
     def wait_for_end_animation(self, dt, actions):
         for action in actions:
-            if isinstance(action, DialogOver):
+            # TODO add finish to animation
+            if isinstance(action, UserKeyAction):
                 self.return_to_parent_state()
         else:
             return self.current_dialog
@@ -25,24 +26,28 @@ class AnimationSubState:
     def return_to_parent_state(self):
         self.parentState.next_substate =  self.returnSubstateCallback
 
+
 class DialogSubState:
     """
     Handle a sequence of substate to output a dialog and return to substate when finished
     """
-    def __init__(self, text: str, parentState, returnSubstateCallback):
+    def __init__(self, name: str, text: str, parentState, returnSubstateCallback):
         self.parentState = parentState
         self.returnSubstateCallback = returnSubstateCallback
 
-        self.current_dialog = Dialog(text)
+        self.current_dialog = Dialog(name, text)
         self.parentState.change_substate(self.wait_for_end_dialog)
-
 
     def wait_for_end_dialog(self, dt, actions):
         for action in actions:
-            if isinstance(action, DialogOver):
-                self.return_to_parent_state()
-        else:
-            return self.current_dialog
+            if isinstance(action, UserKeyAction):
+                if self.current_dialog.finished:
+                    self.return_to_parent_state()
+                    break
+                else:
+                    self.current_dialog.finished = True
+                    break
+        return self.current_dialog
 
     def return_to_parent_state(self):
         self.parentState.next_substate =  self.returnSubstateCallback
