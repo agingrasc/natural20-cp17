@@ -28,8 +28,6 @@ class DayState(State):
     def init_player_input(self, dt, actions):
         pass
 
-    def exec(self, dt=None, actions=None):
-        return self.current_substate(dt, actions)
 
     def is_finish(self):
-        pass
+        False

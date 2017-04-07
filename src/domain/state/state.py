@@ -4,9 +4,13 @@ class State(abc.ABC):
 
     def __init__(self, init_substate):
         self.next_substate = init_substate
-    @abc.abstractmethod
-    def exec(self, dt, actions):
-        pass
+
+    def exec(self, dt=None, actions=None):
+        res = self.next_substate(dt, actions)
+        if res is None:
+            return None # TODO fix later
+        else:
+            return res
 
     @abc.abstractmethod
     def is_finish(self):
