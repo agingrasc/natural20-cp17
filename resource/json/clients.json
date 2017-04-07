@@ -1,6 +1,10 @@
 {
     "clients": [
         {
+            "name": "Bob",
+            "ressource": "resource/img"
+        },
+        {
             "name": "Steve",
             "ressource": "resource/img"
         }
