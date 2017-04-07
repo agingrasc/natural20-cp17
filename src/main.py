@@ -36,7 +36,8 @@ class Game:
             drawer.add_image(game_display,
                              DEFAULT_BACKGROUND_IMAGE_PATH,
                              Vector(),
-                             Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT))
+                             Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT),
+                             0)
         self.persistent_display['floor-indicator'] = \
             drawer.add_image(game_display,
                              DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
@@ -56,7 +57,9 @@ class Game:
         self.construct_background(game_display)
         self.init_keypad(game_display)
         crashed = False
+        indicator_angle = 0
         while not crashed:
+            indicator_angle = (indicator_angle + 1) % 30
             game_display.fill(color.BLACK)
 
             for displayable in self.persistent_display.values():
@@ -80,7 +83,11 @@ class Game:
 
             self.actions = [action for action in self.actions if action]
 
-
+            self.persistent_display['floor-indicator'] = drawer.add_image(game_display,
+                                                                          DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
+                                                                          Vector(135-110, 105-116),
+                                                                          Vector(210, 210),
+                                                                          angle=indicator_angle)
             pygame.display.update()
 
             clock.tick(FPS)

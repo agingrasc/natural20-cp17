@@ -1,5 +1,6 @@
 import abc
 
+
 class IDomainAction(metaclass=abc.ABCMeta):
 
     def __init__(self):

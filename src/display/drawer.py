@@ -23,10 +23,11 @@ def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tup
     return functools.partial(draw.rect, surface, rect_color, rect, 0)
 
 
-def add_image(surface: Surface, image_path, pos: Vector, scale: Vector):
+def add_image(surface: Surface, image_path, pos: Vector, scale: Vector, angle = 0):
     img = pygame.image.load(image_path)
     rescaled_img = pygame.transform.scale(img, scale.to_pos())
-    return functools.partial(surface.blit, rescaled_img, pos.to_pos())
+    rotated = pygame.transform.rotate(rescaled_img, angle)
+    return functools.partial(surface.blit, rotated, pos.to_pos())
 
 
 def add_image_from_sprite_sheet(surface: Surface, sprite_sheet_path: str, pos: Vector, scale: Vector,
