@@ -1,6 +1,6 @@
 class EmptyAction():
     def __init__(self):
-        pass
+        self.finished = False
 
     def display(self, *args):
         def nop():
