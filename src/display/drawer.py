@@ -31,20 +31,12 @@ def add_image(surface: Surface, image_path, pos: Vector, scale: Vector):
 
 def add_image_from_sprite_sheet(surface: Surface, sprite_sheet_path: str, pos: Vector, scale: Vector,
                                 sprite_sheet_size: Vector, sprite_sheet_offset: Vector):
-    sprite_sheet = pygame.image.load(sprite_sheet_path).convert(24)
+    sprite_sheet = pygame.image.load(sprite_sheet_path)
     area = sprite_sheet_offset.x, sprite_sheet_offset.y, sprite_sheet_size.x, sprite_sheet_size.y
-    img = Surface(sprite_sheet_size.to_pos())
+    img = Surface(sprite_sheet_size.to_pos(), pygame.SRCALPHA)
     img.blit(sprite_sheet, Vector(0, 0).to_pos(), area)
     rescaled_img = pygame.transform.scale(img, scale.to_pos())
     return functools.partial(surface.blit, rescaled_img, pos.to_pos())
-
-
-def add_button(surface: Surface, sprite_sheet_path: str, pos: Vector, scale: Vector,
-               sprite_sheet_size: Vector, sprite_sheet_offset: Vector):
-    sprite_sheet = pygame.image.load(sprite_sheet_path)
-    area = sprite_sheet_offset.x, sprite_sheet_offset.y, sprite_sheet_size.x, sprite_sheet_size.y
-    rescaled_img = pygame.transform.scale(sprite_sheet, (scale.x, scale.y))
-    return functools.partial(surface.blit, rescaled_img, pos.to_pos(), area)
 
 
 def display_dialog(surface: Surface, dialog: str):
