@@ -3,6 +3,7 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions
+from display.dialog import Dialog
 from event import handler
 from util.geometry import Vector
 
@@ -28,6 +29,7 @@ class Game:
         display.set_caption('Natural 20: Challenge Pixel 2017')
         clock: Clock = pygame.time.Clock()
 
+        dialog = Dialog(game_display, "Hello, world! Foo bar baz\n\n Good bye!lakjadslkdjaslkjdaslkdj")
         crashed = False
         while not crashed:
             game_display.fill(color.BLACK)
@@ -39,8 +41,8 @@ class Game:
                 displayable()
 
             self.compute_delta_t()
-            self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector()))
-            self.temporary_display.append(drawer.display_dialog(game_display, "Hello, world!"))
+            self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
+            self.temporary_display.append(dialog.display(self.delta_t))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

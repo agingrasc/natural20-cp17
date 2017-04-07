@@ -21,7 +21,9 @@ class Vector():
             raise NotImplementedError
 
     def __eq__(self, other):
-        return self.x == other.x and self.y == other.y and self.z == other.z
+        if isinstance(other, Vector):
+            return self.x == other.x and self.y == other.y and self.z == other.z
+        return False
 
     def multiply(self, operand):
         return Vector(self.x * operand, self.y * operand)
