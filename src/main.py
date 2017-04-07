@@ -29,7 +29,7 @@ class Game:
         display.set_caption('Natural 20: Challenge Pixel 2017')
         clock: Clock = pygame.time.Clock()
 
-        dialog = Dialog(game_display, "Hello, world! Foo bar baz\n\n Good bye!lakjadslkdjaslkjdaslkdj")
+        dialog = Dialog(game_display, "Hello, world! Foo bar baz\nGood bye!lakjadslkdjaslkjdaslkdj")
         crashed = False
         while not crashed:
             game_display.fill(color.BLACK)

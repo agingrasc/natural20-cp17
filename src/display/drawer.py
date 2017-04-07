@@ -28,7 +28,7 @@ def display_dialog(surface: Surface, dialog: str):
 
     height = 10
     for line in dialog.split('\n'):
-        font_text = font.render(dialog, True, color.TEXT_FOREGROUND_COLOR)
-        canevas.blit(font_text, Vector(10, 10).to_pos())
-        height += 25
+        font_text = font.render(line, True, color.TEXT_FOREGROUND_COLOR)
+        canevas.blit(font_text, Vector(10, height).to_pos())
+        height += 15
     return functools.partial(surface.blit, canevas, pos.to_pos())
