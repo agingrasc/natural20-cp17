@@ -1,44 +1,58 @@
 import pygame
-from maploader import *
+from pygame import display, draw, Surface, Color
+from pygame.time import Clock
 
-pygame.init()
+from util.geometry import Vector
+
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
 
 
+class Game:
+    def __init__(self):
+        self.font = pygame.font.SysFont('Arial', 25)
+        self.last_frame_ticks = pygame.time.get_ticks()
+        self.delta_t = 0
 
-def main():
+    def compute_delta_t(self):
+        ticks = pygame.time.get_ticks()
+        self.delta_t = ticks - self.last_frame_ticks
+        self.last_frame_ticks = ticks
 
-    display_width = 800
-    display_height = 600
-    game_display = pygame.display.set_mode((display_width, display_height))
-    pygame.display.set_caption('Natural 20: Challenge Pixel 2017')
-    clock = pygame.time.Clock()
-    map = MapLoader()
+    def add_text(self, surface: Surface, text: str, pos: Vector):
+        font = self.font.render(text, True, RED)
+        surface.blit(font, pos.to_pos())
 
-    black = (0, 0, 0)
-    white = (255, 255, 255)
+    def main(self):
+        display_width = 800
+        display_height = 600
+        game_display: Surface = display.set_mode((display_width, display_height))
+        display.set_caption('Natural 20: Challenge Pixel 2017')
+        clock: Clock = pygame.time.Clock()
 
-    carImg = pygame.image.load('ressource/img/racecar.png')
+        circle_pos = Vector(300, 300)
 
-    def car(x, y):
-        game_display.blit(carImg, (x, y))
+        crashed = False
+        while not crashed:
+            game_display.fill(WHITE)
+            self.compute_delta_t()
+            self.add_text(game_display, str(self.delta_t), Vector())
 
-    x = (display_width * 0.45)
-    y = (display_height * 0.8)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    crashed = True
+                print(event)
 
-    crashed = False
-    while not crashed:
+            circle_pos += 10
+            draw.circle(game_display, Color(255, 0, 0), circle_pos.to_pos(), 50, 0)
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                crashed = True
-            print(event)
-
-        game_display.fill(white)
-        map.draw(game_display)
-        car(x, y)
-
-        pygame.display.update()
-        clock.tick(60)
+            pygame.display.update()
+            clock.tick(30)
 
 if __name__ == "__main__":
-    main()
+    pygame.init()
+    game = Game()
+    game.main()
