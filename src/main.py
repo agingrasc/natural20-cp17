@@ -86,7 +86,9 @@ class Game:
 
             self.actions = [action for action in self.actions if action]
 
+
             pygame.display.update()
+
             clock.tick(FPS)
 
 if __name__ == "__main__":
