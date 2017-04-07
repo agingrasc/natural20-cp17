@@ -13,6 +13,7 @@ from util.geometry import Vector
 
 FPS = 60
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
+DEFAULT_FLOOR_INDICATOR_IMAGE_PATH = 'resource/img/level_counter.png'
 
 
 class Game:
@@ -37,6 +38,11 @@ class Game:
                                   DEFAULT_BACKGROUND_IMAGE_PATH,
                                   Vector(),
                                   Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT))
+        self.persistent_display['floor-indicator'] = \
+            drawer.add_background(game_display,
+                                  DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
+                                  Vector(30, 30),
+                                  Vector(100, 100))
 
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
