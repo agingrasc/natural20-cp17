@@ -6,6 +6,8 @@
             "include":[],
             "exclude":[],
             "client_name": "Steve",
+            "stage_src": 1,
+            "stage_dest": 2,
             "greeting": ["hello"],
             "dialog": ["To be or not to be"],
             "insult": ["You sucks at your job!"],
