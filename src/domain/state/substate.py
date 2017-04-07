@@ -11,7 +11,7 @@ class AnimationSubState:
         self.parentState = parentState
         self.returnSubstateCallback = returnSubstateCallback
 
-        self.current_dialog = Dialog("Animation are long todo")
+        self.current_dialog = Dialog(animation_id)# TODO should use a animation action
         self.parentState.change_substate(self.wait_for_end_animation)
 
 
