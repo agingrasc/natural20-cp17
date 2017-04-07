@@ -3,6 +3,12 @@ class Action:
         self.data = {}
 
 
+class DialogOver(Action):
+    def __init__(self):
+        super().__init__()
+        self.data = {'dialog-over': True}
+
+
 class FloorSelected(Action):
     def __init__(self, floor):
         super().__init__()
