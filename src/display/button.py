@@ -22,6 +22,10 @@ class Button:
     def display(self, surface: Surface):
         return drawer.add_rectangle(surface, self.coordinates, self.size, color.PURPLE)
 
+    def is_inside(self, pos: Vector):
+        down_right_corner = self.coordinates + self.size
+        return self.coordinates.x <= pos.x <= down_right_corner.x and self.coordinates.y <= pos.y <= down_right_corner.y
+
 
 class ButtonBuilder(metaclass=Singleton):
     def __init__(self):
