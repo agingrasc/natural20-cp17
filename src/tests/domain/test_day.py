@@ -3,7 +3,7 @@ from domain.state.daystate import DayState
 from domain.encounter import EncounterBuilder, Encounter
 from domain.day import *
 
-class DayStateTest(unittest.TestCase):
+class DayTest(unittest.TestCase):
     A_DAY = 1
     def setUp(self):
         FLAG_A = 'lol'
