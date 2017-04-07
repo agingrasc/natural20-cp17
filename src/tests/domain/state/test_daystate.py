@@ -38,10 +38,7 @@ class DayStateTest(unittest.TestCase):
         self.A_DAY_STATE.exec()
 
         self.assertEqual(self.A_DAY_STATE.anime.wait_for_end_animation, self.A_DAY_STATE.next_substate)
-        self.A_DAY_STATE.exec()
-        self.assertEqual(self.A_DAY_STATE.anime.wait_for_end_animation, self.A_DAY_STATE.next_substate)
-        self.A_DAY_STATE.exec(None, [DialogOver()])
-        self.assertEqual(self.A_DAY_STATE.finish_highlight_stage_number, self.A_DAY_STATE.next_substate)
+        self.wait_for_animation_assert_state(self.A_DAY_STATE.finish_highlight_stage_number)
 
         # Wait for player to select level
         self.A_DAY_STATE.exec()
@@ -75,7 +72,7 @@ class DayStateTest(unittest.TestCase):
         # Wait for player to select level
         self.A_DAY_STATE.exec()
         self.assertEqual(self.A_DAY_STATE.wait_for_player_input, self.A_DAY_STATE.next_substate)
-        # Input the encounter stage, go to the stage and open door
+        # Input the encounter stage number, go to the stage and open door
         self.A_DAY_STATE.exec(None, [FloorSelected(A_STAGE_SRC)])
         self.wait_for_animation_assert_state(self.A_DAY_STATE.open_door)
 
