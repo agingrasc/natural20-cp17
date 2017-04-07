@@ -58,7 +58,7 @@ class Game:
         self.construct_background(game_display)
         self.init_keypad(game_display)
         crashed = False
-        dialog = Dialog("Hello!alkjdsflakjfklasjflkasdklfj alskdfjkdsaz\nalskjdaslkdjlksad\nalskdj\nlaksjd\nalskdj\nasdlkj\nasldkj\nasdlkj\nasdlkj")
+        #dialog = Dialog("Hello!alkjdsflakjfklasjflkasdklfj alskdfjkdsaz\nalskjdaslkdjlksad\nalskdj\nlaksjd\nalskdj\nasdlkj\nasldkj\nasdlkj\nasdlkj")
         while not crashed:
             game_display.fill(color.BLACK)
 
@@ -75,8 +75,8 @@ class Game:
                 self.actions.append(DialogOver())
 
             self.compute_delta_t()
-            self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
-            self.temporary_display.append(dialog.display(game_display, self.delta_t))
+            #self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
+            #self.temporary_display.append(dialog.display(game_display, self.delta_t))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
