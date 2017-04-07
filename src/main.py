@@ -33,7 +33,8 @@ def main():
                 crashed = True
             print(event)
 
-            game_display.fill(white)
+        game_display.fill(white)
+        map.draw(game_display)
         car(x, y)
 
         pygame.display.update()

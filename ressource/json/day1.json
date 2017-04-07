@@ -1,0 +1,14 @@
+{
+    "mandatoryEncounter": [
+        {
+            "client": "id",
+            "greeting": "hello"
+            "dialog": ["", ""],
+            "farewell": "bye"
+            "condition": "flag"
+            "flags": ["flag", "flag"]
+        }
+
+    ],
+    "nb_random_encounter": 3
+}
