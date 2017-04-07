@@ -34,6 +34,7 @@ def add_image_from_sprite_sheet(surface: Surface, sprite_sheet_path: str, pos: V
     sprite_sheet = pygame.image.load(sprite_sheet_path)
     area = sprite_sheet_offset.x, sprite_sheet_offset.y, sprite_sheet_size.x, sprite_sheet_size.y
     img = Surface(sprite_sheet_size.to_pos())
+    img.set_colorkey((0, 0, 0))
     img.blit(sprite_sheet, Vector(0, 0).to_pos(), area)
     rescaled_img = pygame.transform.scale(img, scale.to_pos())
     return functools.partial(surface.blit, rescaled_img, pos.to_pos())
