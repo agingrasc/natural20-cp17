@@ -2,7 +2,7 @@ import pygame
 from pygame import display, Surface
 from pygame.time import Clock
 
-from display import color, drawer
+from display import color, drawer, dimensions
 from event import handler
 from util.geometry import Vector
 
@@ -13,8 +13,8 @@ class Game:
     def __init__(self):
         self.last_frame_ticks = pygame.time.get_ticks()
         self.delta_t = 0
-        self.display_width = 800
-        self.display_height = 600
+        self.display_width = dimensions.WINDOW_WIDTH
+        self.display_height = dimensions.WINDOW_HEIGHT
         self.persistent_display = {}
         self.temporary_display = []
 
@@ -32,11 +32,11 @@ class Game:
         while not crashed:
             game_display.fill(color.BLACK)
 
-            for displayable in self.persistent_display.values():
-                displayable()
             for displayable in self.temporary_display:
                 displayable()
             self.temporary_display.clear()
+            for displayable in self.persistent_display.values():
+                displayable()
 
             self.compute_delta_t()
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector()))
