@@ -27,6 +27,15 @@ class Encounter:
     def say_insult(self):
         return sample(self.raw_json["insult"], 1)[0]
 
+    def has_boss_complain(self):
+        return "boss_complains" in self.raw_json
+
+    def say_boss_complain(self):
+        if self.has_boss_complain():
+            return sample(self.raw_json["boss_complains"], 1)[0]
+        else:
+            return [""]
+
     def is_encounter_triggable(self, active_flags):
         for cond in self["include"]:
             if not cond in active_flags:
@@ -56,6 +65,13 @@ class Encounter:
     def stage_dest(self):
         return self["stage_dest"]
 
+    @property
+    def penality(self):
+        if "penality" in self.raw_json:
+            return self["penality"]
+        else:
+            return 0
+
 
     @property
     def ignore_client_flag(self):
@@ -66,6 +82,8 @@ class Encounter:
     @property
     def happy_ending_flag(self):
         return self["happy_ending_flag"]
+
+
 
 
 
