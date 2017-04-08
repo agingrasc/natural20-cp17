@@ -4,11 +4,13 @@ import pygame
 from pygame import display, Surface
 from pygame.time import Clock
 
-from display import color, drawer, dimensions
+from display import color, drawer, dimensions, button
 from display.action.indicator import DEFAULT_FLOOR_INDICATOR_IMAGE_PATH, DEFAULT_FLOOR_INDICATOR_POS, \
     DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
+from display.cache import ImagesCache
 from domain.state.stateexecutor import StateExecutor
+from domain import images
 from event import handler
 from util.geometry import Vector
 
@@ -26,6 +28,18 @@ class Game:
         self.temporary_display = []
         self.actions = []
         self.state_executor = StateExecutor()
+        self.image_cache = ImagesCache()
+        self.init_cache()
+
+    def init_cache(self):
+        self.image_cache.add_image(*images.BACKGROUND_IMAGE)
+        self.image_cache.add_image(*images.FLOOR_INDICATOR)
+
+        for i in range(10):
+            idx, path = images.BUTTON_PATTERN
+            idx = idx.format(i)
+            path = path.format(i)
+            self.image_cache.add_sprites_sheets(idx, path, button.BUTTON_SPRITE_SIZE)
 
     def compute_delta_t(self):
         ticks = pygame.time.get_ticks()

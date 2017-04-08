@@ -9,6 +9,7 @@ from util.geometry import Vector
 from util.singleton import Singleton
 
 BUTTON_SIZE = 35
+BUTTON_SPRITE_SIZE = Vector(107, 107)
 DEFAULT_MIN_WIDTH = 100
 DEFAULT_MIN_HEIGHT = 175
 DEFAULT_MARGIN = 2
