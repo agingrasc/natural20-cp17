@@ -49,7 +49,7 @@ class DayState(State):
     # TODO find a juicer way of doing that:
     def open_door(self, dt, actions):
         self.anime = AnimationSubState(Dialog("ANIMATION", "opening door"), self, self.encounter_enter_elevator)
-        return [ButtonReleasedAction(Blackboard().stage), FloorCallAction()]
+        return [ButtonReleasedAction(Blackboard().stage), FloorCallAction(None)]
     def encounter_enter_elevator(self, dt, actions):
         self.anime = AnimationSubState(Dialog("ANIMATION", "client walking in elevator"), self, self.greet_encounter)
         return ClientAction(self.current_encounter.name)

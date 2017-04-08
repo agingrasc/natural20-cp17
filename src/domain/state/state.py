@@ -1,6 +1,5 @@
 import abc
 
-from display.action.empty import EmptyAction
 from display.action.interface import IDomainAction
 
 
