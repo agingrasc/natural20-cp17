@@ -73,8 +73,8 @@ class DayState(State):
     def ignore_client(self, dt, actions):
         Blackboard().stage = self.current_encounter.stage_src
         Blackboard().flags += self.current_encounter.ignore_client_flag
-        # TODO add remove pourboire
-        self.dialog = DialogSubState("BOSS", "Le boss chiale todo \ncreer un dict pour sa", self, self.introduce_next_client)
+        Blackboard().tips -= self.current_encounter.penality
+        self.dialog = DialogSubState("[INTERCOM] Boss Daniel", self.day.say_boss_complain(), self, self.introduce_next_client)
 
     def end_day(self, dt, actions):
         self.finish = True
