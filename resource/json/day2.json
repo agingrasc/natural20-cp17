@@ -57,6 +57,7 @@
             "dialog": "Je ne sais pas si on vous l'a dis, mais parfois des clients... euh... patients arrivent à s'échapper de leur cellule... euh... de leur chambre. Donc si cela arrive, ramenez-les moi au plus vite ! Merci",
             "insult": ["Hm... Ce sont des personnes dangeureuses qui sont entre ces murs, j'espère que vous ferez attention tout de même et que vous ferez les bons choix car ils ont des conséquences malheureusement ! Laisse-moi ici..."],
             "farewell": ["Merci de votre collaboration ! Un petit billet pour vous montrer ma gratitude..."],
+            "boss_complains": ["Le client est un médecin du centre psychiatrique de l'immeuble. Tu devrais discuter avec ..."],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
