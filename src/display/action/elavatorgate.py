@@ -17,9 +17,9 @@ class ElevatorGateOpenAction(IDomainAction):
 
     def display(self, game_display, dt):
         self.accumulated_time += dt
+
         image = ImagesCache().images['elevator-gate']
         return drawer.add_image(game_display, image, self.coordinates, self.size)
-
 
 
 class ElevatorGateCloseAction(IDomainAction):
