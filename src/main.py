@@ -11,6 +11,7 @@ from display.action.indicator import DEFAULT_FLOOR_INDICATOR_IMAGE_PATH, DEFAULT
     DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from display.cache import ImagesCache
+from display.drawer import DIALOG_POLICE_SIZE
 from domain.state.stateexecutor import StateExecutor
 from domain import images
 from event import handler
@@ -37,6 +38,8 @@ class Game:
     def init_cache(self):
         self.image_cache.add_image(*images.BACKGROUND_IMAGE)
         self.image_cache.add_image(*images.FLOOR_INDICATOR)
+        self.image_cache.add_font("dialog", "resource/font/OldNewspaperTypes.ttf", DIALOG_POLICE_SIZE)
+        self.image_cache.add_font("tips", "resource/font/OldStandard-Regular.ttf", 20)
 
         for i in range(10):
             idx, path = images.BUTTON_PATTERN
@@ -70,6 +73,7 @@ class Game:
                 self.persistent_display["button-{}".format(floor)] = ButtonBuilder().add_button(game_display, i, j)
 
     def main(self):
+
         game_display: Surface = display.set_mode((self.display_width, self.display_height))
         display.set_caption('Natural 20: Challenge Pixel 2017')
         clock: Clock = pygame.time.Clock()
