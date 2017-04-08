@@ -16,7 +16,6 @@ def handle(game_display: Surface, event: EventType, displayables):
     if handler:
         return handler(game_display, event, displayables)
     else:
-        #print(event)
         return None
 
 
@@ -33,13 +32,43 @@ def on_click(game_display: Surface, event: EventType, displayables):
     for button in ButtonBuilder().buttons:
         if button.is_inside(pos):
             return FloorSelected(button.floor)
-    return None
+    return UserKeyAction()
 
 
 def on_keydown(game_display: Surface, event: EventType, displaybles):
     if event.dict['key'] == pygame.K_SPACE:
-        #print("Keyboard spacebar pressed: {}".format(event))
         return UserKeyAction()
+    if event.dict['key'] == pygame.K_0:
+        act = FloorSelected(0)
+        return act
+    if event.dict['key'] == pygame.K_1:
+        act = FloorSelected(1)
+        return act
+    if event.dict['key'] == pygame.K_2:
+        act = FloorSelected(2)
+        return act
+    if event.dict['key'] == pygame.K_3:
+        act = FloorSelected(3)
+        return act
+    if event.dict['key'] == pygame.K_4:
+        print("IT WORKS")
+        act = FloorSelected(4)
+        return act
+    if event.dict['key'] == pygame.K_5:
+        act = FloorSelected(5)
+        return act
+    if event.dict['key'] == pygame.K_6:
+        act = FloorSelected(6)
+        return act
+    if event.dict['key'] == pygame.K_7:
+        act = FloorSelected(7)
+        return act
+    if event.dict['key'] == pygame.K_8:
+        act = FloorSelected(8)
+        return act
+    if event.dict['key'] == pygame.K_9:
+        act = FloorSelected(9)
+        return act
 
 
 dispatcher = {pygame.MOUSEMOTION: mouse_motion,
