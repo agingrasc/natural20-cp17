@@ -35,6 +35,7 @@ class FloorIndicatorAction(IDomainAction):
         self.accumulated_time = 0
         self.sound: pygame.mixer.SoundType = None
 
+
     def display(self, game_display, dt):
         dt /= 1000.0
         self.start_sound_effect("resource/sounds/Ding-ascenseur-monte-ruffle-24s.wav")
@@ -45,6 +46,8 @@ class FloorIndicatorAction(IDomainAction):
             self.accumulated_time += dt
             delta_angle = self.target_angle - self.initial_angle
             self.angle = self.initial_angle + easing(self.accumulated_time, 0, delta_angle, DEFAULT_TIME_TO_CLIMB_A_FLOOR)
+            if self.initial_angle == self.target_angle:
+                self.finished = True
         else:
             self.finished = True
         return self.draw_image(game_display)
