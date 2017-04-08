@@ -1,4 +1,4 @@
-from domain.blackbox import BlackBox
+from domain.blackboard import Blackboard
 from domain.state.state import State
 from display.action.dialog import Dialog
 from domain.state.substate import DialogSubState, AnimationSubState
@@ -10,10 +10,10 @@ class DayState(State):
         super().__init__(self.introduce_next_client)
         self.day = day
         self.finish = False
-        BlackBox().stage = self.day.start_stage
+        Blackboard().stage = self.day.start_stage
 
     def introduce_next_client(self, dt, actions):
-        self.current_encounter = self.day.pop_triggable_encounter(BlackBox().flags)
+        self.current_encounter = self.day.pop_triggable_encounter(Blackboard().flags)
 
         if self.current_encounter is None:
             self.next_substate = self.end_day
@@ -22,7 +22,7 @@ class DayState(State):
             self.anime = AnimationSubState("elevator_light", self, self.finish_highlight_stage_number)
 
     def finish_highlight_stage_number(self, dt, actions):
-        if BlackBox().stage == self.current_encounter.stage_src:
+        if Blackboard().stage == self.current_encounter.stage_src:
             self.change_substate(self.open_door)
         else:
             self.change_substate(self.wait_for_player_input)
@@ -31,7 +31,7 @@ class DayState(State):
         for action in actions:
             if isinstance(action, FloorSelected):
                 # TODO have an action if the dest is wrong
-                if action.data['floor'] == BlackBox().stage:
+                if action.data['floor'] == Blackboard().stage:
                     self.change_substate(self.open_door)
                 elif action.data['floor'] == self.current_encounter.stage_src:
                     self.anime = AnimationSubState("move the elevator to client", self, self.open_door)
@@ -54,7 +54,7 @@ class DayState(State):
         for action in actions:
             if isinstance(action, FloorSelected):
                 # TODO have an action if the dest is wrong
-                BlackBox().stage = action.data['floor']
+                Blackboard().stage = action.data['floor']
                 if action.data['floor'] == self.current_encounter.stage_dest:
                     self.anime = AnimationSubState("move client to dest", self, self.reach_dest)
                 else:
@@ -62,17 +62,17 @@ class DayState(State):
 
     # Endings
     def reach_dest(self, dt, actions):
-        BlackBox().flags += self.current_encounter.happy_ending_flag
-        BlackBox().tips += self.current_encounter.tips
+        Blackboard().flags += self.current_encounter.happy_ending_flag
+        Blackboard().tips += self.current_encounter.tips
         self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_farewell(), self, self.introduce_next_client)
 
     def ignore_dest(self, dt, actions):
-        BlackBox().flags += self.current_encounter.ignore_dest_flag
+        Blackboard().flags += self.current_encounter.ignore_dest_flag
         self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_insult(), self, self.introduce_next_client)
 
     def ignore_client(self, dt, actions):
-        BlackBox().stage = self.current_encounter.stage_src
-        BlackBox().flags += self.current_encounter.ignore_client_flag
+        Blackboard().stage = self.current_encounter.stage_src
+        Blackboard().flags += self.current_encounter.ignore_client_flag
         # TODO add remove pourboire
         self.dialog = DialogSubState("BOSS", "Le boss chiale todo \ncreer un dict pour sa", self, self.introduce_next_client)
 
