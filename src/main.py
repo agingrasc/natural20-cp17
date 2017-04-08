@@ -80,7 +80,6 @@ class Game:
         self.construct_background(game_display)
         self.init_keypad(game_display)
 
-        btn_action = ButtonPushedAction(1)
         crashed = False
         while not crashed:
             game_display.fill(color.BLACK)

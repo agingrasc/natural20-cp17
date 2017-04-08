@@ -15,10 +15,12 @@ class ButtonPushedAction(IDomainAction):
         self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
         self.image = self.sprite_sheet.get_element(0, 1)
         self.persistent_name = 'button-{}'.format(self.floor)
-        self.sound: pygame.mixer.SoundType = pygame.mixer.Sound('resource/sounds/Button-push-1s.wav')
-        self.sound.play()
+        self.sound: pygame.mixer.SoundType = None
 
     def display(self, game_display, dt):
+        if self.sound is None:
+            self.sound = pygame.mixer.Sound('resource/sounds/Button-push-1s.wav')
+            self.sound.play()
         return drawer.add_image(game_display, self.image, self.button.coordinates, self.button.size)
 
 
