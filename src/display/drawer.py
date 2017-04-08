@@ -12,7 +12,7 @@ from display import dimensions
 from util.dialog import break_dialog_lines
 from util.geometry import Vector
 
-
+DIALOG_POLICE_SIZE = 16
 
 def add_text(surface: Surface, text: str, pos: Vector, text_color=color.TEXT_FOREGROUND_COLOR):
     font = pygame.font.SysFont('Arial', 25)
@@ -49,7 +49,7 @@ def display_dialog(surface: Surface, name: str, dialog: str):
     sizes = Vector(350, 200)
     rect = pygame.Rect(Vector().to_pos(), sizes.to_pos())
     draw.rect(canevas, color.WHITE, rect, 5)
-    font = pygame.font.Font("resource/font/OldNewspaperTypes.ttf", 25)
+    font = pygame.font.Font("resource/font/OldNewspaperTypes.ttf", DIALOG_POLICE_SIZE)
     #font = pygame.font.SysFont("Arial", 25)
     font_name = font.render("{}: ".format(name), True, color.TEXT_NAME_COLOR)
     canevas.blit(font_name, (5, 4))
