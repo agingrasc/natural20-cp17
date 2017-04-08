@@ -23,14 +23,14 @@
             "client_name": "Alexandre",
             "stage_src": 0,
             "stage_dest": 6,
-            "greeting": [""],
-            "dialog": "",
-            "insult": [""],
-            "farewell": [""],
+            "greeting": ["Salut ! Je suis un nouveau patient du Docteur Arnold. Vous pouvez m'amener au centre ? Merci."],
+            "dialog": "... C'est un très bon centre médical de ce qu'on m'a dit ... qui pense avant tout au patient et à la résolution de leurs problèmes ....",
+            "insult": ["J'ai cru voir un panneau qui indiquait la direction dans le couloir ! Je vais prendre les escaliers ça sera plus simple. Au revoir !"],
+            "farewell": ["Merci beaucoup ! J'espère que ça va bien se passer pour mon traitement... Bonne journée !"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips":0
+            "tips": 0.05
         },
         {
             "include":[],
@@ -38,29 +38,14 @@
             "client_name": "Jacqueline",
             "stage_src": 0,
             "stage_dest": 2,
-            "greeting": [""],
-            "dialog": "",
-            "insult": [""],
-            "farewell": [""],
+            "greeting": ["Salut le jeune ! Je rejoins ma copine Marie-Ange, elle m'a dis qu'elle était dans la chambre 150. Merci !"],
+            "dialog": "On va bien s'éclater entre copines ! Ça fait tellement longtemps qu'on ne s'est pas vu... bah c'est simple ! Tous nos maris étaient encore en vie... HAHAHAHA",
+            "insult": ["Mais tu travailles ici non ? Tu vas m'obliger à marcher dans les escaliers avec mon arthrose, tu n'as pas honte ! Mauvais garçon va..."],
+            "farewell": ["Merci ! Tiens, prend ça ! Ça me fait plaisir, À bientôt !"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips":0
-        },
-        {
-            "include":[],
-            "exclude":[],
-            "client_name": "Susanne",
-            "stage_src": 1,
-            "stage_dest": 3,
-            "greeting": [""],
-            "dialog": "",
-            "insult": [""],
-            "farewell": [""],
-            "ignore_client_flag": [],
-            "ignore_dest_flag": [],
-            "happy_ending_flag": [],
-            "tips":0
+            "tips": 0.5
         },
         {
             "include":[],
@@ -68,14 +53,29 @@
             "client_name": "Donald",
             "stage_src": 7,
             "stage_dest": 9,
-            "greeting": [""],
-            "dialog": "",
-            "insult": [""],
-            "farewell": [""],
+            "greeting": ["Devine quoi ? Cette nuit un client m'a offert cette pipe à opium... je sens que ce soir je vais bien m'écalter !"],
+            "dialog": "Je lui est fait signer un contrat qu'il n'a même pas pris le temps de lire... le CON ! Je vais m'en mettre plein les fouilles et en plus il m'offre un cadeau... HAHAHA ! Ramène-moi à mon appartement privé que j'aille annoncer ça à ma femme.",
+            "insult": ["Je vois que les cons sont légions en ce moment... Je vais prendre les choses en mains car je vois que tu as du mal ! Bye !"],
+            "farewell": ["Tiens prend ça ! Je suis de bonne humeur aujourd'hui HAHA... mais quel con ! Bye !"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips":0
+            "tips":1
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Susanne",
+            "stage_src": 1,
+            "stage_dest": 3,
+            "greeting": ["Bonjour Monsieur ! C'est tata Susanne... L'accueil m'a informé que j'avais été surclassée..."],
+            "dialog": "Tata Susanne trouve ça bien, mais je ne suis pas sur de comprendre. Je dois voir des copines pour quelques jours, mais ma chambre n'es pas sur le même palier qu'elles.. et ce n'est pas une suite...",
+            "insult": ["Hmm.. Il y a un garçon d'étage ici, je vais aller lui demander !"],
+            "farewell": ["Tata Susanne est contente de voir qu'elle est entre de bonnes mains ! Bisou !"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0.15
         }
 
     ]
