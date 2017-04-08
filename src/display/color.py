@@ -1,3 +1,5 @@
+import pygame
+
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
@@ -10,3 +12,4 @@ WHITE = (255, 255, 255)
 TEXT_BACKGROUND_COLOR = (0, 43, 54)
 TEXT_FOREGROUND_COLOR = (131, 148, 150)
 TEXT_NAME_COLOR = (255, 255, 255)
+MONEY_COLOR = pygame.Color("#dddd7800")
