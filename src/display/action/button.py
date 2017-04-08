@@ -1,3 +1,5 @@
+import pygame
+
 from display import drawer
 from display.action.interface import IDomainAction
 from display.button import ButtonBuilder
@@ -13,6 +15,8 @@ class ButtonPushedAction(IDomainAction):
         self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
         self.image = self.sprite_sheet.get_element(0, 1)
         self.persistent_name = 'button-{}'.format(self.floor)
+        self.sound: pygame.mixer.SoundType = pygame.mixer.Sound('resource/sounds/Button-push-1s.wav')
+        self.sound.play()
 
     def display(self, game_display, dt):
         return drawer.add_image(game_display, self.image, self.button.coordinates, self.button.size)
