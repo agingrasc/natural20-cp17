@@ -1,10 +1,12 @@
 {
     "title_text": "Vendredi matin",
     "starting_stage": 1,
+    "boss_complains": ["Tu vas pas aller loin comme cela!"],
     "encounters": [
         {
             "include":[],
             "exclude":[],
+            "penality": 30,
             "client_name": "Boss Daniel",
             "stage_src": 1,
             "stage_dest": 4,
