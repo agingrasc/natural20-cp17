@@ -21,8 +21,8 @@ def handle(game_display: Surface, event: EventType, displayables):
 
 def mouse_motion(game_display: Surface, event: EventType, displayables):
     x, y = event.dict.get("pos", (0, 0))
-    displayables['x-actual-coordinate'] = drawer.add_text(game_display, str(x), Vector(800-100, 600-25), text_color=color.RED)
-    displayables['y-actual-coordinate'] = drawer.add_text(game_display, str(y), Vector(800-50, 600-25), text_color=color.RED)
+    # displayables['x-actual-coordinate'] = drawer.add_text(game_display, str(x), Vector(800-100, 600-25), text_color=color.RED)
+    # displayables['y-actual-coordinate'] = drawer.add_text(game_display, str(y), Vector(800-50, 600-25), text_color=color.RED)
     return None
 
 
@@ -51,7 +51,6 @@ def on_keydown(game_display: Surface, event: EventType, displaybles):
         act = FloorSelected(3)
         return act
     if event.dict['key'] == pygame.K_4:
-        print("IT WORKS")
         act = FloorSelected(4)
         return act
     if event.dict['key'] == pygame.K_5:
