@@ -3,9 +3,11 @@ import collections
 import pygame
 from pygame import display, Surface
 from pygame.time import Clock
+import json
 
 from display import color, drawer, dimensions, button
-from display.action.indicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
+from display.action.client import NoClientAction
+from display.action.floorindicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from display.cache import ImagesCache
 from display.drawer import DIALOG_POLICE_SIZE
@@ -13,6 +15,7 @@ from display.spritesheet import SpriteSheet
 from domain.state.stateexecutor import StateExecutor
 from domain import images
 from event import handler
+from sound.track import BackgroundMusicTrack
 from util.geometry import Vector
 from domain.blackboard import Blackboard
 
@@ -32,7 +35,6 @@ class Game:
         self.state_executor = StateExecutor()
         self.image_cache = ImagesCache()
         self.init_cache()
-        pygame.mixer.init()
 
     def init_cache(self):
         background_idx, background_path = images.BACKGROUND_IMAGE
@@ -40,6 +42,11 @@ class Game:
         self.image_cache.add_image(*images.FLOOR_INDICATOR)
         self.image_cache.add_font("dialog", "resource/font/OldNewspaperTypes.ttf", DIALOG_POLICE_SIZE)
         self.image_cache.add_font("tips", "resource/font/OldStandard-Regular.ttf", 20)
+
+        with open('resource/json/clients.json') as json_file:
+            json_raw = json.load(json_file)
+            for client in json_raw["clients"]:
+                ImagesCache().add_image(client["name"], client["ressource"])
 
         for i in range(10):
             idx, path = images.BUTTON_PATTERN
@@ -68,6 +75,8 @@ class Game:
                              DEFAULT_FLOOR_INDICATOR_SCALE,
                              89)
 
+        self.persistent_display['client'] = NoClientAction().display(game_display, 0)
+
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
             for j in range(NUMBER_OF_BUTTONS_ROWS):
@@ -84,6 +93,7 @@ class Game:
         self.init_keypad(game_display)
 
         crashed = False
+        _ = BackgroundMusicTrack()
         while not crashed:
             game_display.fill(color.BLACK)
             self.compute_delta_t()
@@ -94,16 +104,9 @@ class Game:
                 displayable()
             self.temporary_display.clear()
 
-            domain_action = self.state_executor.exec(self.delta_t, self.actions)
-            self.actions.clear()
-            if domain_action.persistent_name:
-                self.persistent_display[domain_action.persistent_name] = domain_action.display(game_display, self.delta_t)
-            else:
-                self.temporary_display.append(domain_action.display(game_display, self.delta_t))
-
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
             str_tips = "{:0>6.2f}$".format(Blackboard().tips)
-            self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(self.display_width - int(len(str_tips)*9.5), 0), color.GREEN))
+            self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(90, 380), color.MONEY_COLOR))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -113,6 +116,14 @@ class Game:
 
             self.actions = [action for action in self.actions if action]
 
+            domain_action = self.state_executor.exec(self.delta_t, self.actions)
+            self.actions.clear()
+            if domain_action.persistent_name:
+                self.persistent_display[domain_action.persistent_name] =\
+                    domain_action.display(game_display, self.delta_t)
+            else:
+                self.temporary_display.append(domain_action.display(game_display, self.delta_t))
+
             # TEST SECTION
 
             pygame.display.update()
@@ -120,6 +131,8 @@ class Game:
             clock.tick(FPS)
 
 if __name__ == "__main__":
+    pygame.mixer.pre_init(44100, -16, 2, 2048)
+    pygame.mixer.init()
     pygame.init()
     game = Game()
     game.main()

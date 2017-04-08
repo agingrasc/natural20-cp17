@@ -39,7 +39,7 @@
             "stage_src": 5,
             "stage_dest": 2,
             "greeting": ["Hey ! Ma compagnie m'a offert une chambre à l'hotel... c'est la 113. Est-ce que vous pouvez m'y conduire ?"],
-            "dialog": "Ce soir c'est match de hockey à la TV entre potes ! On va se mettre minable, ça va être génial... bière et chips à volonté !",
+            "dialog": "Ce soir c'est match de foot à la TV entre potes ! On va se mettre minable, ça va être génial... bière et chips à volonté !",
             "insult": ["C'est pas grave ! Je vais me débrouiller pour trouver ma chambre..."],
             "farewell": ["C'est vraiment sympa de votre part ! Bye !"],
             "ignore_client_flag": [],
