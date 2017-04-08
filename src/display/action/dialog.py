@@ -1,7 +1,7 @@
 from display import drawer
 from display.action.interface import IDomainAction
 
-DISPLAY_ANIMATION_TIME = 200
+DISPLAY_ANIMATION_TIME = 110
 
 
 class Dialog(IDomainAction):

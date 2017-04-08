@@ -5,7 +5,7 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions, button
-from display.action.indicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
+from display.action.floorindicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from display.cache import ImagesCache
 from display.drawer import DIALOG_POLICE_SIZE
