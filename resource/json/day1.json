@@ -30,7 +30,7 @@
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips": 0.02
+            "tips": 0.2
         },
         {
             "include":[],
@@ -75,7 +75,7 @@
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips": 0.01
+            "tips": 0.1
         }
 
     ]
