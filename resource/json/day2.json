@@ -10,7 +10,7 @@
             "stage_dest": 8,
             "greeting": ["Oh ! T'es le nouveau valet si je comprend bien ? Il va falloir que je te mette au parfum pour mon restaurant au 8e"],
             "dialog": "Le SunYClub est LE restaurant si tu veux faire du business dans le quartier. J'ai l'habitude d'avoir un certain type de clientèle très exigeante. Donc je m'attend à ce que tu fasses de même ! Je veux un service impécable ! Amène-moi au restaurant.",
-            "insult": ["Écoute... Je pense que tu n'as pas bien compris la situation. S'il y a une personne à ne pas décevoir dans l'immeuble, c'est moi ! Donc si tu ne veux pas te retrouver dans l'assiette, il va falloir que tu t'améliores... Je descend ici !"],
+            "insult": ["Écoute... Je pense que tu n'as pas bien compris la situation. S'il y a une personne à ne pas décevoir dans l'immeuble, c'est moi ! Donc si tu ne veux pas te retrouver dans l'assiette, il va falloir que tu t'améliores... Je descends ici !"],
             "farewell": ["À oui, j'oubliais... J'aime les gens loyaux, surtout ceux que je cotoye tous les jours. Si tu vois quelques choses de suspect, tu viens m'en parler direct. Je suis ravi de cette discussion. À bientôt !"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
