@@ -97,4 +97,4 @@ class DayStateTest(unittest.TestCase):
         # Press right button and go to the right elevator stage and farawell
         self.A_DAY_STATE.exec(None, [FloorSelected(A_STAGE_DEST)])
         self.wait_for_animation_assert_state(self.A_DAY_STATE.reach_dest)
-        self.wait_for_dialog_assert_state(self.A_DAY_STATE.introduce_next_client)
+        self.wait_for_dialog_assert_state(self.A_DAY_STATE.open_door_encounter_leave)
