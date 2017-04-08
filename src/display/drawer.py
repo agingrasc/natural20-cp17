@@ -9,6 +9,7 @@ from typing import Tuple
 
 from display import color
 from display import dimensions
+from display.cache import ImagesCache
 from util.dialog import break_dialog_lines
 from util.geometry import Vector
 
@@ -16,8 +17,7 @@ DIALOG_POLICE_SIZE = 16
 
 
 def add_text(surface: Surface, text: str, pos: Vector, text_color=color.TEXT_FOREGROUND_COLOR):
-    font = pygame.font.SysFont('Arial', 25)
-    font_text = font.render(text, True, text_color)
+    font_text = ImagesCache().fonts["tips"].render(text, True, text_color)
     return functools.partial(surface.blit, font_text, pos.to_pos())
 
 
@@ -39,12 +39,12 @@ def display_dialog(surface: Surface, name: str, dialog: str):
     sizes = Vector(350, 200)
     rect = pygame.Rect(Vector().to_pos(), sizes.to_pos())
     draw.rect(canevas, color.WHITE, rect, 5)
-    font = pygame.font.Font("resource/font/OldNewspaperTypes.ttf", DIALOG_POLICE_SIZE)
-    font_name = font.render("{}: ".format(name), True, color.TEXT_NAME_COLOR)
+
+    font_name = ImagesCache().fonts["dialog"].render("{}: ".format(name), True, color.TEXT_NAME_COLOR)
     canevas.blit(font_name, (5, 4))
     height = 30
     for line in break_dialog_lines(dialog):
-        font_text = font.render(line, True, color.TEXT_FOREGROUND_COLOR)
+        font_text = ImagesCache().fonts["dialog"].render(line, True, color.TEXT_FOREGROUND_COLOR)
         canevas.blit(font_text, (10, height))
         height += 20
     return functools.partial(surface.blit, canevas, pos.to_pos())
