@@ -33,6 +33,7 @@ class Dialog(IDomainAction):
             self.idx += 1
             return drawer.display_dialog(game_display, self.name, self.text[:self.idx])
         else:
+            ChannelManager().stop('effect')
             self.finished = True
             return drawer.display_dialog(game_display, self.name, self.text[:self.idx])
 
