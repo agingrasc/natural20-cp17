@@ -24,7 +24,7 @@
             "stage_src": 2,
             "stage_dest": 3,
             "greeting": ["Rebonjour ! Le niveau suivant s'il vous plaît !"],
-            "dialog": "Je viens de récurer les chambres 100 à 186 et je suis contente de moi ! J'ai utilisé un nouveau produit biologique à base de glande animal. Ce sont les chinois qui me l'ont conseillé et je ne suis pas déçue !",
+            "dialog": "Je viens de récurer les chambres 100 à 186 et je suis contente de moi ! J'ai utilisé un nouveau produit biologique à base de glande animale. Ce sont les chinois qui me l'ont conseillé et je ne suis pas déçue !",
             "insult": ["Ce n'est pas mon étage... j'y vais quand même car je sens que vous me prenez pour une bille !"],
             "farewell": ["Bonne journée ! J'ai hâte de continuer ..."],
             "ignore_client_flag": [],
