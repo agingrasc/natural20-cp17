@@ -26,11 +26,11 @@
         },
         {
             "name": "Docteur Arnold",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_doctor.png"
         },
         {
             "name": "James",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_child.png"
         },
         {
             "name": "Usurier",
@@ -42,19 +42,19 @@
         },
         {
             "name": "Neal",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_neil.png"
         },
         {
             "name": "Jacqueline",
             "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
-            "name": "Susanne",
+            "name": "Tata Suzanne",
             "ressource": "resource/img/characters/character_grandma_2.png"
         },
         {
             "name": "Korax Aniatos",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_oracle.png"
         },
         {
             "name": "André Pretorius",

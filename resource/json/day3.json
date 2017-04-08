@@ -55,7 +55,7 @@
             "stage_src": 0,
             "stage_dest": 1,
             "greeting": ["Bonjour Monsieur ! Pourriez-vous aider une petite dame comme moi ? J'aimerai aller à l'accueil de l'Hotel."],
-            "dialog": "C'est mon premier voyage avec mes amies et nous avons prévu de nous retrouver ici ! Cela fait tellement longtemps ! J'avais l'impression qu'au téléphone Susanne perdait un peu la tête... ça lui arrive de temps en temps, donc ne paniquez pas et ramenez là à sa chambre.",
+            "dialog": "C'est mon premier voyage avec mes amies et nous avons prévu de nous retrouver ici ! Cela fait tellement longtemps ! J'avais l'impression qu'au téléphone Tata Suzanne perdait un peu la tête... ça lui arrive de temps en temps, donc ne paniquez pas et ramenez là à sa chambre.",
             "insult": ["Je ne vois pas d'accueil... peut être que je dois aller plus loin ! Bonne soirée !"],
             "farewell": ["C'est parfait ! Je vois l'accueil de l'Hotel. À la prochaine fois ! Bon courage."],
             "boss_complains": ["Il y a une grand-mère qui t'attend en bas ... tu ne vas pas faire attendre une pauvre femme sans défense !"],
