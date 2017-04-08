@@ -13,6 +13,7 @@ from display.spritesheet import SpriteSheet
 from domain.state.stateexecutor import StateExecutor
 from domain import images
 from event import handler
+from sound.track import BackgroundMusicTrack
 from util.geometry import Vector
 from domain.blackboard import Blackboard
 
@@ -84,6 +85,7 @@ class Game:
         self.init_keypad(game_display)
 
         crashed = False
+        _ = BackgroundMusicTrack()
         while not crashed:
             game_display.fill(color.BLACK)
             self.compute_delta_t()
