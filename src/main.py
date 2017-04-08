@@ -11,6 +11,7 @@ from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTT
 from domain.state.stateexecutor import StateExecutor
 from event import handler
 from util.geometry import Vector
+from domain.blackbox import BlackBox
 
 FPS = 60
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
@@ -77,6 +78,8 @@ class Game:
 
             self.compute_delta_t()
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
+            str_tips = "{}$".format(BlackBox().tips)
+            self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(self.display_width - len(str_tips)*13, 0), color.GREEN))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
