@@ -6,6 +6,7 @@ from pygame.time import Clock
 
 from display import color, drawer, dimensions, button
 from display.action.animation import ButtonAnimationAction
+from display.action.button import ButtonPushedAction, ButtonReleasedAction
 from display.action.indicator import DEFAULT_FLOOR_INDICATOR_IMAGE_PATH, DEFAULT_FLOOR_INDICATOR_POS, \
     DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
@@ -64,7 +65,8 @@ class Game:
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
             for j in range(NUMBER_OF_BUTTONS_ROWS):
-                self.persistent_display["button-{}-{}".format(i, j)] = ButtonBuilder().add_button(game_display, i, j)
+                floor = button.compute_floor(i, j)
+                self.persistent_display["button-{}".format(floor)] = ButtonBuilder().add_button(game_display, i, j)
 
     def main(self):
         game_display: Surface = display.set_mode((self.display_width, self.display_height))
@@ -76,6 +78,7 @@ class Game:
 
         indicator_action = FloorIndicatorAction(1, 5)
         crashed = False
+        accumulated_time = 0
         while not crashed:
             game_display.fill(color.BLACK)
             self.compute_delta_t()
