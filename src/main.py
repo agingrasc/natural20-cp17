@@ -17,7 +17,7 @@ from event import handler
 from util.geometry import Vector
 from domain.blackboard import Blackboard
 
-FPS = 10
+FPS = 60
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
 
 
