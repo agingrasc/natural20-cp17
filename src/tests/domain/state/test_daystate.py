@@ -47,9 +47,7 @@ class DayStateTest(unittest.TestCase):
 
         self.assertEqual(self.A_DAY_STATE.introduce_next_client, self.A_DAY_STATE.next_substate)
         self.A_DAY_STATE.exec()
-
-        self.assertEqual(self.A_DAY_STATE.anime.wait_for_end_animation, self.A_DAY_STATE.next_substate)
-        self.wait_for_animation_assert_state(self.A_DAY_STATE.finish_highlight_stage_number)
+        self.assertEqual(self.A_DAY_STATE.finish_highlight_stage_number, self.A_DAY_STATE.next_substate)
 
         # Wait for player to select level
         self.A_DAY_STATE.exec()
@@ -67,7 +65,7 @@ class DayStateTest(unittest.TestCase):
         # Get yield by boss and loose money
         self.A_DAY_STATE.exec()
         self.assertEqual(self.A_DAY_STATE.dialog.wait_for_end_dialog, self.A_DAY_STATE.next_substate)
-        self.wait_for_dialog_assert_state(self.A_DAY_STATE.introduce_next_client)
+        self.wait_for_dialog_assert_state(self.A_DAY_STATE.wait_for_player_input)
 
     def test_happy_path(self):
         self.create_button()
@@ -77,8 +75,8 @@ class DayStateTest(unittest.TestCase):
         encounter = EncounterBuilder().with_stage_src(A_STAGE_SRC)\
                                     .with_stage_dest(A_STAGE_DEST).build()
         self.A_DAY_STATE = DayState(Day(A_DAY, load_from_json=False, encounters=[encounter]))
-
-        self.wait_for_animation_assert_state(self.A_DAY_STATE.finish_highlight_stage_number)
+        self.A_DAY_STATE.exec()
+        self.assertEqual(self.A_DAY_STATE.finish_highlight_stage_number, self.A_DAY_STATE.next_substate)
 
         # Wait for player to select level
         self.A_DAY_STATE.exec()
