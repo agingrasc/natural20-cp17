@@ -1,4 +1,4 @@
-LINE_COL_LIMIT = 45
+LINE_COL_LIMIT = 50
 
 
 def break_dialog_lines(dialog):
