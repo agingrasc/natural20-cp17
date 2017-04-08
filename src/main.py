@@ -7,6 +7,7 @@ import json
 
 from display import color, drawer, dimensions, button
 from display.action.client import NoClientAction
+from display.action.elavatorgate import ElevatorGateOpenAction
 from display.action.floorindicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from display.cache import ImagesCache
@@ -40,6 +41,7 @@ class Game:
         background_idx, background_path = images.BACKGROUND_IMAGE
         self.image_cache.add_sprites_sheets(background_idx, background_path, Vector(1024, 1024))
         self.image_cache.add_image(*images.FLOOR_INDICATOR)
+        self.image_cache.add_image(*images.ELEVATOR_GATE)
         self.image_cache.add_font("dialog", "resource/font/OldNewspaperTypes.ttf", DIALOG_POLICE_SIZE)
         self.image_cache.add_font("tips", "resource/font/OldStandard-Regular.ttf", 20)
 
@@ -53,6 +55,7 @@ class Game:
             idx = idx.format(i)
             path = path.format(i)
             self.image_cache.add_sprites_sheets(idx, path, button.BUTTON_SPRITE_SIZE)
+
 
     def compute_delta_t(self):
         ticks = pygame.time.get_ticks()
@@ -76,6 +79,7 @@ class Game:
                              89)
 
         self.persistent_display['client'] = NoClientAction().display(game_display, 0)
+        self.persistent_display['elevator-gate'] = ElevatorGateOpenAction().display(game_display, 0)
 
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
