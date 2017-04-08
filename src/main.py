@@ -3,8 +3,11 @@ import collections
 import pygame
 from pygame import display, Surface
 from pygame.time import Clock
+import json
 
 from display import color, drawer, dimensions, button
+from display.action.client import ClientAction, NoClientAction
+from display.action.empty import EmptyAction
 from display.action.floorindicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from display.cache import ImagesCache
@@ -41,6 +44,11 @@ class Game:
         self.image_cache.add_font("dialog", "resource/font/OldNewspaperTypes.ttf", DIALOG_POLICE_SIZE)
         self.image_cache.add_font("tips", "resource/font/OldStandard-Regular.ttf", 20)
 
+        with open('resource/json/clients.json') as json_file:
+            json_raw = json.load(json_file)
+            for client in json_raw["clients"]:
+                ImagesCache().add_image(client["name"], client["ressource"])
+
         for i in range(10):
             idx, path = images.BUTTON_PATTERN
             idx = idx.format(i)
@@ -67,6 +75,8 @@ class Game:
                              DEFAULT_FLOOR_INDICATOR_POS,
                              DEFAULT_FLOOR_INDICATOR_SCALE,
                              89)
+
+        self.persistent_display['client'] = NoClientAction().display(game_display, 0)
 
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):

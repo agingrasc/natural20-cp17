@@ -2,103 +2,103 @@
     "clients": [
         {
             "name": "Bob",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Bill Fritz",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Boss Daniel",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_boss.png"
         },
         {
             "name": "Lauretta",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Sylvie",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Directeur SunYClub",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Docteur Arnold",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "James",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Usurier",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Marie-Ange",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Neal",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Jacqueline",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Susanne",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Korax Aniatos",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "André Pretorius",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "M. Smith",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Policier John",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Brian",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "M. Fang",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Crystal",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "SWAT",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Policier Jake",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Andy",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Détective Dave",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         },
         {
             "name": "Policier Jeremy",
-            "ressource": "resource/img"
+            "ressource": "resource/img/characters/character_grandma_1.png"
         }
 
     ]

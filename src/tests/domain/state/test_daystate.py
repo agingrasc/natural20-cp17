@@ -24,7 +24,8 @@ class DayStateTest(unittest.TestCase):
     def wait_for_animation_assert_state(self, expected_state):
         self.A_DAY_STATE.exec()
         self.assertEqual(self.A_DAY_STATE.anime.wait_for_end_animation, self.A_DAY_STATE.next_substate)
-        self.A_DAY_STATE.exec(None, [UserKeyAction()])
+        self.A_DAY_STATE.anime.current_animation.finished = True
+        self.A_DAY_STATE.exec()
         self.assertEqual(expected_state, self.A_DAY_STATE.next_substate)
 
     def wait_for_dialog_assert_state(self, expected_state):
@@ -58,9 +59,10 @@ class DayStateTest(unittest.TestCase):
 
         # Move elevator
         self.A_DAY_STATE.exec(None, [FloorSelected(A_STAGE_DEST)])
-        self.assertEqual(self.A_DAY_STATE.anime.wait_for_end_animation, self.A_DAY_STATE.next_substate)
-        self.A_DAY_STATE.exec(None, [UserKeyAction()])
-        self.assertEqual(self.A_DAY_STATE.ignore_client, self.A_DAY_STATE.next_substate)
+        #self.assertEqual(self.A_DAY_STATE.anime.wait_for_end_animation, self.A_DAY_STATE.next_substate)
+        #self.A_DAY_STATE.exec(None, [UserKeyAction()])
+        #self.assertEqual(self.A_DAY_STATE.ignore_client, self.A_DAY_STATE.next_substate)
+        self.wait_for_animation_assert_state(self.A_DAY_STATE.ignore_client)
 
         # Get yield by boss and loose money
         self.A_DAY_STATE.exec()
