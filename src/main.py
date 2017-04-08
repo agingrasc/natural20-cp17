@@ -56,7 +56,6 @@ class Game:
             path = path.format(i)
             self.image_cache.add_sprites_sheets(idx, path, button.BUTTON_SPRITE_SIZE)
 
-
     def compute_delta_t(self):
         ticks = pygame.time.get_ticks()
         self.delta_t = ticks - self.last_frame_ticks
@@ -128,6 +127,8 @@ class Game:
                         domain_action.display(game_display, self.delta_t)
                 else:
                     self.temporary_display.append(domain_action.display(game_display, self.delta_t))
+
+            # TEST
 
             pygame.display.update()
 
