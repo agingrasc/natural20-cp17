@@ -50,7 +50,7 @@
         {
             "include":[],
             "exclude":[],
-            "client_name": "Donald",
+            "client_name": "Bill Fritz",
             "stage_src": 7,
             "stage_dest": 9,
             "greeting": ["Devine quoi ? Cette nuit un client m'a offert cette pipe à opium... je sens que ce soir je vais bien m'écalter !"],
