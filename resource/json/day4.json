@@ -20,7 +20,7 @@
         {
             "include":[],
             "exclude":[],
-            "client_name": "Alexandre",
+            "client_name": "Neal",
             "stage_src": 0,
             "stage_dest": 6,
             "greeting": ["Salut ! Je suis un nouveau patient du Docteur Arnold. Vous pouvez m'amener au centre ? Merci."],
@@ -50,7 +50,7 @@
         {
             "include":[],
             "exclude":[],
-            "client_name": "Donald",
+            "client_name": "Bill Fritz",
             "stage_src": 7,
             "stage_dest": 9,
             "greeting": ["Devine quoi ? Cette nuit un client m'a offert cette pipe à opium... je sens que ce soir je vais bien m'écalter !"],

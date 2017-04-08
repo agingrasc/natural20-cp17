@@ -9,7 +9,7 @@
             "stage_src": 1,
             "stage_dest": 4,
             "greeting": ["C'est toi le nouveau ? Amène-moi au 4e, on va discuter entre BOSS et sous-fifre..."],
-            "dialog": "Dans ce boulot, faut travailler un peu sa mémoire mon gars ! Concentre-toi sur les demandes des clients, si tu veux survivre !",
+            "dialog": "Comme t'as pu le voir, mon niveau c'était l'accueil de l'hotel. Dans ce boulot, faut travailler un peu sa mémoire mon gars ! Concentre-toi sur les demandes des clients, si tu veux survivre !",
             "insult": ["Ça commence mal ! On se revoit lundi en service de nuit !"],
             "farewell": ["J'espère que tu as bien compris ? BON ! J'ai du boulot... on se revoit lundi soir !"],
             "ignore_client_flag": [],
@@ -35,7 +35,7 @@
         {
             "include":[],
             "exclude":[],
-            "client_name": "Donald",
+            "client_name": "Bill Fritz",
             "stage_src": 7,
             "stage_dest": 9,
             "greeting": ["-- Ouep ! C'est exactement ce que je dirai à ta femme AHAHAHA ! --"],
