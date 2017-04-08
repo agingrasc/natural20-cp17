@@ -54,7 +54,7 @@
             "stage_src": 9,
             "stage_dest": 6,
             "greeting": ["Bonjour ! Je suis le Docteur Arnold et je m'occupe du Centre Psychiatrique du 6e. Je dois y aller justement."],
-            "dialog": "Je ne sais pas si on vous l'a dis, mais parfois des clients... euh... patients arrivent à s'échapper de leur cellule... euh... de leur chambre. Donc si cela arrive, ramenez-les moi au plus vite ! Merci",
+            "dialog": "Je ne sais pas si on vous l'a dit, mais parfois des clients... euh... patients arrivent à s'échapper de leur cellule... euh... de leur chambre. Donc si cela arrive, ramenez-les moi au plus vite ! Merci",
             "insult": ["Hm... Ce sont des personnes dangeureuses qui sont entre ces murs, j'espère que vous ferez attention tout de même et que vous ferez les bons choix car ils ont des conséquences malheureusement ! Laisse-moi ici..."],
             "farewell": ["Merci de votre collaboration ! Un petit billet pour vous montrer ma gratitude..."],
             "boss_complains": ["Le client est un médecin du centre psychiatrique de l'immeuble. Tu devrais discuter avec ..."],
