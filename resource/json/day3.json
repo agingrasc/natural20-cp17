@@ -12,7 +12,8 @@
             "dialog": "Amène-moi à lui d'ailleurs ! J'ai une très bonne nouvelle pour lui. Le -Dragon- est sur le point d'arriver en ville. Si jamais tu le croises, baisse les yeux et ne dis rien... Il ne faudrait pas que tu donnes une mauvaise impression au -Dragon- !",
             "insult": ["Haha ! Tu sais vraiment pas à qui tu as à faire. Le SunYClub est au 8e. 8 c'est un chiffre port-bonheur en Chine. Je serai ravis de te le rappeler en ajustant ton nombre de doigts... Bye !"],
             "farewell": ["Xie Xie ! Je reviendrai régulièrement pour voir où tu en es dans ton remboursement. Donc active toi !"],
-            "ignore_client_flag": [],
+            "boss_complains": ["Hey ! Y'a un mec louche ... va le chercher avant qu'il vienne me chercher des noises !"],
+            "ignore_client_flag": ["IgnUsu1"],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
             "tips":0
@@ -57,6 +58,7 @@
             "dialog": "C'est mon premier voyage avec mes amies et nous avons prévu de nous retrouver ici ! Cela fait tellement longtemps ! J'avais l'impression qu'au téléphone Susanne perdait un peu la tête... ça lui arrive de temps en temps, donc ne paniquez pas et ramenez là à sa chambre.",
             "insult": ["Je ne vois pas d'accueil... peut être que je dois aller plus loin ! Bonne soirée !"],
             "farewell": ["C'est parfait ! Je vois l'accueil de l'Hotel. À la prochaine fois ! Bon courage."],
+            "boss_complains": ["Il y a une grand-mère qui t'attend en bas ... tu ne vas pas faire attendre une pauvre femme sans défense !"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
