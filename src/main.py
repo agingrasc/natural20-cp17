@@ -5,10 +5,7 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions, button
-from display.action.animation import ButtonAnimationAction
-from display.action.button import ButtonPushedAction, ButtonReleasedAction
-from display.action.indicator import DEFAULT_FLOOR_INDICATOR_IMAGE_PATH, DEFAULT_FLOOR_INDICATOR_POS, \
-    DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
+from display.action.indicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from display.cache import ImagesCache
 from domain.state.stateexecutor import StateExecutor
