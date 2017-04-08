@@ -1,9 +1,11 @@
 import unittest
 
+from display.button import NUMBER_OF_BUTTONS_COLS, NUMBER_OF_BUTTONS_ROWS, ButtonBuilder
 from domain.encounter import EncounterBuilder
 from domain.state.daystate import DayState
 from domain.day import *
 from event.action import FloorSelected, UserKeyAction
+from display import button
 
 
 class DayStateTest(unittest.TestCase):
@@ -12,6 +14,12 @@ class DayStateTest(unittest.TestCase):
 
     def tearDown(self):
         pass
+
+    def create_button(self):
+        for i in range(NUMBER_OF_BUTTONS_COLS):
+            for j in range(NUMBER_OF_BUTTONS_ROWS):
+                floor = button.compute_floor(i, j)
+                ButtonBuilder().add_button_hack_for_ut( i, j)
 
     def wait_for_animation_assert_state(self, expected_state):
         self.A_DAY_STATE.exec()
@@ -27,12 +35,14 @@ class DayStateTest(unittest.TestCase):
         self.assertEqual(expected_state, self.A_DAY_STATE.next_substate)
 
     def test_ignore_encounter_path(self):
+        self.create_button()
         A_DAY = 1
         A_STAGE_SRC = 4
         A_STAGE_DEST = 2
         encounter = EncounterBuilder().with_stage_src(A_STAGE_SRC)\
-                                    .with_stage_dest(A_STAGE_DEST).build()
-        self.A_DAY_STATE = DayState(Day(A_DAY, load_from_json=False, encounters=[encounter]))
+                                      .with_stage_dest(A_STAGE_DEST)\
+                                      .with_boss_complains([""]).build()
+        self.A_DAY_STATE = DayState(Day(A_DAY, load_from_json=False, encounters=[encounter], starting_stage=1))
 
         self.assertEqual(self.A_DAY_STATE.introduce_next_client, self.A_DAY_STATE.next_substate)
         self.A_DAY_STATE.exec()
@@ -58,6 +68,7 @@ class DayStateTest(unittest.TestCase):
         self.wait_for_dialog_assert_state(self.A_DAY_STATE.introduce_next_client)
 
     def test_happy_path(self):
+        self.create_button()
         A_DAY = 1
         A_STAGE_SRC = 4
         A_STAGE_DEST = 2

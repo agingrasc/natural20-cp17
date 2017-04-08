@@ -11,9 +11,9 @@ from util.geometry import Vector
 from util.singleton import Singleton
 from domain import images
 
-BUTTON_SIZE = 35
+BUTTON_SIZE = 26
 BUTTON_SPRITE_SIZE = Vector(107, 107)
-DEFAULT_MIN_WIDTH = 100
+DEFAULT_MIN_WIDTH = 107
 DEFAULT_MIN_HEIGHT = 175
 DEFAULT_MARGIN = 2
 NUMBER_OF_BUTTONS_ROWS = 5
@@ -53,6 +53,11 @@ class ButtonBuilder(metaclass=Singleton):
         button = Button(coord, size, floor)
         self.buttons.append(button)
         return button.display(surface)
+
+    def add_button_hack_for_ut(self, row, col):
+        floor = compute_floor(row, col)
+        button = Button((0, 0), (0,0), floor)
+        self.buttons.append(button)
 
     def get_button_for_floor(self, floor):
         for button in self.buttons:

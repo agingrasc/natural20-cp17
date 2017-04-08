@@ -11,14 +11,14 @@ KEY_FRAME_TIME = 1000
 
 
 class SpriteAnimationAction(IDomainAction):
-    def __init__(self, sprite_sheet_id):
+    def __init__(self, sprite_sheet_id, idx = 0):
         super().__init__()
         self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[sprite_sheet_id]
         self.elapsed_time = 0
         self.pos = Vector()
         self.scale = Vector()
         self.sprites = self.sprite_sheet.all_sprites()
-        self.idx = 0
+        self.idx = idx
 
     def display(self, game_display, dt):
         if self.finished:
