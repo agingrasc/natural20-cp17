@@ -1,5 +1,6 @@
 import pygame
 
+from sound.channel import ChannelManager
 from util.singleton import Singleton
 
 TRACK_VOLUME = 0.2
@@ -12,13 +13,12 @@ class BackgroundMusicTrack(metaclass=Singleton):
         self.sound.play(-1)
 
     def stop(self):
-        self.sound.stop()
+        ChannelManager().stop()
 
     def play(self):
-        self.sound.play()
+        ChannelManager().play('music', self.sound, TRACK_VOLUME, -1)
 
     def change_track(self, track_path):
-        self.sound.stop()
+        self.stop()
         self.sound = pygame.mixer.Sound(track_path)
-        self.sound.set_volume(TRACK_VOLUME)
-        self.sound.play(-1)
+        self.play()
