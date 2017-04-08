@@ -6,6 +6,7 @@ from pygame.time import Clock
 
 from display import color, drawer, dimensions, button
 from display.action.animation import ButtonAnimationAction
+from display.action.button import ButtonPushedAction, ButtonReleasedAction
 from display.action.indicator import DEFAULT_FLOOR_INDICATOR_IMAGE_PATH, DEFAULT_FLOOR_INDICATOR_POS, \
     DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
@@ -14,7 +15,7 @@ from domain.state.stateexecutor import StateExecutor
 from domain import images
 from event import handler
 from util.geometry import Vector
-from domain.blackbox import BlackBox
+from domain.blackboard import Blackboard
 
 FPS = 10
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
@@ -65,7 +66,8 @@ class Game:
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
             for j in range(NUMBER_OF_BUTTONS_ROWS):
-                self.persistent_display["button-{}-{}".format(i, j)] = ButtonBuilder().add_button(game_display, i, j)
+                floor = button.compute_floor(i, j)
+                self.persistent_display["button-{}".format(floor)] = ButtonBuilder().add_button(game_display, i, j)
 
     def main(self):
         game_display: Surface = display.set_mode((self.display_width, self.display_height))
@@ -77,6 +79,7 @@ class Game:
 
         indicator_action = FloorIndicatorAction(1, 5)
         crashed = False
+        accumulated_time = 0
         while not crashed:
             game_display.fill(color.BLACK)
             self.compute_delta_t()
@@ -89,10 +92,13 @@ class Game:
 
             domain_action = self.state_executor.exec(self.delta_t, self.actions)
             self.actions.clear()
-            self.temporary_display.append(domain_action.display(game_display, self.delta_t))
+            if domain_action.persistent_name:
+                self.persistent_display[domain_action.persistent_name] = domain_action.display(game_display, self.delta_t)
+            else:
+                self.temporary_display.append(domain_action.display(game_display, self.delta_t))
 
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
-            str_tips = "{}$".format(BlackBox().tips)
+            str_tips = "{}$".format(Blackboard().tips)
             self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(self.display_width - len(str_tips)*13, 0), color.GREEN))
 
             for event in pygame.event.get():

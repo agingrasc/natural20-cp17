@@ -49,7 +49,7 @@ class ButtonBuilder(metaclass=Singleton):
     def add_button(self, surface: Surface, row, col):
         coord = Vector(self.min_width + row * (BUTTON_SIZE + DEFAULT_MARGIN), self.min_height + col * (BUTTON_SIZE + DEFAULT_MARGIN))
         size = Vector(BUTTON_SIZE, BUTTON_SIZE)
-        floor = (NUMBER_OF_BUTTONS_ROWS - col) * NUMBER_OF_BUTTONS_COLS + row - NUMBER_OF_BUTTONS_COLS
+        floor = compute_floor(row, col)
         button = Button(coord, size, floor)
         self.buttons.append(button)
         return button.display(surface)
@@ -58,3 +58,8 @@ class ButtonBuilder(metaclass=Singleton):
         for button in self.buttons:
             if button.floor == floor:
                 return button
+
+
+def compute_floor(row, col):
+    return (NUMBER_OF_BUTTONS_ROWS - col) * NUMBER_OF_BUTTONS_COLS + row - NUMBER_OF_BUTTONS_COLS
+
