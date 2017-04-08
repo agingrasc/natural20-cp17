@@ -62,7 +62,22 @@
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
             "tips":0.1
-        }
+        },
+        {
+            "include":["Crystal"],
+            "exclude":["Tromperie"],
+            "client_name": "Bill Fritz",
+            "stage_src": 4,
+            "stage_dest": 7,
+            "greeting": ["xxx"],
+            "dialog": "xxx",
+            "insult": ["xxx"],
+            "farewell": ["xxx"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
 
     ]
 }

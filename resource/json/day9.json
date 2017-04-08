@@ -64,7 +64,7 @@
             "tips":5
         },
         {
-            "include":[],
+            "include":["Crystal"],
             "exclude":[],
             "client_name": "Policier John",
             "stage_src": 0,
@@ -73,6 +73,21 @@
             "dialog": "J'enquête sur une plainte pour tapage nocturne et prostitution. Pouvez-vous m'amener à l'étage où vous avez déposé la dénommée Crystal ?",
             "insult": ["Merci de votre coopération Citoyen."],
             "farewell": ["Merci de votre coopération Citoyen."],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": ["Tromperie"],
+            "tips":0
+        },
+        {
+            "include":["Tromperie"],
+            "exclude":[],
+            "client_name": "Bill Fritz",
+            "stage_src": 4,
+            "stage_dest": 0,
+            "greeting": ["xxx"],
+            "dialog": "xxx",
+            "insult": ["xxx"],
+            "farewell": ["xxx"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],

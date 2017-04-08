@@ -29,7 +29,7 @@
             "farewell": ["Merci mon bichon ... tu es mignon ! Bye !"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
-            "happy_ending_flag": [],
+            "happy_ending_flag": ["Crystal"],
             "tips":0.5
         },
         {
