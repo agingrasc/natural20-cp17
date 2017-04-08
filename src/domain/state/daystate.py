@@ -3,6 +3,7 @@ from display.action.button import ButtonPushedAction, ButtonReleasedAction
 from display.action.cashin import CashInAction
 from display.action.client import ClientAction, NoClientAction
 from display.action.elavatorgate import ElevatorGateOpenAction, ElevatorGateCloseAction
+from display.action.fadeinouttitle import FadeInOutTitleAction
 from display.action.floorindicator import FloorIndicatorAction
 from display.action.floorcall import FloorCallAction
 from display.action.inoutclient import InOutClientAction, ClientInAction, ClientOutAction
@@ -23,7 +24,10 @@ class DayState(State):
 
     def start(self, dt, actions):
         animation = FloorIndicatorAction(self.day.start_stage, self.day.start_stage)
-        self.anime = AnimationSubState(animation, self, self.introduce_next_client)
+        self.anime = AnimationSubState(animation, self, self.start2)
+    def start2(self, dt, actions):
+        self.anime = AnimationSubState(FadeInOutTitleAction(False), self, self.introduce_next_client)
+
 
     def introduce_next_client(self, dt, actions):
         self.current_encounter = self.day.pop_triggable_encounter(Blackboard().flags)
@@ -119,6 +123,8 @@ class DayState(State):
         return ButtonReleasedAction(Blackboard().stage)
 
     def end_day(self, dt, actions):
+        self.anime = AnimationSubState(FadeInOutTitleAction(True), self, self.end_day2)
+    def end_day2(self, dt, actions):
         self.finish = True
 
     def is_finish(self):

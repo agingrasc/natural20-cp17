@@ -11,27 +11,21 @@ from util.geometry import Vector
 IN_OUT_TIME_SECOND = 0.6
 
 class FadeInOutTitleAction(IDomainAction):
-    def __init__(self, client_name: str, is_in):
+    def __init__(self, in_fall):
         super().__init__()
-        self.client_name = client_name
-        self.is_in = is_in
-        self.accumulated_time = 0
+        self.t = 0
+        self.in_fall = in_fall
 
     def display(self, game_display, dt):
-        self.image = ImagesCache().images[self.client_name]
-        move = Vector(0, 500)
-        if self.accumulated_time < IN_OUT_TIME_SECOND:
-            self.accumulated_time += dt/1000
+        sur = pygame.surface.Surface((800,600))
+        self.t += dt/1000
+        if self.in_fall:
+            sur.set_alpha(255* self.t/IN_OUT_TIME_SECOND)
         else:
+            sur.set_alpha(255* (1-self.t/IN_OUT_TIME_SECOND))
+        if self.t > IN_OUT_TIME_SECOND:
             self.finished = True
-        per = self.accumulated_time/IN_OUT_TIME_SECOND
-        if self.is_in:
-            move = move.multiply(1-per)
-        else:
-            move = move.multiply(per)
-        height = self.image.get_rect().size[1]
-        pos = POS_CHARACTER- Vector(0, height) + move
-        return functools.partial(game_display.blit, self.image, pos.to_pos())
+        return functools.partial(game_display.blit, sur, (0,0))
 
 
 #elapsed, start, end, total
