@@ -24,7 +24,7 @@ class DialogSubStateTest(unittest.TestCase):
     def test_given_a_text_and_a_parent_state_when_parent_executed_then_a_dialog_with_that_text_is_return(self):
         dialogSubState = DialogSubState(self.A_NAME, self.A_TEXT, self.A_PARENT_STATE, RETURN_CALLBACK)
 
-        dialogAction = self.A_PARENT_STATE.exec()
+        dialogAction = self.A_PARENT_STATE.exec()[0]
 
         self.assertIsInstance(dialogAction, Dialog)
         self.assertEqual(self.A_TEXT, dialogAction.text)

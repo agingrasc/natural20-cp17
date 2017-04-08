@@ -125,8 +125,6 @@ class Game:
                 else:
                     self.temporary_display.append(domain_action.display(game_display, self.delta_t))
 
-            # TEST SECTION
-
             pygame.display.update()
 
             clock.tick(FPS)
