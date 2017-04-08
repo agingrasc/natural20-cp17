@@ -137,6 +137,11 @@ class EncounterBuilder:
         self.raw_json["stage_dest"] = dest
         return self
 
+    def with_boss_complains(self, boss):
+        self.raw_json["boss_complains"] = boss
+        return self
+
+
 
     def build(self):
         return Encounter(self.raw_json)

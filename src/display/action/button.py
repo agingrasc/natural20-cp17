@@ -10,11 +10,11 @@ class ButtonPushedAction(IDomainAction):
     def __init__(self, floor):
         self.floor = floor
         self.button = ButtonBuilder().get_button_for_floor(floor)
-        self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
-        self.image = self.sprite_sheet.get_element(0, 1)
         self.persistent_name = 'button-{}'.format(self.floor)
 
     def display(self, game_display, dt):
+        self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
+        self.image = self.sprite_sheet.get_element(0, 1)
         return drawer.add_image(game_display, self.image, self.button.coordinates, self.button.size)
 
 
@@ -23,9 +23,9 @@ class ButtonReleasedAction(IDomainAction):
     def __init__(self, floor):
         self.floor = floor
         self.button = ButtonBuilder().get_button_for_floor(floor)
-        self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
-        self.image = self.sprite_sheet.get_element(0, 0)
         self.persistent_name = 'button-{}'.format(self.floor)
 
     def display(self, game_display, dt):
+        self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
+        self.image = self.sprite_sheet.get_element(0, 0)
         return drawer.add_image(game_display, self.image, self.button.coordinates, self.button.size)

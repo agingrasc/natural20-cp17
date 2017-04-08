@@ -81,7 +81,7 @@ class Game:
         self.construct_background(game_display)
         self.init_keypad(game_display)
 
-        indicator_action = FloorIndicatorAction(1, 5)
+        #indicator_action = FloorIndicatorAction(1, 5)
         crashed = False
         accumulated_time = 0
         while not crashed:
