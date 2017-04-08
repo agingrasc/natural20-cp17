@@ -20,7 +20,7 @@
         {
             "include":[],
             "exclude":[],
-            "client_name": "Alexandre",
+            "client_name": "Neal",
             "stage_src": 0,
             "stage_dest": 6,
             "greeting": ["Salut ! Je suis un nouveau patient du Docteur Arnold. Vous pouvez m'amener au centre ? Merci."],
