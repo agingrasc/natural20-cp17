@@ -5,6 +5,7 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions, button
+from display.action.floorcall import FloorCallAction
 from display.action.floorindicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from display.cache import ImagesCache
@@ -115,6 +116,8 @@ class Game:
                 self.temporary_display.append(domain_action.display(game_display, self.delta_t))
 
             # TEST SECTION
+            act = FloorCallAction(1)
+            self.persistent_display[act.persistent_name] = act.display(game_display, self.delta_t)
 
             pygame.display.update()
 
