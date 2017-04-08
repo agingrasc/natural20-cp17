@@ -5,7 +5,7 @@
         {
             "include":[],
             "exclude":[],
-            "client_name": "M. Smith",
+            "client_name": "Mme Smith",
             "stage_src": 8,
             "stage_dest": 1,
             "greeting": [""],

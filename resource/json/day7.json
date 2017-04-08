@@ -5,17 +5,17 @@
         {
             "include":[],
             "exclude":[],
-            "client_name": "M. Smith",
+            "client_name": "Mme Smith",
             "stage_src": 4,
-            "stage_dest": 0,
-            "greeting": [""],
-            "dialog": "",
-            "insult": [""],
-            "farewell": [""],
+            "stage_dest": 4,
+            "greeting": ["Bonjour ! Restez discret je suis de la CIA. Vous ne devez parlé de cette conversation en aucun cas."],
+            "dialog": "Agent Smith de la CIA ! Nous sommes en train d'enquêter sur la triade chinois SunYeeOn. Vous en avez probablement entendu parlé dans le quartier car ils possèdent la moitié des entreprises et des restaurants. Bref ! Voici ma carte, appelez-moi si vous avez un tuyau. Notre plante est ici dans une suite de l'hotel.",
+            "insult": ["N'oubliez pas ! Nous ne nous sommes jamais rencontré..."],
+            "farewell": ["N'oubliez pas ! Nous ne nous sommes jamais rencontré..."],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips":0
+            "tips":1
         },
         {
             "include":[],
@@ -23,14 +23,14 @@
             "client_name": "Bob",
             "stage_src": 2,
             "stage_dest": 5,
-            "greeting": [""],
-            "dialog": "",
-            "insult": [""],
-            "farewell": [""],
+            "greeting": ["Salut Mec ! Franchement tu aurais dû venir à la soirée foot ! C'était ÉNORME."],
+            "dialog": "J'ai toujours pas rangé le bordel d'ailleurs HAHA ... espérons que la femme de ménage ne dise rien ! En plus, j'ai perdu un parie, ce qui fait que je dois travailler ce dimanche. SUPER ! est-ce que tu sens la non-excitation envahir mon corps ? Ralalaaa ... je te jure.",
+            "insult": ["Non ! Ne me tente pas ! Il faut que j'aille travailler, sinon un deuxième gage m'attend. Merci quand même !"],
+            "farewell": ["Allez HOP ! On est reparti pour la journée ! Salut !"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips":0
+            "tips":0.1
         },
         {
             "include":[],
@@ -38,14 +38,14 @@
             "client_name": "Bill Fritz",
             "stage_src": 7,
             "stage_dest": 4,
-            "greeting": [""],
-            "dialog": "",
-            "insult": [""],
-            "farewell": [""],
+            "greeting": ["Il est toujours là lui ! Je vais finir par amener un arrosoir pour te rafraîchir car tu es en train de prendre racine HAHAHA ..."],
+            "dialog": "Bon ! Amène-moi au niveau des suites de mon Hotel... j'ai un rendez-vous que je ne peux pas manquer !",
+            "insult": ["À oui c'est vrai... les légumes n'ont pas de bras ! Donc difficile de choisir le bon étage HAHAHA ..."],
+            "farewell": ["Tiens ! Pour"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "tips":0
+            "tips":1.5
         },
         {
             "include":[],
