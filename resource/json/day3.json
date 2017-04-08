@@ -11,7 +11,7 @@
             "greeting": ["Ni hao ! J'ai cru comprendre que tu travaillais pour mon patron maintenant ? Il vient de racheter ta dette auprès de ton Bookmakeur... Tu sais ce que ça veut dire ?"],
             "dialog": "Amène-moi à lui d'ailleurs ! J'ai une très bonne nouvelle pour lui. Le -Dragon- est sur le point d'arriver en ville. Si jamais tu le croises, baisse les yeux et ne dis rien... Il ne faudrait pas que tu donnes une mauvaise impression au -Dragon- !",
             "insult": ["Haha ! Tu sais vraiment pas à qui tu as à faire. Le SunYClub est au 8e. 8 c'est un chiffre port-bonheur en Chine. Je serai ravis de te le rappeler en ajustant ton nombre de doigts... Bye !"],
-            "farewell": ["Xie Xie ! Je reviendrai régulièrement pour voir où tu en es dans ton remboursement. Tu dois quand même 1,000 $ ! Donc active toi !"],
+            "farewell": ["Xie Xie ! Je reviendrai régulièrement pour voir où tu en es dans ton remboursement. Donc active toi !"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
