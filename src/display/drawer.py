@@ -40,7 +40,7 @@ def add_image(surface: Surface, image: Surface, pos: Vector=Vector(0,0), scale: 
 
 def display_dialog(surface: Surface, name: str, dialog: str):
     WIDTH = 455
-    HEIGHT = 155
+    HEIGHT = 205
     BORDER = 5
 
     IN_WIDTH = WIDTH - BORDER
