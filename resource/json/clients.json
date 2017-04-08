@@ -14,11 +14,11 @@
         },
         {
             "name": "Lauretta",
-            "ressource": "resource/img/characters/character_base_maid.png"
+            "ressource": "resource/img/characters/character_maid.png"
         },
         {
             "name": "Sylvie",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_mom.png"
         },
         {
             "name": "Directeur SunYClub",
@@ -62,7 +62,7 @@
         },
         {
             "name": "Mme Smith",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_cia.png"
         },
         {
             "name": "Policier John",
