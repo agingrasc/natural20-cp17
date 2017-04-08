@@ -16,7 +16,7 @@ def handle(game_display: Surface, event: EventType, displayables):
     if handler:
         return handler(game_display, event, displayables)
     else:
-        print(event)
+        #print(event)
         return None
 
 
@@ -38,7 +38,7 @@ def on_click(game_display: Surface, event: EventType, displayables):
 
 def on_keydown(game_display: Surface, event: EventType, displaybles):
     if event.dict['key'] == pygame.K_SPACE:
-        print("Keyboard spacebar pressed: {}".format(event))
+        #print("Keyboard spacebar pressed: {}".format(event))
         return UserKeyAction()
 
 

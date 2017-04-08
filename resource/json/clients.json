@@ -1,7 +1,103 @@
 {
     "clients": [
         {
-            "name": "Steve",
+            "name": "Bob",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Bill Fritz",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Boss Daniel",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Lauretta",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Sylvie",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Directeur SunYClub",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Docteur Arnold",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "James",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Usurier",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Marie-Ange",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Neal",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Jacqueline",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Susanne",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Korax Aniatos",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "André Pretorius",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "M. Smith",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Policier John",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Brian",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "M. Fang",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Crystal",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "SWAT",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Policier Jake",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Andy",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Détective Dave",
+            "ressource": "resource/img"
+        },
+        {
+            "name": "Policier Jeremy",
             "ressource": "resource/img"
         }
 

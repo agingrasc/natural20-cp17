@@ -1,0 +1,82 @@
+{
+    "title_text": "Vendredi après-midi",
+    "starting_stage": 0,
+    "encounters": [
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Directeur SunYClub",
+            "stage_src": 0,
+            "stage_dest": 8,
+            "greeting": ["Oh ! T'es le nouveau valet si je comprend bien ? Il va falloir que je te mette au parfum pour mon restaurant au 8e"],
+            "dialog": "Le SunYClub est LE restaurant si tu veux faire du business dans le quartier. J'ai l'habitude d'avoir un certain type de clientèle très exigeante. Donc je m'attend à ce que tu fasses de même ! Je veux un service impécable ! Amène-moi au restaurant.",
+            "insult": ["Écoute... Je pense que tu n'as pas bien compris la situation. S'il y a une personne à ne pas décevoir dans l'immeuble, c'est moi ! Donc si tu ne veux pas te retrouver dans l'assiette, il va falloir que tu t'améliores... Je descend ici !"],
+            "farewell": ["À oui, j'oubliais... J'aime les gens loyaux, surtout ceux que je cotoye tous les jours. Si tu vois quelques choses de suspect, tu viens m'en parler direct. Je suis ravi de cette discussion. À bientôt !"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Lauretta",
+            "stage_src": 2,
+            "stage_dest": 3,
+            "greeting": ["Rebonjour ! Le niveau suivant s'il vous plaît !"],
+            "dialog": "Je viens de récurer les chambres 100 à 186 et je suis contente de moi ! J'ai utilisé un nouveau produit biologique à base de glande animal. Ce sont les chinois qui me l'ont conseillé et je ne suis pas déçue !",
+            "insult": ["Ce n'est pas mon étage... j'y vais quand même car je sens que vous me prenez pour une bille !"],
+            "farewell": ["Bonne journée ! J'ai hâte de continuer ..."],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Bob",
+            "stage_src": 5,
+            "stage_dest": 2,
+            "greeting": ["Hey ! Ma compagnie m'a offert une chambre à l'hotel... c'est la 113. Est-ce que vous pouvez m'y conduire ?"],
+            "dialog": "Ce soir c'est match de hockey à la TV entre potes ! On va se mettre minable, ça va être génial... bière et chips à volonté !",
+            "insult": ["C'est pas grave ! Je vais me débrouiller pour trouver ma chambre..."],
+            "farewell": ["C'est vraiment sympa de votre part ! Bye !"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips": 0.05
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Docteur Arnold",
+            "stage_src": 9,
+            "stage_dest": 6,
+            "greeting": ["Bonjour ! Je suis le Docteur Arnold et je m'occupe du Centre Psychiatrique du 6e. Je dois y aller justement."],
+            "dialog": "Je ne sais pas si on vous l'a dis, mais parfois des clients... euh... patients arrivent à s'échapper de leur cellule... euh... de leur chambre. Donc si cela arrive, ramenez-les moi au plus vite ! Merci",
+            "insult": ["Hm... Ce sont des personnes dangeureuses qui sont entre ces murs, j'espère que vous ferez attention tout de même et que vous ferez les bons choix car ils ont des conséquences malheureusement ! Laisse-moi ici..."],
+            "farewell": ["Merci de votre collaboration ! Un petit billet pour vous montrer ma gratitude..."],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips": 1
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "James",
+            "stage_src": 2,
+            "stage_dest": 1,
+            "greeting": ["..."],
+            "dialog": "Ma maman m'a dis qu'il ne fallait pas parler aux inconnus... Mais j'aimerai bien un coke du distributeur que j'ai vu au 1er étage...",
+            "insult": ["..."],
+            "farewell": ["Merci monsieur !"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        }
+
+    ]
+}

@@ -1,0 +1,82 @@
+{
+    "title_text": "Dimanche après-midi",
+    "starting_stage": 0,
+    "encounters": [
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Bob",
+            "stage_src": 5,
+            "stage_dest": 0,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Crystal",
+            "stage_src": 0,
+            "stage_dest": 4,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Neal",
+            "stage_src": 6,
+            "stage_dest": 2,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Susanne",
+            "stage_src": 8,
+            "stage_dest": 0,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Lauretta",
+            "stage_src": 3,
+            "stage_dest": 2,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        }
+
+    ]
+}

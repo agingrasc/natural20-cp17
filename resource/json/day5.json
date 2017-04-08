@@ -1,0 +1,82 @@
+{
+    "title_text": "Samedi après-midi",
+    "starting_stage": 0,
+    "encounters": [
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Korax Aniatos",
+            "stage_src": 0,
+            "stage_dest": 12,
+            "greeting": ["-Theos Mazi Mas- mon frère ! Je suis Korax, l'Oracle du culte des Olympios. Ma mission est de guider mes disciples en écoutant ce que les Dieux de l'Olympe ont à me dire..."],
+            "dialog": "D'ailleurs, j'aimerai que tu m'amènes à un étage que nul ne connais à part moi, mes disciples et l'ancien valet. C'est relativement simple: Le numéro de l'étage est égal au nombre de Dieux de l'Olympe que nous louons...",
+            "insult": ["Tous ne sont pas dignes de nous suivre dans notre épopée... Je te laisse à tes occupations de simple mortel ! -Theos Mazi Mas !-"],
+            "farewell": ["Haaa ! Je savais que je pouvais avoir confiance en vous ! Voici un présent en gage de remerciement. -Theos Mazi Mas !-"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":5
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Neal",
+            "stage_src": 6,
+            "stage_dest": 2,
+            "greeting": ["Rebonjour. Je reviens de ma consultation et ils m'ont pris une chambre à l'hotel... le numéro 142."],
+            "dialog": "Le docteur Arnold vient de m'annoncer que j'étais atteint de schizophrénie car je me parlais à moi même devant le mirroir le matin. J'ai dû signer des papiers de procuration au nom du centre pour qu'ils acceptent de me traiter... j'ai eu de la chance qu'ils m'acceptent !",
+            "insult": ["Laissez tomber, je vais chercher par moi même... Bonne journée !"],
+            "farewell": ["J'espère que tout se passera bien et que je vais guérir vite..."],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0.2
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Directeur SunYClub",
+            "stage_src": 9,
+            "stage_dest": 8,
+            "greeting": ["Ni hao ! Au restaurant s'il te plaît"],
+            "dialog": "Je ne sais pas si tu as entendu la nouvelle ? Le -Dragon- arrive dans les prochains jours. Il faut absolument que je fasse un repas qu'il n'oubliera pas. J'ai prévenu un ancien ami que j'ai rencontré en Afrique du Sud qui est un grand spécialiste dans son domaine !",
+            "insult": ["Hmmm... Je te rappelle que tes dettes de jeux sont les miennes maintenant. Change moi ton attitude dans les plus bref délais... c'est un conseil amical... pour le moment."],
+            "farewell": ["Xie Xie ! Cet ami est très... spécial, donc il faut absolument éviter qu'il se balade dans l'immeuble sans surveillance, sinon il va faire fuir les clients. Amenez-le moi directement."],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Jacqueline",
+            "stage_src": 2,
+            "stage_dest": 3,
+            "greeting": ["Bonjour ! Je suis une amie de Tata Susanne, est-ce que vou sauriez où elle se trouve ?"],
+            "dialog": "Malheureusement, elle a oublié de prendre ses médicaments et j'ai peur qu'elle est fait un malaise dans sa chambre. J'ai demandé à l'accueil, mais personne ne peut me répondre car ils ont changé d'équipe entre temps et qu'il n'y a pas de Susanne dans leur régistre.",
+            "insult": ["Ce n'est pas grave ! Je vais continuer à demander aux clients de l'hotel"],
+            "farewell": ["Merci ! Vous êtes un bon garçon !"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0.1
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "James",
+            "stage_src": 3,
+            "stage_dest": 1,
+            "greeting": ["..."],
+            "dialog": "... La jolie fille était moche en faite... Ils offrent pleins de bonbons à l'accueil ... au 1er étage ...",
+            "insult": ["Pffffffff ... j'irai par les escaliers !"],
+            "farewell": ["Tenez ! Car vous êtes gentil !"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0.01
+        }
+
+    ]
+}

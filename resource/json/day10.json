@@ -1,0 +1,67 @@
+{
+    "title_text": "Lundi matin",
+    "starting_stage": 0,
+    "encounters": [
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "SWAT",
+            "stage_src": 5,
+            "stage_dest": 8,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Policier Jake",
+            "stage_src": 0,
+            "stage_dest": 1,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Andy",
+            "stage_src": 6,
+            "stage_dest": 0,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Détective Dave",
+            "stage_src": 8,
+            "stage_dest": 1,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        }
+
+    ]
+}

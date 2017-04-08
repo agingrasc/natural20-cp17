@@ -1,0 +1,67 @@
+{
+    "title_text": "Nuit de lundi",
+    "starting_stage": 0,
+    "encounters": [
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Policier Jake",
+            "stage_src": 2,
+            "stage_dest": 3,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Boss Daniel",
+            "stage_src": 1,
+            "stage_dest": 4,
+            "greeting": ["Hey toi !"],
+            "dialog": "Des clients se pleignent de toi et d'autres te complimentent. J'en déduit que tu es capables de me déposer à l'étage que je t'ai indiqué à notre première rencontre ?",
+            "insult": ["HaHa ! Je le savais... Après ton service tu dégages ! Tu es VIRÉ !"],
+            "farewell": ["La chance ça arrive à tout le monde ! Je t'aurai à un autre moment... J'ai du boulot !"],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":12
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Détective Dave",
+            "stage_src": 8,
+            "stage_dest": 2,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        },
+        {
+            "include":[],
+            "exclude":[],
+            "client_name": "Usurier",
+            "stage_src": 9,
+            "stage_dest": 0,
+            "greeting": [""],
+            "dialog": "",
+            "insult": [""],
+            "farewell": [""],
+            "ignore_client_flag": [],
+            "ignore_dest_flag": [],
+            "happy_ending_flag": [],
+            "tips":0
+        }
+
+    ]
+}
