@@ -28,8 +28,9 @@ class FloorIndicatorAction(IDomainAction):
     def __init__(self, actual_floor, target_floor):
         super().__init__()
         self.angle = floor_to_angle[actual_floor]
-        self.actual_floor = actual_floor
-        self.target_floor = target_floor
+        self.initial_angle = floor_to_angle[actual_floor]
+        self.target_angle = floor_to_angle[target_floor]
+        self.angle = self.initial_angle
         self.persistent_name = "floor-indicator"
         self.accumulated_time = 0
         self.sound: pygame.mixer.SoundType = None
@@ -42,16 +43,11 @@ class FloorIndicatorAction(IDomainAction):
             self.stop_sound_effect()
         elif self.accumulated_time < DEFAULT_TIME_TO_CLIMB_A_FLOOR:
             self.accumulated_time += dt
-            initial_angle = floor_to_angle[self.actual_floor]
-            target_angle = floor_to_angle[self.actual_floor+1] if self.target_floor > self.actual_floor else floor_to_angle[self.actual_floor-1]
-            delta_angle = target_angle - initial_angle
-            self.angle += (delta_angle * dt) / DEFAULT_TIME_TO_CLIMB_A_FLOOR
+            delta_angle = self.target_angle - self.initial_angle
+            #self.angle = self.initial_angle + delta_angle * self.accumulated_time / DEFAULT_TIME_TO_CLIMB_A_FLOOR
+            self.angle = self.initial_angle + easing(self.accumulated_time, 0, delta_angle, DEFAULT_TIME_TO_CLIMB_A_FLOOR)
         else:
-            self.actual_floor = self.actual_floor + 1 if self.target_floor > self.actual_floor else self.actual_floor - 1
-            self.angle = floor_to_angle[self.actual_floor]
-            self.accumulated_time = 0
-            if self.actual_floor == self.target_floor:
-                self.finished = True
+            self.finished = True
         return self.draw_image(game_display)
 
     def draw_image(self, game_display):
@@ -59,3 +55,7 @@ class FloorIndicatorAction(IDomainAction):
         pos = DEFAULT_FLOOR_INDICATOR_POS
         scale = DEFAULT_FLOOR_INDICATOR_SCALE
         return drawer.add_image(game_display, image, pos, scale, self.angle)
+#elapsed, start, end, total
+def easing(t, b, c, d):
+    t /= d
+    return -c * t * (t - 2) + b;
