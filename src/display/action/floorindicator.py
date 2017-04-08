@@ -9,7 +9,7 @@ from util.geometry import Vector
 DEFAULT_FLOOR_INDICATOR_IMAGE_PATH = 'resource/img/level_counter.png'
 DEFAULT_FLOOR_INDICATOR_POS = Vector(135-108, 105-106)
 DEFAULT_FLOOR_INDICATOR_SCALE = Vector(210, 210)
-DEFAULT_TIME_TO_CLIMB_A_FLOOR = 2
+DEFAULT_TIME_TO_CLIMB_A_FLOOR = 4
 
 
 floor_to_angle = {0: 89,
