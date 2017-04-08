@@ -2,6 +2,7 @@ from display.action.animation import SpriteAnimationAction, ButtonAnimationActio
 from display.action.button import ButtonPushedAction, ButtonReleasedAction
 from display.action.client import ClientAction, NoClientAction
 from display.action.floorindicator import FloorIndicatorAction
+from display.action.floorcall import FloorCallAction
 from domain.blackboard import Blackboard
 from domain.state.state import State
 from display.action.dialog import Dialog
@@ -30,6 +31,7 @@ class DayState(State):
             self.change_substate(self.open_door)
         else:
             self.change_substate(self.wait_for_player_input)
+            return FloorCallAction(self.current_encounter.stage_src)
 
     def wait_for_player_input(self, dt, actions):
         for action in actions:
@@ -47,7 +49,7 @@ class DayState(State):
     # TODO find a juicer way of doing that:
     def open_door(self, dt, actions):
         self.anime = AnimationSubState(Dialog("ANIMATION", "opening door"), self, self.encounter_enter_elevator)
-        return ButtonReleasedAction(Blackboard().stage)
+        return [ButtonReleasedAction(Blackboard().stage), FloorCallAction()]
     def encounter_enter_elevator(self, dt, actions):
         self.anime = AnimationSubState(Dialog("ANIMATION", "client walking in elevator"), self, self.greet_encounter)
         return ClientAction(self.current_encounter.name)

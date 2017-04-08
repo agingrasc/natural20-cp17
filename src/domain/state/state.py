@@ -1,6 +1,7 @@
 import abc
 
 from display.action.empty import EmptyAction
+from display.action.interface import IDomainAction
 
 
 class State(abc.ABC):
@@ -9,10 +10,11 @@ class State(abc.ABC):
         self.next_substate = init_substate
 
     def exec(self, dt=None, actions=[]):
-        #print(self.next_substate)
         res = self.next_substate(dt, actions)
         if res is None:
-            return EmptyAction()
+            return []
+        elif isinstance(res, IDomainAction):
+            return [res]
         else:
             return res
 
