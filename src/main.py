@@ -5,10 +5,8 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions, button
-from display.action.animation import ButtonAnimationAction
-from display.action.button import ButtonPushedAction, ButtonReleasedAction
-from display.action.indicator import DEFAULT_FLOOR_INDICATOR_IMAGE_PATH, DEFAULT_FLOOR_INDICATOR_POS, \
-    DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
+from display.action.button import ButtonPushedAction
+from display.action.indicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from display.cache import ImagesCache
 from display.drawer import DIALOG_POLICE_SIZE
@@ -34,6 +32,7 @@ class Game:
         self.state_executor = StateExecutor()
         self.image_cache = ImagesCache()
         self.init_cache()
+        pygame.mixer.init()
 
     def init_cache(self):
         self.image_cache.add_image(*images.BACKGROUND_IMAGE)
@@ -81,9 +80,7 @@ class Game:
         self.construct_background(game_display)
         self.init_keypad(game_display)
 
-        #indicator_action = FloorIndicatorAction(1, 5)
         crashed = False
-        accumulated_time = 0
         while not crashed:
             game_display.fill(color.BLACK)
             self.compute_delta_t()
@@ -123,3 +120,4 @@ if __name__ == "__main__":
     pygame.init()
     game = Game()
     game.main()
+    pygame.mixer.quit()

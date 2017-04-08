@@ -42,7 +42,7 @@ class DayStateTest(unittest.TestCase):
         encounter = EncounterBuilder().with_stage_src(A_STAGE_SRC)\
                                       .with_stage_dest(A_STAGE_DEST)\
                                       .with_boss_complains([""]).build()
-        self.A_DAY_STATE = DayState(Day(A_DAY, load_from_json=False, encounters=[encounter]))
+        self.A_DAY_STATE = DayState(Day(A_DAY, load_from_json=False, encounters=[encounter], starting_stage=1))
 
         self.assertEqual(self.A_DAY_STATE.introduce_next_client, self.A_DAY_STATE.next_substate)
         self.A_DAY_STATE.exec()

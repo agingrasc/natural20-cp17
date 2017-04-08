@@ -33,12 +33,13 @@ class DayState(State):
     def wait_for_player_input(self, dt, actions):
         for action in actions:
             if isinstance(action, FloorSelected):
-                Blackboard().stage = action.data['floor']
                 if action.data['floor'] == Blackboard().stage:
                     self.change_substate(self.open_door)
                 elif action.data['floor'] == self.current_encounter.stage_src:
+                    Blackboard().stage = action.data['floor']
                     self.anime = AnimationSubState("move the elevator to client", self, self.open_door)
                 else:
+                    Blackboard().stage = action.data['floor']
                     self.anime = AnimationSubState("move the elevator to knownwhere", self, self.ignore_client)
                 return ButtonPushedAction(action.data['floor'])
 
@@ -79,7 +80,6 @@ class DayState(State):
         return ButtonReleasedAction(Blackboard().stage)
 
     def ignore_client(self, dt, actions):
-        Blackboard().stage = self.current_encounter.stage_src
         Blackboard().flags += self.current_encounter.ignore_client_flag
         Blackboard().tips -= self.current_encounter.penality
         if self.current_encounter.has_boss_complain():
