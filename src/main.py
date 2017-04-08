@@ -43,7 +43,7 @@ class Game:
                              DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
                              Vector(135-108, 105-106),
                              Vector(210, 210),
-                             89)
+                             10)
 
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
