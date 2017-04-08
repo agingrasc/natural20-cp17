@@ -1,8 +1,8 @@
 from display import drawer
 from display.action.interface import IDomainAction
 
-DISPLAY_ANIMATION_TIME = 110
-DIALOG_SOUND_VOLUME = 0.4
+DISPLAY_ANIMATION_TIME = 40
+DIALOG_SOUND_VOLUME = 0.8
 
 
 class Dialog(IDomainAction):
