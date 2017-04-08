@@ -33,7 +33,6 @@ class Game:
         self.state_executor = StateExecutor()
         self.image_cache = ImagesCache()
         self.init_cache()
-        pygame.mixer.init()
 
     def init_cache(self):
         background_idx, background_path = images.BACKGROUND_IMAGE
@@ -96,13 +95,6 @@ class Game:
                 displayable()
             self.temporary_display.clear()
 
-            domain_action = self.state_executor.exec(self.delta_t, self.actions)
-            self.actions.clear()
-            if domain_action.persistent_name:
-                self.persistent_display[domain_action.persistent_name] = domain_action.display(game_display, self.delta_t)
-            else:
-                self.temporary_display.append(domain_action.display(game_display, self.delta_t))
-
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
             str_tips = "{:0>6.2f}$".format(Blackboard().tips)
             self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(90, 380), color.MONEY_COLOR))
@@ -115,6 +107,13 @@ class Game:
 
             self.actions = [action for action in self.actions if action]
 
+            domain_action = self.state_executor.exec(self.delta_t, self.actions)
+            self.actions.clear()
+            if domain_action.persistent_name:
+                self.persistent_display[domain_action.persistent_name] = domain_action.display(game_display, self.delta_t)
+            else:
+                self.temporary_display.append(domain_action.display(game_display, self.delta_t))
+
             # TEST SECTION
 
             pygame.display.update()
@@ -122,6 +121,8 @@ class Game:
             clock.tick(FPS)
 
 if __name__ == "__main__":
+    pygame.mixer.pre_init(44100, -16, 2, 2048)
+    pygame.mixer.init()
     pygame.init()
     game = Game()
     game.main()
