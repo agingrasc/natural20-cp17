@@ -28,7 +28,6 @@
             "dialog": "J'vais bosser à l'étage numéro 5, ils font des travaux.",
             "insult": ["Mec ! Par ta faute je suis à la bourre... Laisse-moi là !"],
             "farewell": ["Merci ! Les travaux vont durer quelques jours, donc on se reverra !"],
-            "boss_complains": ["Tu fais chier Bob, tu me fais chier moi! Ne fait plus JAMAIS CELA!!"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],

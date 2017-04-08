@@ -1,3 +1,6 @@
+from display.action.animation import SpriteAnimationAction, ButtonAnimationAction
+from display.action.button import ButtonPushedAction, ButtonReleasedAction
+from display.action.indicator import FloorIndicatorAction
 from domain.blackboard import Blackboard
 from domain.state.state import State
 from display.action.dialog import Dialog
@@ -30,17 +33,20 @@ class DayState(State):
     def wait_for_player_input(self, dt, actions):
         for action in actions:
             if isinstance(action, FloorSelected):
-                # TODO have an action if the dest is wrong
                 if action.data['floor'] == Blackboard().stage:
                     self.change_substate(self.open_door)
                 elif action.data['floor'] == self.current_encounter.stage_src:
+                    Blackboard().stage = action.data['floor']
                     self.anime = AnimationSubState("move the elevator to client", self, self.open_door)
                 else:
+                    Blackboard().stage = action.data['floor']
                     self.anime = AnimationSubState("move the elevator to knownwhere", self, self.ignore_client)
+                return ButtonPushedAction(action.data['floor'])
 
     # TODO find a juicer way of doing that:
     def open_door(self, dt, actions):
         self.anime = AnimationSubState("opening door", self, self.encounter_enter_elevator)
+        return ButtonReleasedAction(Blackboard().stage)
     def encounter_enter_elevator(self, dt, actions):
         self.anime = AnimationSubState("client walking in elevator", self, self.greet_encounter)
     def greet_encounter(self, dt, actions):
@@ -59,22 +65,28 @@ class DayState(State):
                     self.anime = AnimationSubState("move client to dest", self, self.reach_dest)
                 else:
                     self.anime = AnimationSubState("move client to knownwhere", self, self.ignore_dest)
+                return ButtonPushedAction(action.data['floor'])
 
     # Endings
     def reach_dest(self, dt, actions):
         Blackboard().flags += self.current_encounter.happy_ending_flag
         Blackboard().tips += self.current_encounter.tips
         self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_farewell(), self, self.introduce_next_client)
+        return ButtonReleasedAction(Blackboard().stage)
 
     def ignore_dest(self, dt, actions):
         Blackboard().flags += self.current_encounter.ignore_dest_flag
         self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_insult(), self, self.introduce_next_client)
+        return ButtonReleasedAction(Blackboard().stage)
 
     def ignore_client(self, dt, actions):
-        Blackboard().stage = self.current_encounter.stage_src
         Blackboard().flags += self.current_encounter.ignore_client_flag
         Blackboard().tips -= self.current_encounter.penality
-        self.dialog = DialogSubState("[INTERCOM] Boss Daniel", self.day.say_boss_complain(), self, self.introduce_next_client)
+        if self.current_encounter.has_boss_complain():
+            self.dialog = DialogSubState("[INTERCOM] Boss Daniel", self.current_encounter.say_boss_complain(), self, self.introduce_next_client)
+        else:
+            self.change_substate(self.introduce_next_client)
+        return ButtonReleasedAction(Blackboard().stage)
 
     def end_day(self, dt, actions):
         self.finish = True
