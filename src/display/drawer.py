@@ -26,9 +26,15 @@ def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tup
     return functools.partial(draw.rect, surface, rect_color, rect, 0)
 
 
-def add_image(surface: Surface, image: Surface, pos: Vector, scale: Vector, angle = 0):
-    rotated = rot_center(image, angle)
-    rescaled_img = pygame.transform.scale(rotated, scale.to_pos())
+def add_image(surface: Surface, image: Surface, pos: Vector=Vector(0,0), scale: Vector= None, angle = 0):
+    if angle != 0:
+        rotated_img = rot_center(image, angle)
+    else:
+        rotated_img = image
+    if not scale is None:
+        rescaled_img = pygame.transform.scale(rotated_img, scale.to_pos())
+    else:
+        rescaled_img = image
     return functools.partial(surface.blit, rescaled_img, pos.to_pos())
 
 

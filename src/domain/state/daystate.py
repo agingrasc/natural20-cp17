@@ -1,5 +1,6 @@
 from display.action.animation import SpriteAnimationAction, ButtonAnimationAction
 from display.action.button import ButtonPushedAction, ButtonReleasedAction
+from display.action.client import ClientAction, NoClientAction
 from display.action.floorindicator import FloorIndicatorAction
 from domain.blackboard import Blackboard
 from domain.state.state import State
@@ -49,6 +50,7 @@ class DayState(State):
         return ButtonReleasedAction(Blackboard().stage)
     def encounter_enter_elevator(self, dt, actions):
         self.anime = AnimationSubState(Dialog("ANIMATION", "client walking in elevator"), self, self.greet_encounter)
+        return ClientAction(self.current_encounter.name)
     def greet_encounter(self, dt, actions):
         self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_greeting(), self, self.close_door)
     def close_door(self, dt, actions):
@@ -69,16 +71,19 @@ class DayState(State):
                     self.anime = AnimationSubState(animation, self, self.ignore_dest)
                 return ButtonPushedAction(action.data['floor'])
 
+    def open_door_encounter_leave(self, dt, actions):
+        self.change_substate(self.introduce_next_client)
+        return NoClientAction()
     # Endings
     def reach_dest(self, dt, actions):
         Blackboard().flags += self.current_encounter.happy_ending_flag
         Blackboard().tips += self.current_encounter.tips
-        self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_farewell(), self, self.introduce_next_client)
+        self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_farewell(), self, self.open_door_encounter_leave)
         return ButtonReleasedAction(Blackboard().stage)
 
     def ignore_dest(self, dt, actions):
         Blackboard().flags += self.current_encounter.ignore_dest_flag
-        self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_insult(), self, self.introduce_next_client)
+        self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_insult(), self, self.open_door_encounter_leave)
         return ButtonReleasedAction(Blackboard().stage)
 
     def ignore_client(self, dt, actions):
