@@ -39,10 +39,16 @@ def add_image(surface: Surface, image: Surface, pos: Vector=Vector(0,0), scale: 
 
 
 def display_dialog(surface: Surface, name: str, dialog: str):
-    canevas = Surface((355, 205))
+    WIDTH = 455
+    HEIGHT = 155
+    BORDER = 5
+
+    IN_WIDTH = WIDTH - BORDER
+    IN_HEIGHT = HEIGHT - BORDER
+    canevas = Surface((WIDTH, HEIGHT))
     canevas.fill(color.TEXT_BACKGROUND_COLOR)
-    pos = Vector(dimensions.WINDOW_WIDTH-(50+350), dimensions.WINDOW_HEIGHT-(50+200))
-    sizes = Vector(350, 200)
+    pos = Vector(dimensions.WINDOW_WIDTH-(30+IN_WIDTH), dimensions.WINDOW_HEIGHT-(30+IN_HEIGHT))
+    sizes = Vector(IN_WIDTH, IN_HEIGHT)
     rect = pygame.Rect(Vector().to_pos(), sizes.to_pos())
     draw.rect(canevas, color.WHITE, rect, 5)
 
