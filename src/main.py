@@ -49,13 +49,13 @@ class Game:
     def construct_background(self, game_display):
         self.persistent_display['background'] = \
             drawer.add_image(game_display,
-                             DEFAULT_BACKGROUND_IMAGE_PATH,
+                             self.image_cache.images['background'],
                              Vector(),
                              Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT),
                              0)
         self.persistent_display['floor-indicator'] = \
             drawer.add_image(game_display,
-                             DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
+                             self.image_cache.images['floor-indicator'],
                              DEFAULT_FLOOR_INDICATOR_POS,
                              DEFAULT_FLOOR_INDICATOR_SCALE,
                              89)

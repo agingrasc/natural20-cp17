@@ -18,7 +18,7 @@ class SpriteSheet:
             x_offset = col * self.element_dimensions.x
             y_offset = row * self.element_dimensions.y
             area = (x_offset, y_offset, self.element_dimensions.x, self.element_dimensions.y)
-            sprite.blit(self.image_size, (0, 0), area)
+            sprite.blit(self.image, (0, 0), area)
             return sprite
 
     def is_inbound(self, col, row):

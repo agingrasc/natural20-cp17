@@ -5,6 +5,8 @@ from pygame import draw
 from pygame.surface import Surface
 
 from display import color, drawer
+from display.cache import ImagesCache
+from display.spritesheet import SpriteSheet
 from util.geometry import Vector
 from util.singleton import Singleton
 
@@ -25,10 +27,10 @@ class Button:
         self.floor = floor
 
     def display(self, surface: Surface):
-        sprite_sheet_offset = Vector(0, 0)
-        sprite_sheet_size = Vector(108, 108)
-        scaling = Vector(self.size.x * 3, self.size.y)
-        return drawer.add_image_from_sprite_sheet(surface, DEFAULT_BUTTON_IMAGE_PATH_PATTERN.format(self.floor), self.coordinates, self.size, sprite_sheet_size, sprite_sheet_offset)
+        img_cache = ImagesCache()
+        sprite_sheet: SpriteSheet = img_cache.sprites_sheets['button-{}'.format(self.floor)]
+        sprite = sprite_sheet.get_element(0, 0)
+        return drawer.add_image(surface, sprite, self.coordinates, self.size)
 
     def is_inside(self, pos: Vector):
         down_right_corner = self.coordinates + self.size
