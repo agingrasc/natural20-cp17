@@ -73,7 +73,7 @@
             "stage_src": 1,
             "stage_dest": 3,
             "greeting": ["Bonsoir Monsieur !"],
-            "dialog": "Je suis passée à l'accueil pour trouver la chambre à Tata Susanne et personne ne la connaît. Est-ce que vous seriez où elle se trouve ?",
+            "dialog": "Je suis passée à l'accueil pour trouver la chambre à Tata Tata Suzanne et personne ne la connaît. Est-ce que vous seriez où elle se trouve ?",
             "insult": ["Vous êtes sûr que c'est ici ? Bon ... j'espère que sa chambre n'est pas trop loin."],
             "farewell": ["Merci beaucoup ! Je n'y serai jamais arrivée sans vous ! Bonne nuit !"],
             "ignore_client_flag": [],
