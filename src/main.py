@@ -116,15 +116,14 @@ class Game:
 
             self.actions = [action for action in self.actions if action]
 
-            domain_action = self.state_executor.exec(self.delta_t, self.actions)
+            domain_actions = self.state_executor.exec(self.delta_t, self.actions)
             self.actions.clear()
-            if domain_action.persistent_name:
-                self.persistent_display[domain_action.persistent_name] =\
-                    domain_action.display(game_display, self.delta_t)
-            else:
-                self.temporary_display.append(domain_action.display(game_display, self.delta_t))
-
-            # TEST SECTION
+            for domain_action in domain_actions:
+                if domain_action.persistent_name:
+                    self.persistent_display[domain_action.persistent_name] =\
+                        domain_action.display(game_display, self.delta_t)
+                else:
+                    self.temporary_display.append(domain_action.display(game_display, self.delta_t))
 
             pygame.display.update()
 
