@@ -1,5 +1,7 @@
 import functools
 
+import math
+
 import pygame
 from pygame import draw
 from pygame.surface import Surface
@@ -25,9 +27,9 @@ def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tup
 
 def add_image(surface: Surface, image_path, pos: Vector, scale: Vector, angle = 0):
     img = pygame.image.load(image_path)
-    rescaled_img = pygame.transform.scale(img, scale.to_pos())
-    rotated = pygame.transform.rotate(rescaled_img, angle)
-    return functools.partial(surface.blit, rotated, pos.to_pos())
+    rotated = rot_center(img, angle)
+    rescaled_img = pygame.transform.scale(rotated, scale.to_pos())
+    return functools.partial(surface.blit, rescaled_img, pos.to_pos())
 
 
 def add_image_from_sprite_sheet(surface: Surface, sprite_sheet_path: str, pos: Vector, scale: Vector,
@@ -59,3 +61,12 @@ def display_dialog(surface: Surface, name: str, dialog: str):
     return functools.partial(surface.blit, canevas, pos.to_pos())
 
 
+def rot_center(image, angle):
+    """rotate an image while keeping its center and size"""
+    orig_rect = image.get_rect()
+    rot_image = pygame.transform.rotate(image, angle)
+    rot_rect = orig_rect.copy()
+    rot_rect.center = rot_image.get_rect().center
+    rot_image = rot_image.subsurface(rot_rect).copy()
+
+    return rot_image
