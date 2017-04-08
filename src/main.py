@@ -18,7 +18,7 @@ from event import handler
 from util.geometry import Vector
 from domain.blackboard import Blackboard
 
-FPS = 10
+FPS = 60
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
 
 
@@ -102,8 +102,8 @@ class Game:
                 self.temporary_display.append(domain_action.display(game_display, self.delta_t))
 
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
-            str_tips = "{}$".format(Blackboard().tips)
-            self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(self.display_width - len(str_tips)*13, 0), color.GREEN))
+            str_tips = "{:0>6.2f}$".format(Blackboard().tips)
+            self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(self.display_width - len(str_tips)*9, 0), color.GREEN))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
