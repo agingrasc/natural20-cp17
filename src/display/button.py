@@ -54,6 +54,11 @@ class ButtonBuilder(metaclass=Singleton):
         self.buttons.append(button)
         return button.display(surface)
 
+    def add_button_hack_for_ut(self, row, col):
+        floor = compute_floor(row, col)
+        button = Button((0, 0), (0,0), floor)
+        self.buttons.append(button)
+
     def get_button_for_floor(self, floor):
         for button in self.buttons:
             if button.floor == floor:
