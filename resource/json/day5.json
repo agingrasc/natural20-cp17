@@ -42,6 +42,7 @@
             "dialog": "Je ne sais pas si tu as entendu la nouvelle ? Le -Dragon- arrive dans les prochains jours. Il faut absolument que je fasse un repas qu'il n'oubliera pas. J'ai prévenu un ancien ami que j'ai rencontré en Afrique du Sud qui est un grand spécialiste dans son domaine !",
             "insult": ["Hmmm... Je te rappelle que tes dettes de jeux sont les miennes maintenant. Change moi ton attitude dans les plus bref délais... c'est un conseil amical... pour le moment."],
             "farewell": ["Xie Xie ! Cet ami est très... spécial, donc il faut absolument éviter qu'il se balade dans l'immeuble sans surveillance, sinon il va faire fuir les clients. Amenez-le moi directement."],
+            "boss_complains": ["Hey ! Ya le Directeur du SunYClub qui vient de m'appeler, il attend que tu ailles le chercher ... tu attends quoi ?"],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],

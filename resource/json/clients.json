@@ -2,11 +2,11 @@
     "clients": [
         {
             "name": "Bob",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_bob.png"
         },
         {
             "name": "Bill Fritz",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_business.png"
         },
         {
             "name": "Boss Daniel",
@@ -14,15 +14,15 @@
         },
         {
             "name": "Lauretta",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_maid.png"
         },
         {
             "name": "Sylvie",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_mom.png"
         },
         {
             "name": "Directeur SunYClub",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_resto_direct.png"
         },
         {
             "name": "Docteur Arnold",
@@ -34,11 +34,11 @@
         },
         {
             "name": "Usurier",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_usurier.png"
         },
         {
             "name": "Marie-Ange",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_grandma_3.png"
         },
         {
             "name": "Neal",
@@ -50,7 +50,7 @@
         },
         {
             "name": "Susanne",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_grandma_2.png"
         },
         {
             "name": "Korax Aniatos",
@@ -62,7 +62,7 @@
         },
         {
             "name": "Mme Smith",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_cia.png"
         },
         {
             "name": "Policier John",
@@ -74,7 +74,7 @@
         },
         {
             "name": "M. Fang",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_fang.png"
         },
         {
             "name": "Crystal",
