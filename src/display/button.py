@@ -9,6 +9,7 @@ from display.cache import ImagesCache
 from display.spritesheet import SpriteSheet
 from util.geometry import Vector
 from util.singleton import Singleton
+from domain import images
 
 BUTTON_SIZE = 35
 BUTTON_SPRITE_SIZE = Vector(107, 107)
@@ -17,11 +18,12 @@ DEFAULT_MIN_HEIGHT = 175
 DEFAULT_MARGIN = 2
 NUMBER_OF_BUTTONS_ROWS = 5
 NUMBER_OF_BUTTONS_COLS = 2
-DEFAULT_BUTTON_IMAGE_PATH_PATTERN = "resource/sprite_sheets/button_{}_sprite_sheet.png"
 
 
 class Button:
     def __init__(self, coordinates: Vector, size: Vector, floor: int):
+        idx, _ = images.BUTTON_PATTERN
+        self.idx = idx.format(floor)
         self.coordinates = coordinates
         self.size = size
         self.floor = floor
@@ -51,3 +53,8 @@ class ButtonBuilder(metaclass=Singleton):
         button = Button(coord, size, floor)
         self.buttons.append(button)
         return button.display(surface)
+
+    def get_button_for_floor(self, floor):
+        for button in self.buttons:
+            if button.floor == floor:
+                return button

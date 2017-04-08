@@ -29,6 +29,8 @@ class SpriteSheet:
     def all_sprites(self):
         max_col = int(self.image_size.x / self.element_dimensions.x)
         max_row = int(self.image_size.y / self.element_dimensions.y)
+        sprites = []
         for row in range(max_row):
             for col in range(max_col):
-                yield self.get_element(row, col)
+                sprites.append(self.get_element(row, col))
+        return sprites

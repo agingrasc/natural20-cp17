@@ -9,7 +9,6 @@ from typing import Tuple
 
 from display import color
 from display import dimensions
-from display.spritesheet import SpriteSheet
 from util.dialog import break_dialog_lines
 from util.geometry import Vector
 

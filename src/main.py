@@ -5,6 +5,7 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions, button
+from display.action.animation import ButtonAnimationAction
 from display.action.indicator import DEFAULT_FLOOR_INDICATOR_IMAGE_PATH, DEFAULT_FLOOR_INDICATOR_POS, \
     DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
@@ -14,7 +15,7 @@ from domain import images
 from event import handler
 from util.geometry import Vector
 
-FPS = 60
+FPS = 10
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
 
 
@@ -77,6 +78,7 @@ class Game:
         crashed = False
         while not crashed:
             game_display.fill(color.BLACK)
+            self.compute_delta_t()
 
             for displayable in self.persistent_display.values():
                 displayable()
@@ -87,9 +89,7 @@ class Game:
             domain_action = self.state_executor.exec(self.delta_t, self.actions)
             self.actions.clear()
             self.temporary_display.append(domain_action.display(game_display, self.delta_t))
-            self.persistent_display[indicator_action.persistent_name] = indicator_action.display(game_display, self.delta_t)
 
-            self.compute_delta_t()
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
 
             for event in pygame.event.get():
@@ -99,6 +99,8 @@ class Game:
                     self.actions.append(handler.handle(game_display, event, self.persistent_display))
 
             self.actions = [action for action in self.actions if action]
+
+            # TEST SECTION
 
             pygame.display.update()
 
