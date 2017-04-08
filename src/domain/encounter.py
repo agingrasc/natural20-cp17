@@ -56,6 +56,13 @@ class Encounter:
     def stage_dest(self):
         return self["stage_dest"]
 
+    @property
+    def penality(self):
+        if "penality" in self.raw_json:
+            return self["penality"]
+        else:
+            return 0
+
 
     @property
     def ignore_client_flag(self):
@@ -66,6 +73,8 @@ class Encounter:
     @property
     def happy_ending_flag(self):
         return self["happy_ending_flag"]
+
+
 
 
 

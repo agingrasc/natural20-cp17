@@ -4,15 +4,20 @@ import pygame
 from pygame import display, Surface
 from pygame.time import Clock
 
-from display import color, drawer, dimensions
+from display import color, drawer, dimensions, button
+from display.action.animation import ButtonAnimationAction
+from display.action.button import ButtonPushedAction, ButtonReleasedAction
 from display.action.indicator import DEFAULT_FLOOR_INDICATOR_IMAGE_PATH, DEFAULT_FLOOR_INDICATOR_POS, \
     DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
+from display.cache import ImagesCache
 from domain.state.stateexecutor import StateExecutor
+from domain import images
 from event import handler
 from util.geometry import Vector
+from domain.blackboard import Blackboard
 
-FPS = 60
+FPS = 10
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
 
 
@@ -26,6 +31,18 @@ class Game:
         self.temporary_display = []
         self.actions = []
         self.state_executor = StateExecutor()
+        self.image_cache = ImagesCache()
+        self.init_cache()
+
+    def init_cache(self):
+        self.image_cache.add_image(*images.BACKGROUND_IMAGE)
+        self.image_cache.add_image(*images.FLOOR_INDICATOR)
+
+        for i in range(10):
+            idx, path = images.BUTTON_PATTERN
+            idx = idx.format(i)
+            path = path.format(i)
+            self.image_cache.add_sprites_sheets(idx, path, button.BUTTON_SPRITE_SIZE)
 
     def compute_delta_t(self):
         ticks = pygame.time.get_ticks()
@@ -35,13 +52,13 @@ class Game:
     def construct_background(self, game_display):
         self.persistent_display['background'] = \
             drawer.add_image(game_display,
-                             DEFAULT_BACKGROUND_IMAGE_PATH,
+                             self.image_cache.images['background'],
                              Vector(),
                              Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT),
                              0)
         self.persistent_display['floor-indicator'] = \
             drawer.add_image(game_display,
-                             DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
+                             self.image_cache.images['floor-indicator'],
                              DEFAULT_FLOOR_INDICATOR_POS,
                              DEFAULT_FLOOR_INDICATOR_SCALE,
                              89)
@@ -49,7 +66,8 @@ class Game:
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
             for j in range(NUMBER_OF_BUTTONS_ROWS):
-                self.persistent_display["button-{}-{}".format(i, j)] = ButtonBuilder().add_button(game_display, i, j)
+                floor = button.compute_floor(i, j)
+                self.persistent_display["button-{}".format(floor)] = ButtonBuilder().add_button(game_display, i, j)
 
     def main(self):
         game_display: Surface = display.set_mode((self.display_width, self.display_height))
@@ -61,8 +79,10 @@ class Game:
 
         indicator_action = FloorIndicatorAction(1, 5)
         crashed = False
+        accumulated_time = 0
         while not crashed:
             game_display.fill(color.BLACK)
+            self.compute_delta_t()
 
             for displayable in self.persistent_display.values():
                 displayable()
@@ -72,11 +92,14 @@ class Game:
 
             domain_action = self.state_executor.exec(self.delta_t, self.actions)
             self.actions.clear()
-            self.temporary_display.append(domain_action.display(game_display, self.delta_t))
-            self.persistent_display[indicator_action.persistent_name] = indicator_action.display(game_display, self.delta_t)
+            if domain_action.persistent_name:
+                self.persistent_display[domain_action.persistent_name] = domain_action.display(game_display, self.delta_t)
+            else:
+                self.temporary_display.append(domain_action.display(game_display, self.delta_t))
 
-            self.compute_delta_t()
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
+            str_tips = "{}$".format(Blackboard().tips)
+            self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(self.display_width - len(str_tips)*13, 0), color.GREEN))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -85,6 +108,8 @@ class Game:
                     self.actions.append(handler.handle(game_display, event, self.persistent_display))
 
             self.actions = [action for action in self.actions if action]
+
+            # TEST SECTION
 
             pygame.display.update()
 
