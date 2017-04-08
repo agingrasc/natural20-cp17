@@ -14,7 +14,7 @@
         },
         {
             "name": "Lauretta",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_base_maid.png"
         },
         {
             "name": "Sylvie",
@@ -34,11 +34,11 @@
         },
         {
             "name": "Usurier",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_usurier.png"
         },
         {
             "name": "Marie-Ange",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_grandma_3.png"
         },
         {
             "name": "Neal",
@@ -50,7 +50,7 @@
         },
         {
             "name": "Susanne",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_grandma_2.png"
         },
         {
             "name": "Korax Aniatos",
@@ -74,7 +74,7 @@
         },
         {
             "name": "M. Fang",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_fang.png"
         },
         {
             "name": "Crystal",
