@@ -9,7 +9,7 @@ OPEN_WIDTH = 125
 CLOSED_WIDTH = 520
 DEFAULT_HEIGHT = 600
 
-DEFAULT_TIME_DOOR = 5
+DEFAULT_TIME_DOOR = 2
 
 
 class ElevatorGateOpenAction(IDomainAction):

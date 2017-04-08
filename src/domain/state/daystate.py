@@ -1,8 +1,10 @@
 from display.action.animation import SpriteAnimationAction, ButtonAnimationAction
 from display.action.button import ButtonPushedAction, ButtonReleasedAction
 from display.action.client import ClientAction, NoClientAction
+from display.action.elavatorgate import ElevatorGateOpenAction, ElevatorGateCloseAction
 from display.action.floorindicator import FloorIndicatorAction
 from display.action.floorcall import FloorCallAction
+from display.action.inoutclient import InOutClientAction, ClientInAction, ClientOutAction
 from domain.blackboard import Blackboard
 from domain.state.state import State
 from display.action.dialog import Dialog
@@ -31,6 +33,7 @@ class DayState(State):
         if Blackboard().stage == self.current_encounter.stage_src:
             self.change_substate(self.open_door)
         else:
+            self.warning = 0
             self.change_substate(self.wait_for_player_input)
             return FloorCallAction(self.current_encounter.stage_src)
 
@@ -38,10 +41,10 @@ class DayState(State):
         for action in actions:
             if isinstance(action, FloorSelected):
                 animation = FloorIndicatorAction(Blackboard().stage, action.data['floor'])
-                if action.data['floor'] == Blackboard().stage:
-                    self.change_substate(self.open_door)
-                elif action.data['floor'] == self.current_encounter.stage_src:
+                if action.data['floor'] == self.current_encounter.stage_src:
                     self.anime = AnimationSubState(animation, self, self.open_door)
+                elif action.data['floor'] == Blackboard().stage:
+                    self.change_substate(self.ignore_client)
                 else:
                     self.anime = AnimationSubState(animation, self, self.ignore_client)
                 Blackboard().stage = action.data['floor']
@@ -49,15 +52,18 @@ class DayState(State):
 
     # TODO find a juicer way of doing that:
     def open_door(self, dt, actions):
-        self.anime = AnimationSubState(Dialog("ANIMATION", "opening door"), self, self.encounter_enter_elevator)
+        #self.anime = AnimationSubState(Dialog("ANIMATION", "opening door"), self, self.encounter_enter_elevator)
+        self.anime = AnimationSubState(ElevatorGateOpenAction(), self, self.encounter_enter_elevator)
+
         return [ButtonReleasedAction(Blackboard().stage), FloorCallAction(None)]
     def encounter_enter_elevator(self, dt, actions):
-        self.anime = AnimationSubState(Dialog("ANIMATION", "client walking in elevator"), self, self.greet_encounter)
-        return ClientAction(self.current_encounter.name)
+        self.anime = AnimationSubState(ClientInAction(self.current_encounter.name), self, self.greet_encounter)
     def greet_encounter(self, dt, actions):
         self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_greeting(), self, self.close_door)
+        return ClientAction(self.current_encounter.name)
     def close_door(self, dt, actions):
-        self.anime = AnimationSubState(Dialog("ANIMATION", "close door"), self, self.dialog_with_encounter)
+        #self.anime = AnimationSubState(Dialog("ANIMATION", "close door"), self, self.dialog_with_encounter)
+        self.anime = AnimationSubState(ElevatorGateCloseAction(), self, self.dialog_with_encounter)
     def dialog_with_encounter(self, dt, actions):
         self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.dialogs, self, self.wait_for_player_input_with_encounter)
 
@@ -73,10 +79,13 @@ class DayState(State):
                 return ButtonPushedAction(action.data['floor'])
 
     def open_door_encounter_leave(self, dt, actions):
-        self.change_substate(self.close_door_encounter_leave)
+        self.anime = AnimationSubState(ElevatorGateOpenAction(), self, self.encounter_leave)
+    def encounter_leave(self, dt, actions):
+        self.anime = AnimationSubState(ClientOutAction(self.current_encounter.name), self, self.close_door_encounter_leave)
         return NoClientAction()
     def close_door_encounter_leave(self, dt, actions):
-        self.anime = AnimationSubState(Dialog("ANIMATION", "close door"), self, self.introduce_next_client)
+        #self.anime = AnimationSubState(Dialog("ANIMATION", "close door"), self, self.introduce_next_client)
+        self.anime = AnimationSubState(ElevatorGateCloseAction(), self, self.introduce_next_client)
 
     # Endings
     def reach_dest(self, dt, actions):
@@ -91,18 +100,15 @@ class DayState(State):
         return ButtonReleasedAction(Blackboard().stage)
 
     def ignore_client(self, dt, actions):
-        if self.warning < 2:
-            self.dialog = DialogSubState("[INTERCOM] Boss Daniel",
-                                         "Il y a un client au {} qui attend. VA LE CHERCHER!".format(self.current_encounter.stage_src),
-                                         self, self.wait_for_player_input)
+        if self.warning < 1:
+            if self.current_encounter.has_boss_complain():
+                self.dialog = DialogSubState("[INTERCOM] Boss Daniel", self.current_encounter.say_boss_complain(),
+                                             self, self.wait_for_player_input)
             self.warning += 1
         else:
             Blackboard().flags += self.current_encounter.ignore_client_flag
             Blackboard().tips -= self.current_encounter.penality
-            if self.current_encounter.has_boss_complain():
-                self.dialog = DialogSubState("[INTERCOM] Boss Daniel", self.current_encounter.say_boss_complain(), self, self.introduce_next_client)
-            else:
-                self.change_substate(self.introduce_next_client)
+            self.change_substate(self.introduce_next_client)
         return ButtonReleasedAction(Blackboard().stage)
 
     def end_day(self, dt, actions):
