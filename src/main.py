@@ -5,6 +5,8 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions
+from display.action.indicator import DEFAULT_FLOOR_INDICATOR_IMAGE_PATH, DEFAULT_FLOOR_INDICATOR_POS, \
+    DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from domain.state.stateexecutor import StateExecutor
 from event import handler
@@ -12,7 +14,6 @@ from util.geometry import Vector
 
 FPS = 60
 DEFAULT_BACKGROUND_IMAGE_PATH = 'resource/background/ascenseur.png'
-DEFAULT_FLOOR_INDICATOR_IMAGE_PATH = 'resource/img/level_counter.png'
 
 
 class Game:
@@ -36,12 +37,14 @@ class Game:
             drawer.add_image(game_display,
                              DEFAULT_BACKGROUND_IMAGE_PATH,
                              Vector(),
-                             Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT))
+                             Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT),
+                             0)
         self.persistent_display['floor-indicator'] = \
             drawer.add_image(game_display,
                              DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
-                             Vector(135-110, 105-116),
-                             Vector(210, 210))
+                             DEFAULT_FLOOR_INDICATOR_POS,
+                             DEFAULT_FLOOR_INDICATOR_SCALE,
+                             89)
 
     def init_keypad(self, game_display):
         for i in range(NUMBER_OF_BUTTONS_COLS):
@@ -55,6 +58,8 @@ class Game:
 
         self.construct_background(game_display)
         self.init_keypad(game_display)
+
+        indicator_action = FloorIndicatorAction(1, 5)
         crashed = False
         while not crashed:
             game_display.fill(color.BLACK)
@@ -68,6 +73,7 @@ class Game:
             domain_action = self.state_executor.exec(self.delta_t, self.actions)
             self.actions.clear()
             self.temporary_display.append(domain_action.display(game_display, self.delta_t))
+            self.persistent_display[indicator_action.persistent_name] = indicator_action.display(game_display, self.delta_t)
 
             self.compute_delta_t()
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
@@ -79,7 +85,6 @@ class Game:
                     self.actions.append(handler.handle(game_display, event, self.persistent_display))
 
             self.actions = [action for action in self.actions if action]
-
 
             pygame.display.update()
 

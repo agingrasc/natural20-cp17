@@ -1,3 +1,6 @@
+import math
+
+
 class Vector():
     def __init__(self, x=0, y=0, z=0):
         self.x = x
@@ -26,7 +29,14 @@ class Vector():
         return False
 
     def multiply(self, operand):
-        return Vector(self.x * operand, self.y * operand)
+        return Vector(int(self.x * operand), int(self.y * operand))
 
     def to_pos(self):
         return self.x, self.y
+
+    def rotate(self, angle):
+        theta = math.radians(angle)
+        norm = math.sqrt(self.x**2 + self.y**2)
+        x = math.cos(theta) * norm
+        y = math.sin(theta) * norm
+        return Vector(int(abs(x)), int(abs(y)))
