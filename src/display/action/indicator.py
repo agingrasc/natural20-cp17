@@ -1,5 +1,6 @@
 from display import drawer
 from display.action.interface import IDomainAction
+from display.cache import ImagesCache
 from util.geometry import Vector
 
 DEFAULT_FLOOR_INDICATOR_IMAGE_PATH = 'resource/img/level_counter.png'
@@ -32,32 +33,23 @@ class FloorIndicatorAction(IDomainAction):
     def display(self, game_display, dt):
         dt /= 1000.0
         if self.finished:
-            return drawer.add_image(game_display,
-                                    DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
-                                    DEFAULT_FLOOR_INDICATOR_POS,
-                                    DEFAULT_FLOOR_INDICATOR_SCALE,
-                                    self.angle)
+            pass
         elif self.accumulated_time < DEFAULT_TIME_TO_CLIMB_A_FLOOR:
             self.accumulated_time += dt
             initial_angle = floor_to_angle[self.actual_floor]
             target_angle = floor_to_angle[self.actual_floor+1] if self.target_floor > self.actual_floor else floor_to_angle[self.actual_floor-1]
             delta_angle = target_angle - initial_angle
             self.angle += (delta_angle * dt) / DEFAULT_TIME_TO_CLIMB_A_FLOOR
-            return drawer.add_image(game_display,
-                                                      DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
-                                                      DEFAULT_FLOOR_INDICATOR_POS,
-                                                      DEFAULT_FLOOR_INDICATOR_SCALE,
-                                                      self.angle)
         else:
             self.actual_floor = self.actual_floor + 1 if self.target_floor > self.actual_floor else self.actual_floor - 1
             self.angle = floor_to_angle[self.actual_floor]
             self.accumulated_time = 0
             if self.actual_floor == self.target_floor:
                 self.finished = True
-            return drawer.add_image(game_display,
-                                                      DEFAULT_FLOOR_INDICATOR_IMAGE_PATH,
-                                                      DEFAULT_FLOOR_INDICATOR_POS,
-                                                      DEFAULT_FLOOR_INDICATOR_SCALE,
-                                                      self.angle)
+        return self.draw_image(game_display)
 
-
+    def draw_image(self, game_display):
+        image = ImagesCache().images['floor-indicator']
+        pos = DEFAULT_FLOOR_INDICATOR_POS
+        scale = DEFAULT_FLOOR_INDICATOR_SCALE
+        return drawer.add_image(game_display, image, pos, scale, self.angle)
