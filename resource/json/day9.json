@@ -30,6 +30,7 @@
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
+            "penality": 200,
             "tips":0
         },
         {
@@ -69,9 +70,9 @@
             "stage_src": 0,
             "stage_dest": 4,
             "greeting": ["Bonjour citoyen ! Je suis le policier John."],
-            "dialog": "",
-            "insult": [""],
-            "farewell": [""],
+            "dialog": "J'enquête sur une plainte pour tapage nocturne et prostitution. Pouvez-vous m'amener à l'étage où vous avez déposé la dénommée Crystal ?",
+            "insult": ["Merci de votre coopération Citoyen."],
+            "farewell": ["Merci de votre coopération Citoyen."],
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],

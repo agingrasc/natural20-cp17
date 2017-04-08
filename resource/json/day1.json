@@ -6,7 +6,6 @@
         {
             "include":[],
             "exclude":[],
-            "penality": 30,
             "client_name": "Boss Daniel",
             "stage_src": 1,
             "stage_dest": 4,

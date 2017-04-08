@@ -13,6 +13,7 @@
             "insult": ["Haha ! Tu sais vraiment pas à qui tu as à faire. Le SunYClub est au 8e. 8 c'est un chiffre port-bonheur en Chine. Je serai ravis de te le rappeler en ajustant ton nombre de doigts... Bye !"],
             "farewell": ["Xie Xie ! Je reviendrai régulièrement pour voir où tu en es dans ton remboursement. Tu dois quand même 1,000 $ ! Donc active toi !"],
             "ignore_client_flag": [],
+            "penality": 200,
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
             "tips":0

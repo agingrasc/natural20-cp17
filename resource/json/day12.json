@@ -60,6 +60,7 @@
             "ignore_client_flag": [],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
+            "penality": 200,
             "tips":0
         }
 
