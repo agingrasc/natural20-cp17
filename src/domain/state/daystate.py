@@ -41,10 +41,10 @@ class DayState(State):
         for action in actions:
             if isinstance(action, FloorSelected):
                 animation = FloorIndicatorAction(Blackboard().stage, action.data['floor'])
-                if action.data['floor'] == Blackboard().stage:
-                    self.change_substate(self.open_door)
-                elif action.data['floor'] == self.current_encounter.stage_src:
+                if action.data['floor'] == self.current_encounter.stage_src:
                     self.anime = AnimationSubState(animation, self, self.open_door)
+                elif action.data['floor'] == Blackboard().stage:
+                    self.change_substate(self.ignore_client)
                 else:
                     self.anime = AnimationSubState(animation, self, self.ignore_client)
                 Blackboard().stage = action.data['floor']
