@@ -2,11 +2,11 @@
     "clients": [
         {
             "name": "Bob",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_bob.png"
         },
         {
             "name": "Bill Fritz",
-            "ressource": "resource/img/characters/character_grandma_1.png"
+            "ressource": "resource/img/characters/character_business.png"
         },
         {
             "name": "Boss Daniel",
