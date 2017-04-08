@@ -3,7 +3,7 @@ import pygame
 from display import drawer
 from display.action.interface import IDomainAction
 from display.cache import ImagesCache
-from sound.channel import ChannelManager
+from util.animation import easing
 from util.geometry import Vector
 
 DEFAULT_FLOOR_INDICATOR_IMAGE_PATH = 'resource/img/level_counter.png'
@@ -44,7 +44,6 @@ class FloorIndicatorAction(IDomainAction):
         elif self.accumulated_time < DEFAULT_TIME_TO_CLIMB_A_FLOOR:
             self.accumulated_time += dt
             delta_angle = self.target_angle - self.initial_angle
-            #self.angle = self.initial_angle + delta_angle * self.accumulated_time / DEFAULT_TIME_TO_CLIMB_A_FLOOR
             self.angle = self.initial_angle + easing(self.accumulated_time, 0, delta_angle, DEFAULT_TIME_TO_CLIMB_A_FLOOR)
         else:
             self.finished = True
@@ -55,7 +54,3 @@ class FloorIndicatorAction(IDomainAction):
         pos = DEFAULT_FLOOR_INDICATOR_POS
         scale = DEFAULT_FLOOR_INDICATOR_SCALE
         return drawer.add_image(game_display, image, pos, scale, self.angle)
-#elapsed, start, end, total
-def easing(t, b, c, d):
-    t /= d
-    return -c * t * (t - 2) + b;
