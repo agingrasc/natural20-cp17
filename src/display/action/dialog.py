@@ -1,8 +1,5 @@
-import pygame
-
 from display import drawer
 from display.action.interface import IDomainAction
-from sound.channel import ChannelManager
 
 DISPLAY_ANIMATION_TIME = 110
 DIALOG_SOUND_VOLUME = 0.4
@@ -15,16 +12,13 @@ class Dialog(IDomainAction):
         self.name = name
         self.text = text
         self.time_elapsed = 0
-        self.sound = None
 
     def display(self, game_display, delta_t):
         self.time_elapsed += delta_t
-        if self.sound is None:
-            self.sound = pygame.mixer.Sound("resource/sounds/Typing-Machine-3s.wav")
-            ChannelManager().play('effect', self.sound, DIALOG_SOUND_VOLUME, -1)
+        self.start_sound_effect("resource/sounds/Typing-Machine-3s.wav", DIALOG_SOUND_VOLUME)
 
         if self.finished:
-            ChannelManager().stop('effect')
+            self.stop_sound_effect()
             return drawer.display_dialog(game_display, self.name, self.text)
         elif self.time_elapsed < DISPLAY_ANIMATION_TIME:
             return drawer.display_dialog(game_display, self.name, self.text[:self.idx])
@@ -33,7 +27,6 @@ class Dialog(IDomainAction):
             self.idx += 1
             return drawer.display_dialog(game_display, self.name, self.text[:self.idx])
         else:
-            ChannelManager().stop('effect')
+            self.stop_sound_effect()
             self.finished = True
             return drawer.display_dialog(game_display, self.name, self.text[:self.idx])
-

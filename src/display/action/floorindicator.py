@@ -1,6 +1,9 @@
+import pygame
+
 from display import drawer
 from display.action.interface import IDomainAction
 from display.cache import ImagesCache
+from sound.channel import ChannelManager
 from util.geometry import Vector
 
 DEFAULT_FLOOR_INDICATOR_IMAGE_PATH = 'resource/img/level_counter.png'
@@ -29,11 +32,14 @@ class FloorIndicatorAction(IDomainAction):
         self.target_floor = target_floor
         self.persistent_name = "floor-indicator"
         self.accumulated_time = 0
+        self.sound: pygame.mixer.SoundType = None
 
     def display(self, game_display, dt):
         dt /= 1000.0
+        self.start_sound_effect("resource/sounds/Ding-ascenseur-monte-ruffle-24s.wav")
+
         if self.finished:
-            pass
+            self.stop_sound_effect()
         elif self.accumulated_time < DEFAULT_TIME_TO_CLIMB_A_FLOOR:
             self.accumulated_time += dt
             initial_angle = floor_to_angle[self.actual_floor]
