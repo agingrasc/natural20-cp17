@@ -15,6 +15,7 @@ class DayState(State):
         super().__init__(self.introduce_next_client)
         self.day = day
         self.finish = False
+        self.warning = 0
         Blackboard().stage = self.day.start_stage
 
     def introduce_next_client(self, dt, actions):
@@ -24,7 +25,7 @@ class DayState(State):
             self.next_substate = self.end_day
         else:
             print(">>> Level: {} Blinking".format(self.current_encounter.raw_json['stage_src']))
-            self.anime = AnimationSubState(Dialog("ANIMATION", "elevator_light"), self, self.finish_highlight_stage_number)
+            self.change_substate(self.finish_highlight_stage_number)
 
     def finish_highlight_stage_number(self, dt, actions):
         if Blackboard().stage == self.current_encounter.stage_src:
@@ -66,16 +67,17 @@ class DayState(State):
                 animation = FloorIndicatorAction(Blackboard().stage, action.data['floor'])
                 Blackboard().stage = action.data['floor']
                 if action.data['floor'] == self.current_encounter.stage_dest:
-                    #self.anime = AnimationSubState("move client to dest", self, self.reach_dest)
                     self.anime = AnimationSubState(animation, self, self.reach_dest)
                 else:
-                    #self.anime = AnimationSubState("move client to knownwhere", self, self.ignore_dest)
                     self.anime = AnimationSubState(animation, self, self.ignore_dest)
                 return ButtonPushedAction(action.data['floor'])
 
     def open_door_encounter_leave(self, dt, actions):
-        self.change_substate(self.introduce_next_client)
+        self.change_substate(self.close_door_encounter_leave)
         return NoClientAction()
+    def close_door_encounter_leave(self, dt, actions):
+        self.anime = AnimationSubState(Dialog("ANIMATION", "close door"), self, self.introduce_next_client)
+
     # Endings
     def reach_dest(self, dt, actions):
         Blackboard().flags += self.current_encounter.happy_ending_flag
@@ -89,12 +91,18 @@ class DayState(State):
         return ButtonReleasedAction(Blackboard().stage)
 
     def ignore_client(self, dt, actions):
-        Blackboard().flags += self.current_encounter.ignore_client_flag
-        Blackboard().tips -= self.current_encounter.penality
-        if self.current_encounter.has_boss_complain():
-            self.dialog = DialogSubState("[INTERCOM] Boss Daniel", self.current_encounter.say_boss_complain(), self, self.introduce_next_client)
+        if self.warning < 2:
+            self.dialog = DialogSubState("[INTERCOM] Boss Daniel",
+                                         "Il y a un client au {} qui attend. VA LE CHERCHER!".format(self.current_encounter.stage_src),
+                                         self, self.wait_for_player_input)
+            self.warning += 1
         else:
-            self.change_substate(self.introduce_next_client)
+            Blackboard().flags += self.current_encounter.ignore_client_flag
+            Blackboard().tips -= self.current_encounter.penality
+            if self.current_encounter.has_boss_complain():
+                self.dialog = DialogSubState("[INTERCOM] Boss Daniel", self.current_encounter.say_boss_complain(), self, self.introduce_next_client)
+            else:
+                self.change_substate(self.introduce_next_client)
         return ButtonReleasedAction(Blackboard().stage)
 
     def end_day(self, dt, actions):
