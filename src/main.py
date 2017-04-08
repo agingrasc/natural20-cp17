@@ -5,11 +5,11 @@ from pygame import display, Surface
 from pygame.time import Clock
 
 from display import color, drawer, dimensions, button
-from display.action.button import ButtonPushedAction
 from display.action.indicator import DEFAULT_FLOOR_INDICATOR_POS, DEFAULT_FLOOR_INDICATOR_SCALE, FloorIndicatorAction
 from display.button import ButtonBuilder, NUMBER_OF_BUTTONS_ROWS, NUMBER_OF_BUTTONS_COLS
 from display.cache import ImagesCache
 from display.drawer import DIALOG_POLICE_SIZE
+from display.spritesheet import SpriteSheet
 from domain.state.stateexecutor import StateExecutor
 from domain import images
 from event import handler
@@ -35,7 +35,8 @@ class Game:
         pygame.mixer.init()
 
     def init_cache(self):
-        self.image_cache.add_image(*images.BACKGROUND_IMAGE)
+        background_idx, background_path = images.BACKGROUND_IMAGE
+        self.image_cache.add_sprites_sheets(background_idx, background_path, Vector(1024, 1024))
         self.image_cache.add_image(*images.FLOOR_INDICATOR)
         self.image_cache.add_font("dialog", "resource/font/OldNewspaperTypes.ttf", DIALOG_POLICE_SIZE)
         self.image_cache.add_font("tips", "resource/font/OldStandard-Regular.ttf", 20)
@@ -52,9 +53,11 @@ class Game:
         self.last_frame_ticks = ticks
 
     def construct_background(self, game_display):
+        background_sprite_sheet: SpriteSheet = self.image_cache.sprites_sheets['background']
+        background_sprite = background_sprite_sheet.get_element(0, 0)
         self.persistent_display['background'] = \
             drawer.add_image(game_display,
-                             self.image_cache.images['background'],
+                             background_sprite,
                              Vector(),
                              Vector(dimensions.WINDOW_WIDTH, dimensions.WINDOW_HEIGHT),
                              0)
@@ -100,7 +103,7 @@ class Game:
 
             self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
             str_tips = "{:0>6.2f}$".format(Blackboard().tips)
-            self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(self.display_width - len(str_tips)*9, 0), color.GREEN))
+            self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(self.display_width - int(len(str_tips)*9.5), 0), color.GREEN))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
