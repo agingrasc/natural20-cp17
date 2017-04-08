@@ -11,9 +11,9 @@ from util.geometry import Vector
 from util.singleton import Singleton
 from domain import images
 
-BUTTON_SIZE = 35
+BUTTON_SIZE = 26
 BUTTON_SPRITE_SIZE = Vector(107, 107)
-DEFAULT_MIN_WIDTH = 100
+DEFAULT_MIN_WIDTH = 107
 DEFAULT_MIN_HEIGHT = 175
 DEFAULT_MARGIN = 2
 NUMBER_OF_BUTTONS_ROWS = 5
