@@ -99,8 +99,8 @@ class DayState(State):
         self.dialog = DialogSubState(self.current_encounter.name, self.current_encounter.say_farewell(), self, self.give_tips)
         return ButtonReleasedAction(Blackboard().stage)
     def give_tips(self, dt, actions):
-        if self.current_encounter.tips > 0.0:
-            Blackboard().tips += self.current_encounter.tips
+        if self.current_encounter.tips != 0:
+            Blackboard().add_tips(self.current_encounter.tips)
             self.anime = AnimationSubState(CashInAction(), self, self.open_door_encounter_leave)
         else:
             self.change_substate(self.open_door_encounter_leave)
@@ -118,7 +118,7 @@ class DayState(State):
             self.warning += 1
         else:
             Blackboard().flags += self.current_encounter.ignore_client_flag
-            Blackboard().tips -= self.current_encounter.penality
+            Blackboard().add_tips(-self.current_encounter.penality)
             self.change_substate(self.introduce_next_client)
         return ButtonReleasedAction(Blackboard().stage)
 

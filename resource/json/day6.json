@@ -31,8 +31,7 @@
             "ignore_client_flag": ["IgnUsu2"],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "penality": 200,
-            "tips": 1
+            "tips": -200
         },
         {
             "include":[],
@@ -48,8 +47,7 @@
             "ignore_client_flag": ["IgnUsu2"],
             "ignore_dest_flag": [],
             "happy_ending_flag": [],
-            "penality": 200,
-            "tips": 1
+            "tips": -200
         },
         {
             "include":[],
