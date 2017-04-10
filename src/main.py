@@ -107,7 +107,6 @@ class Game:
                 displayable()
             self.temporary_display.clear()
 
-            self.temporary_display.append(drawer.add_text(game_display, "{}".format(int(1/(self.delta_t/1000))), Vector(), color.YELLOW))
             str_tips = "{:>6.2f}$".format(Blackboard().tips)
             self.temporary_display.append(drawer.add_text(game_display, str_tips, Vector(90, 380), color.MONEY_COLOR))
 
