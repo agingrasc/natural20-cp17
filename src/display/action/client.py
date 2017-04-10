@@ -7,7 +7,8 @@ POS_CHARACTER = Vector(418,770)
 
 
 class ClientAction(IDomainAction):
-    def __init__(self, client_name: str):
+    #def __init__(self, client_name: str):
+    def __init__(self, client_name):
         super().__init__()
         self.client_name = client_name
         self.persistent_name = 'client'

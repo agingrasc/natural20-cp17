@@ -33,7 +33,8 @@ class FloorIndicatorAction(IDomainAction):
         self.angle = self.initial_angle
         self.persistent_name = "floor-indicator"
         self.accumulated_time = 0
-        self.sound: pygame.mixer.SoundType = None
+        #self.sound: pygame.mixer.SoundType = None
+        self.sound = None
 
 
     def display(self, game_display, dt):

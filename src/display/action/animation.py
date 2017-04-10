@@ -13,7 +13,8 @@ KEY_FRAME_TIME = 1000
 class SpriteAnimationAction(IDomainAction):
     def __init__(self, sprite_sheet_id, idx = 0):
         super().__init__()
-        self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[sprite_sheet_id]
+        self.sprite_sheet = ImagesCache().sprites_sheets[sprite_sheet_id]
+        #self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[sprite_sheet_id]
         self.elapsed_time = 0
         self.pos = Vector()
         self.scale = Vector()
@@ -37,7 +38,8 @@ class SpriteAnimationAction(IDomainAction):
 
 class ButtonAnimationAction(SpriteAnimationAction):
     def __init__(self, floor):
-        button: Button = ButtonBuilder().get_button_for_floor(floor)
+        #button: Button = ButtonBuilder().get_button_for_floor(floor)
+        button = ButtonBuilder().get_button_for_floor(floor)
         super().__init__(button.idx)
         self.pos = button.coordinates
         self.scale = button.size

@@ -11,7 +11,8 @@ from util.geometry import Vector
 IN_OUT_TIME_SECOND = 0.6
 
 class InOutClientAction(IDomainAction):
-    def __init__(self, client_name: str, is_in):
+    #def __init__(self, client_name: str, is_in):
+    def __init__(self, client_name, is_in):
         super().__init__()
         self.client_name = client_name
         self.is_in = is_in
@@ -34,11 +35,13 @@ class InOutClientAction(IDomainAction):
         return functools.partial(game_display.blit, self.image, pos.to_pos())
 
 class ClientInAction(InOutClientAction):
-    def __init__(self, client_name: str):
+    #def __init__(self, client_name: str):
+    def __init__(self, client_name):
         super().__init__(client_name, True)
 
 class ClientOutAction(InOutClientAction):
-    def __init__(self, client_name: str):
+    #def __init__(self, client_name: str):
+    def __init__(self, client_name):
         super().__init__(client_name, False)
 
 #elapsed, start, end, total

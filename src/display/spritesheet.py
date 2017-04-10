@@ -6,7 +6,8 @@ from util.geometry import Vector
 class SpriteSheet:
     """" Charge en memoire une sprite sheet et permet d'y acceder correctement. """
 
-    def __init__(self, sprite_sheet_path: str, element_dimensions: Vector):
+    #def __init__(self, sprite_sheet_path: str, element_dimensions: Vector):
+    def __init__(self, sprite_sheet_path, element_dimensions):
         self.image = pygame.image.load(sprite_sheet_path)
         self.image_size = Vector(*self.image.get_rect().size)
         self.element_dimensions = element_dimensions

@@ -62,7 +62,8 @@ class Game:
         self.last_frame_ticks = ticks
 
     def construct_background(self, game_display):
-        background_sprite_sheet: SpriteSheet = self.image_cache.sprites_sheets['background']
+        #background_sprite_sheet: SpriteSheet = self.image_cache.sprites_sheets['background']
+        background_sprite_sheet = self.image_cache.sprites_sheets['background']
         background_sprite = background_sprite_sheet.get_element(0, 0)
         self.persistent_display['background'] = \
             drawer.add_image(game_display,
@@ -88,9 +89,11 @@ class Game:
 
     def main(self):
 
-        game_display: Surface = display.set_mode((self.display_width, self.display_height))
+        #game_display: Surface = display.set_mode((self.display_width, self.display_height))
+        game_display = display.set_mode((self.display_width, self.display_height))
         display.set_caption('Natural 20: Challenge Pixel 2017')
-        clock: Clock = pygame.time.Clock()
+        #clock: Clock = pygame.time.Clock()
+        clock = pygame.time.Clock()
 
         self.construct_background(game_display)
         self.init_keypad(game_display)

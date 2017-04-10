@@ -21,20 +21,24 @@ NUMBER_OF_BUTTONS_COLS = 2
 
 
 class Button:
-    def __init__(self, coordinates: Vector, size: Vector, floor: int):
+    #def __init__(self, coordinates: Vector, size: Vector, floor: int):
+    def __init__(self, coordinates, size, floor):
         idx, _ = images.BUTTON_PATTERN
         self.idx = idx.format(floor)
         self.coordinates = coordinates
         self.size = size
         self.floor = floor
 
-    def display(self, surface: Surface):
+    #def display(self, surface: Surface):
+    def display(self, surface):
         img_cache = ImagesCache()
-        sprite_sheet: SpriteSheet = img_cache.sprites_sheets['button-{}'.format(self.floor)]
+        #sprite_sheet: SpriteSheet = img_cache.sprites_sheets['button-{}'.format(self.floor)]
+        sprite_sheet = img_cache.sprites_sheets['button-{}'.format(self.floor)]
         sprite = sprite_sheet.get_element(0, 0)
         return drawer.add_image(surface, sprite, self.coordinates, self.size)
 
-    def is_inside(self, pos: Vector):
+    #def is_inside(self, pos: Vector):
+    def is_inside(self, pos):
         down_right_corner = self.coordinates + self.size
         return self.coordinates.x <= pos.x <= down_right_corner.x and self.coordinates.y <= pos.y <= down_right_corner.y
 
@@ -46,7 +50,8 @@ class ButtonBuilder(metaclass=Singleton):
         self.margin = DEFAULT_MARGIN
         self.buttons = []
 
-    def add_button(self, surface: Surface, row, col):
+    #def add_button(self, surface: Surface, row, col):
+    def add_button(self, surface, row, col):
         coord = Vector(self.min_width + row * (BUTTON_SIZE + DEFAULT_MARGIN), self.min_height + col * (BUTTON_SIZE + DEFAULT_MARGIN))
         size = Vector(BUTTON_SIZE, BUTTON_SIZE)
         floor = compute_floor(row, col)

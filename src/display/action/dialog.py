@@ -6,7 +6,8 @@ DIALOG_SOUND_VOLUME = 0.8
 
 
 class Dialog(IDomainAction):
-    def __init__(self, name: str, text: str):
+    #def __init__(self, name: str, text: str):
+    def __init__(self, name, text):
         super().__init__()
         self.idx = 0
         self.name = name

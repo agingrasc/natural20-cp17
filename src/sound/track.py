@@ -8,7 +8,8 @@ TRACK_VOLUME = 0.2
 
 class BackgroundMusicTrack(metaclass=Singleton):
     def __init__(self):
-        self.sound: pygame.mixer.SoundType = pygame.mixer.Sound("resource/music/Trame-classique-2m40s.wav")
+        #self.sound: pygame.mixer.SoundType = pygame.mixer.Sound("resource/music/Trame-classique-2m40s.wav")
+        self.sound = pygame.mixer.Sound("resource/music/Trame-classique-2m40s.wav")
         self.sound.set_volume(TRACK_VOLUME)
         self.sound.play(-1)
 

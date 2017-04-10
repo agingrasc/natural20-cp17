@@ -16,17 +16,20 @@ from util.geometry import Vector
 DIALOG_POLICE_SIZE = 16
 
 
-def add_text(surface: Surface, text: str, pos: Vector, text_color=color.TEXT_FOREGROUND_COLOR):
+#def add_text(surface: Surface, text: str, pos: Vector, text_color=color.TEXT_FOREGROUND_COLOR):
+def add_text(surface, text: str, pos: Vector, text_color=color.TEXT_FOREGROUND_COLOR):
     font_text = ImagesCache().fonts["tips"].render(text, True, text_color)
     return functools.partial(surface.blit, font_text, pos.to_pos())
 
 
-def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tuple[int, int, int]):
+#def add_rectangle(surface: Surface, coord: Vector, size: Vector, rect_color: Tuple[int, int, int]):
+def add_rectangle(surface, coord, size, rect_color: Tuple[int, int, int]):
     rect = pygame.Rect(coord.to_pos(), size.to_pos())
     return functools.partial(draw.rect, surface, rect_color, rect, 0)
 
 
-def add_image(surface: Surface, image: Surface, pos: Vector=Vector(0,0), scale: Vector= None, angle = 0):
+#def add_image(surface: Surface, image: Surface, pos: Vector=Vector(0,0), scale: Vector= None, angle = 0):
+def add_image(surface, image, pos=Vector(0, 0), scale=None, angle=0):
     if angle != 0:
         rotated_img = rot_center(image, angle)
     else:
@@ -38,7 +41,8 @@ def add_image(surface: Surface, image: Surface, pos: Vector=Vector(0,0), scale: 
     return functools.partial(surface.blit, rescaled_img, pos.to_pos())
 
 
-def display_dialog(surface: Surface, name: str, dialog: str):
+#def display_dialog(surface: Surface, name: str, dialog: str):
+def display_dialog(surface, name, dialog):
     WIDTH = 455
     HEIGHT = 205
     BORDER = 5

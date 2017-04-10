@@ -35,7 +35,7 @@ class DayState(State):
         if self.current_encounter is None:
             self.next_substate = self.end_day
         else:
-            print(">>> Level: {} Blinking".format(self.current_encounter.raw_json['stage_src']))
+            #print(">>> Level: {} Blinking".format(self.current_encounter.raw_json['stage_src']))
             self.change_substate(self.finish_highlight_stage_number)
 
     def finish_highlight_stage_number(self, dt, actions):

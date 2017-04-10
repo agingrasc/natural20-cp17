@@ -8,7 +8,8 @@ class AnimationSubState:
     """
     Handle a sequence of substate to output a dialog and return to substate when finished
     """
-    def __init__(self, animation: IDomainAction, parentState, returnSubstateCallback):
+    #def __init__(self, animation: IDomainAction, parentState, returnSubstateCallback):
+    def __init__(self, animation, parentState, returnSubstateCallback):
         self.parentState = parentState
         self.returnSubstateCallback = returnSubstateCallback
 
@@ -35,7 +36,8 @@ class DialogSubState:
     """
     Handle a sequence of substate to output a dialog and return to substate when finished
     """
-    def __init__(self, name: str, text: str, parentState, returnSubstateCallback):
+    #def __init__(self, name: str, text: str, parentState, returnSubstateCallback):
+    def __init__(self, name, text, parentState, returnSubstateCallback):
         self.parentState = parentState
         self.returnSubstateCallback = returnSubstateCallback
 

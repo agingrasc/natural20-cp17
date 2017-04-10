@@ -16,6 +16,7 @@ class FloorCallAction(IDomainAction):
 
     def display(self, game_display, dt):
         self.finished = True
-        sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets['background']
+        #sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets['background']
+        sprite_sheet = ImagesCache().sprites_sheets['background']
         sprite = sprite_sheet.get_element(0, self.floor + 1)
         return drawer.add_image(game_display, sprite, Vector(), self.size)

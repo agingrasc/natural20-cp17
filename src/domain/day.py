@@ -10,7 +10,7 @@ class Day:
         self.day_id = day_id
         if load_from_json:
             with open('resource/json/day{}.json'.format(day_id)) as json_file:
-                print(day_id)
+                #print(day_id)
                 day_json = json.load(json_file)
                 self.starting_stage = day_json["starting_stage"]
 

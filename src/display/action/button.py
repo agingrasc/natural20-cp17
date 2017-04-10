@@ -16,10 +16,12 @@ class ButtonPushedAction(IDomainAction):
         self.floor = floor
         self.button = ButtonBuilder().get_button_for_floor(floor)
         self.persistent_name = 'button-{}'.format(self.floor)
-        self.sound: pygame.mixer.SoundType = None
+        #self.sound: pygame.mixer.SoundType = None
+        self.sound = None
 
     def display(self, game_display, dt):
-        sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
+        #sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
+        sprite_sheet = ImagesCache().sprites_sheets[self.button.idx]
         image = sprite_sheet.get_element(0, 1)
         if self.sound is None:
             self.sound = pygame.mixer.Sound('resource/sounds/Button-push-nolag-1s.wav')
@@ -35,6 +37,7 @@ class ButtonReleasedAction(IDomainAction):
         self.persistent_name = 'button-{}'.format(self.floor)
 
     def display(self, game_display, dt):
-        self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
+        #self.sprite_sheet: SpriteSheet = ImagesCache().sprites_sheets[self.button.idx]
+        self.sprite_sheet = ImagesCache().sprites_sheets[self.button.idx]
         self.image = self.sprite_sheet.get_element(0, 0)
         return drawer.add_image(game_display, self.image, self.button.coordinates, self.button.size)

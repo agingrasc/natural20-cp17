@@ -7,6 +7,7 @@ class Blackboard(metaclass=Singleton):
         self.tips = 0.0
         self.flags = []
 
-    def add_tips(self, value: int):
+    #def add_tips(self, value: int):
+    def add_tips(self, value):
         new_value = value + self.tips
         self.tips = max([new_value, 0])
